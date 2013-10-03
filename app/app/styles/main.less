@@ -8,6 +8,7 @@
 @color-white-dark: rgb(249, 249, 249);
 @color-grey-light: rgb(244, 244, 244);
 @color-grey: rgb(221, 221, 221);
+@color-black: black;
 @color-red: rgb(243, 69, 65);
 
 @width-layout-nav: 33%;
@@ -97,9 +98,19 @@ aside ul li:not(.big) {
   padding-left: 10%;
 }
 
+aside ul li:first-child {
+  cursor: auto;
+}
+
 aside ul li:hover {
   background-color: @color-white;
   color: @color-red;
+}
+
+aside ul li.selected {
+  background-color: @color-red;
+  color: @color-white;
+  border-bottom: 1px solid @color-red;
 }
 
 div.container {

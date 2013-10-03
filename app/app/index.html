@@ -16,7 +16,7 @@
     <link rel="stylesheet/less" type="text/css" href="styles/main.less" />
     <!-- endbuild -->
 </head>
-  <body ng-app="bamApp">
+  <body ng-app="bamApp" ng-controller="CheckingAccountCtrl">
     <!--[if lt IE 7]>
       <p class="chromeframe">You are using an outdated browser. <a href="http://browsehappy.com/">Upgrade your browser today</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to better experience this site.</p>
     <![endif]-->
@@ -68,7 +68,6 @@
 
     <!-- build:js({.tmp,app}) scripts/scripts.js -->
     <script src="scripts/app.js"></script>
-    <script src="scripts/controllers/HomeCtrl.js"></script>
     <script src="scripts/controllers/CheckingAccountCtrl.js"></script>
     <script src="scripts/services/SettingsDataService.js"></script>
     <script src="scripts/services/SettingsService.js"></script>
@@ -77,6 +76,7 @@
     <script src="scripts/services/AccountDataService.js"></script>
     <script src="scripts/services/AccountService.js"></script>
     <script src="scripts/directives/MenuOrdered.js"></script>
+    <script src="scripts/directives/AccessMonth.js"></script>
     <!-- endbuild -->
   </body>
 </html>

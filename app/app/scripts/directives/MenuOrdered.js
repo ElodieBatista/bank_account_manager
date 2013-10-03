@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('bamApp').directive('menuOrdered', function (settingsService) {
+angular.module('bamApp').directive('menuOrdered', function ($compile, settingsService) {
   return {
     restrict: 'A',
 
@@ -11,7 +11,7 @@ angular.module('bamApp').directive('menuOrdered', function (settingsService) {
         var index = firstMonth;
 
         while (count !== months.length) {
-          elems += '<li><i class="icon-caret-right"></i>' + months[index - 1] + '</li>';
+          elems += '<li access-month month="' + index + '"><i class="icon-caret-right"></i>' + months[index - 1] + '</li>';
 
           index++;
 
@@ -22,8 +22,10 @@ angular.module('bamApp').directive('menuOrdered', function (settingsService) {
           count++;
         }
 
-        console.log(elems);
-        $(elems).insertAfter('aside ul li:first');
+
+        var elemsToInsert = $compile(elems)(scope);
+
+        $(elemsToInsert).insertAfter('aside ul li:first');
       }
 
       var months = settingsService.getMonths();
