@@ -12,7 +12,8 @@
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
 
         <!-- build:css({.tmp,app}) styles/main.css -->
-        <link rel="stylesheet" href="styles/main.css">
+        <link rel="stylesheet/less" type="text/css" href="styles/main.less" />
+        <!--ink rel="stylesheet" href="styles/main.css"-->
         <!-- endbuild -->
 </head>
   <body ng-app="bamAppApp">
@@ -37,6 +38,7 @@
     </script>
 
     <script src="bower_components/angular/angular.js"></script>
+    <script src="bower_components/less/dist/less-1.4.2.min.js"></script>
 
     <!-- build:js({.tmp,app}) scripts/scripts.js -->
     <script src="scripts/app.js"></script>
