@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
 <!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
@@ -11,10 +11,10 @@
     <meta name="viewport" content="width=device-width">
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
 
-        <!-- build:css({.tmp,app}) styles/main.css -->
-        <link rel="stylesheet/less" type="text/css" href="styles/main.less" />
-        <!--ink rel="stylesheet" href="styles/main.css"-->
-        <!-- endbuild -->
+    <!-- build:css({.tmp,app}) styles/main.css -->
+    <link rel="stylesheet" type="text/css" href="bower_components/font-awesome/css/font-awesome.min.css" />
+    <link rel="stylesheet/less" type="text/css" href="styles/main.less" />
+    <!-- endbuild -->
 </head>
   <body ng-app="bamAppApp">
     <!--[if lt IE 7]>
@@ -27,22 +27,39 @@
     <![endif]-->
 
     <!-- Add your site or application content here -->
-    <div class="container" ng-view=""></div>
+    <nav>
+   	  <ul>
+   	  	<li>Bank Account Manager</li>
+   	  </ul>
+    </nav>
 
-    <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
-    <script>
-      var _gaq=[['_setAccount','UA-XXXXX-X'],['_trackPageview']];
-      (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
-      g.src='//www.google-analytics.com/ga.js';
-      s.parentNode.insertBefore(g,s)}(document,'script'));
-    </script>
+    <aside>
+      <ul>
+        <li class="big">Accounts</li>
+        <li>November</li>
+        <li>December</li>
+        <li>January</li>
+        <li>February</li>
+        <li>March</li>
+        <li>April</li>
+        <li>May</li>
+        <li>June</li>
+        <li>July</li>
+        <li>August</li>
+        <li>September</li>
+        <li>October</li>
+        <li class="big">Settings</li>
+      </ul>
+    </aside>
+
+    <div class="container" ng-view=""></div>
 
     <script src="bower_components/angular/angular.js"></script>
     <script src="bower_components/less/dist/less-1.4.2.min.js"></script>
 
     <!-- build:js({.tmp,app}) scripts/scripts.js -->
     <script src="scripts/app.js"></script>
-    <script src="scripts/controllers/main.js"></script>
+    <script src="scripts/controllers/HomeCtrl.js"></script>
     <!-- endbuild -->
   </body>
 </html>
