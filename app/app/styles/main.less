@@ -1,12 +1,23 @@
+@font-face
+{
+  font-family: MainFont;
+  src: url(../fonts/segoeuil.ttf);
+}
+
 @color-white: white;
+@color-white-dark: rgb(249, 249, 249);
+@color-grey-light: rgb(244, 244, 244);
+@color-grey: rgb(221, 221, 221);
 @color-red: rgb(243, 69, 65);
 
-@nice-blue: #5B83AD;
+@width-layout-nav: 33%;
+@width-layout-content: 67%;
 
 body {
-    background-color: @color-white;
+  background-color: @color-white;
   border: 1px solid orange;
   margin: 0;
+  font-family: MainFont;
 }
 
 nav {
@@ -17,4 +28,80 @@ nav {
 
 nav ul {
   margin: 0;
+  padding: 0;
+  height: 100%;
+  list-style-type: none;
+}
+
+nav ul li {
+  line-height: 40px;
+  width: 30%;
+  padding-left: 3%;
+  font-size: 16px;
+}
+
+nav ul li i {
+  padding-right: 5%;
+}
+
+div.menu-bg {
+  width: @width-layout-nav;
+  position: absolute;
+  float: left;
+  border-right: 1px solid @color-grey;
+  background: @color-grey-light;
+  display: block;
+  z-index: -1;
+  top: 0;
+  bottom: 0;
+}
+
+aside {
+  width: @width-layout-nav;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  float: left;
+  background-color: @color-grey-light;
+  border-bottom: 1px solid @color-grey;
+}
+
+aside ul {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+}
+
+aside ul li {
+  border-top: 1px solid @color-grey;
+  border-bottom: 1px solid @color-white;
+  cursor: pointer;
+  height: 30px;
+  line-height: 30px;
+  padding-left: 10%;
+}
+
+aside ul li i {
+  padding-right: 5%;
+}
+
+aside ul li.big {
+  height: 40px;
+  line-height: 40px;
+  font-size: 16px;
+}
+
+aside ul li:not(.big) {
+  background-color: @color-white-dark;
+  font-size: 14px;
+}
+
+aside ul li:hover {
+  background-color: @color-white;
+  color: @color-red;
+}
+
+div.container {
+  float: left;
+  width: @width-layout-content;
 }

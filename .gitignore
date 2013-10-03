@@ -219,3 +219,8 @@ pip-log.txt
 ## WebStorm
 #############
 .idea*
+
+#############
+## Divers
+#############
+/app/app/fonts/*
