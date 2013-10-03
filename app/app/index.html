@@ -16,7 +16,7 @@
     <link rel="stylesheet/less" type="text/css" href="styles/main.less" />
     <!-- endbuild -->
 </head>
-  <body ng-app="bamAppApp">
+  <body ng-app="bamApp">
     <!--[if lt IE 7]>
       <p class="chromeframe">You are using an outdated browser. <a href="http://browsehappy.com/">Upgrade your browser today</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to better experience this site.</p>
     <![endif]-->
@@ -29,12 +29,19 @@
     <!-- Add your site or application content here -->
     <nav>
    	  <ul>
-   	  	<li><i class="icon-bar-chart"></i>Bank Account Manager</li>
+   	  	<li><i class="icon-dashboard"></i>Bank Account Manager</li>
    	  </ul>
     </nav>
 
     <div class="menu-bg"></div>
     <aside>
+      <ul menu-ordered>
+        <li class="big"><i class="icon-tasks"></i>Accounts</li>
+        <li class="big"><i class="icon-bar-chart"></i>Reports</li>
+        <li class="big"><i class="icon-cogs"></i>Settings</li>
+      </ul>
+    </aside>
+    <!--aside>
       <ul>
         <li class="big"><i class="icon-tasks"></i>Accounts</li>
         <li><i class="icon-caret-right"></i>November</li>
@@ -51,16 +58,25 @@
         <li><i class="icon-caret-right"></i>October</li>
         <li class="big"><i class="icon-cogs"></i>Settings</li>
       </ul>
-    </aside>
+    </aside-->
 
     <div class="container" ng-view=""></div>
 
     <script src="bower_components/angular/angular.js"></script>
     <script src="bower_components/less/dist/less-1.4.2.min.js"></script>
+    <script src="bower_components/jquery/jquery.min.js"></script>
 
     <!-- build:js({.tmp,app}) scripts/scripts.js -->
     <script src="scripts/app.js"></script>
     <script src="scripts/controllers/HomeCtrl.js"></script>
+    <script src="scripts/controllers/CheckingAccountCtrl.js"></script>
+    <script src="scripts/services/SettingsDataService.js"></script>
+    <script src="scripts/services/SettingsService.js"></script>
+    <script src="scripts/services/CategoryService.js"></script>
+    <script src="scripts/services/CategoryDataService.js"></script>
+    <script src="scripts/services/AccountDataService.js"></script>
+    <script src="scripts/services/AccountService.js"></script>
+    <script src="scripts/directives/MenuOrdered.js"></script>
     <!-- endbuild -->
   </body>
 </html>

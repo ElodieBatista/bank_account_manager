@@ -1,11 +1,11 @@
 'use strict';
 
-angular.module('bamAppApp', [])
+angular.module('bamApp', [])
   .config(['$routeProvider', function ($routeProvider) {
     $routeProvider
       .when('/', {
         templateUrl: 'views/home.html',
-        controller: 'HomeCtrl'
+        controller: 'CheckingAccountCtrl'
       })
       .otherwise({
         redirectTo: '/'
