@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('bamApp').factory('categoryDataService', function () {
+angular.module('bamApp').factory('categoryDataService', function ($q) {
   return {
     getCategories: function() {
       var deferred = $q.defer();

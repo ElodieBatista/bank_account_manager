@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('bamApp').factory('categoryService', function (categoryDataService) {
+angular.module('bamApp').factory('categoryService', function ($q, categoryDataService) {
     return {
       categories: null,
 

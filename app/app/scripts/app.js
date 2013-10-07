@@ -4,7 +4,7 @@ angular.module('bamApp', [])
   .config(['$routeProvider', function ($routeProvider) {
     $routeProvider
       .when('/', {
-        templateUrl: 'views/home.html',
+        templateUrl: 'views/checkingAccounts.html',
         controller: 'CheckingAccountCtrl'
       })
       .otherwise({
