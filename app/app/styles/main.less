@@ -8,16 +8,37 @@
 @color-white-dark: rgb(249, 249, 249);
 @color-grey-light: rgb(244, 244, 244);
 @color-grey: rgb(221, 221, 221);
+@color-grey-dark: rgb(171, 171, 171);
+@color-black-light: rgb(60, 60, 60);
 @color-black: black;
 @color-red: rgb(243, 69, 65);
+@color-orange: rgb(248, 163, 38);
 
 @width-layout-nav: 33%;
 @width-layout-content: 67%;
+
+// Mixin for text overflow ellipsis
+.mixin-text-ellipsis {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+// Highlight: bck white et text red
+.mixin-highlight {
+  background-color: @color-white;
+  color: @color-red;
+}
+
+.clear {
+  clear: both;
+}
 
 body {
   background-color: @color-white;
   margin: 0;
   font-family: MainFont;
+  overflow-x: hidden;
 }
 
 nav {
@@ -38,6 +59,7 @@ nav ul li {
   width: 31.5%;
   padding-left: 1.5%;
   font-size: 16px;
+  .mixin-text-ellipsis;
 }
 
 nav ul li i {
@@ -45,8 +67,13 @@ nav ul li i {
   font-size: 22px;
 }
 
+nav ul li.project-name {
+  max-width: 250px;
+}
+
 div.menu-bg {
   width: @width-layout-nav;
+  max-width: 250px;
   position: absolute;
   float: left;
   border-right: 1px solid @color-grey;
@@ -59,12 +86,14 @@ div.menu-bg {
 
 aside {
   width: @width-layout-nav;
+  max-width: 250px;
   height: 100%;
   margin: 0;
   padding: 0;
   float: left;
   background-color: @color-grey-light;
   border-bottom: 1px solid @color-grey;
+  .mixin-text-ellipsis;
 }
 
 aside ul {
@@ -103,8 +132,7 @@ aside ul li:first-child {
 }
 
 aside ul li:hover {
-  background-color: @color-white;
-  color: @color-red;
+  .mixin-highlight;
 }
 
 aside ul li.selected {
@@ -114,6 +142,130 @@ aside ul li.selected {
 }
 
 div.container {
+  margin-left: 0;
+  overflow: hidden;
+}
+
+nav.tabs {
+  position: absolute;
+  top: 8px;
+  width: 67%;
+  height: 31px;
+  border-left: 1px solid @color-grey;
+}
+
+nav.tabs ul li {
   float: left;
-  width: @width-layout-content;
+  text-align: center;
+  line-height: 31px;
+  cursor: pointer;
+  width: 25%;
+  padding-left: 0;
+  background-color: @color-grey-light;
+  color: @color-black-light;
+  border-bottom: 1px solid @color-grey;
+  border-right: 1px solid @color-grey;
+}
+
+nav.tabs ul li:hover {
+  .mixin-highlight;
+}
+
+nav.tabs ul li.selected {
+  .mixin-highlight;
+  border-bottom: 1px solid @color-white;
+}
+
+div.content {
+  padding: 3%;
+}
+
+div.content h1 {
+  font-size: 20px;
+  font-weight: normal;
+  margin: 0;
+  width: 25%;
+  float: left;
+}
+
+div.content ul.amounts {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  list-style-type: none;
+  float: left;
+  width: 75%;
+}
+
+div.content ul.amounts li {
+  float: left;
+  width: 25%;
+  margin-right: 5%;
+}
+
+div.content ul.amounts li p {
+  margin: 0;
+  text-align: center;
+  float: left;
+  box-sizing: border-box;
+  margin-right: 2%;
+}
+
+div.content ul.amounts li p:first-child {
+  background-color: @color-white-dark;
+  height: 30px;
+  line-height: 28px;
+  width: 73%;
+}
+
+div.content ul.amounts li.current p:first-child {
+  color: @color-red;
+  border: 1px solid @color-red;
+}
+
+div.content ul.amounts li.future p:first-child {
+  color: @color-orange;
+  border: 1px solid @color-orange;
+}
+
+div.content ul.amounts li p:not(:first-child) {
+  color: @color-grey;
+  font-size: 13px;
+  width: 73%;
+}
+
+div.account-container {
+  border-bottom: 1px solid @color-grey;
+  padding-bottom: 20px;
+  margin-bottom: 20px;
+}
+
+div.currency {
+  overflow: hidden;
+  height: 30px;
+}
+
+div.currency div {
+  background-color: @color-white-dark;
+  box-sizing: border-box;
+  text-align: center;
+  line-height: 15px;
+  font-size: 12px;
+  height: 15px;
+  color: @color-grey-dark;
+  cursor: pointer;
+}
+
+div.currency div {
+  border-bottom: 1px solid @color-white;
+}
+
+li.current div.currency div.selected {
+  border: 1px solid @color-red;
+  color: @color-red;
+}
+
+li.future div.currency div.selected {
+  border: 1px solid @color-orange;
+  color: @color-orange;
 }
