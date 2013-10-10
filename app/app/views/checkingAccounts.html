@@ -34,8 +34,50 @@
       <div class="clear"></div>
 
       <div class="account-content">
-        <table></table>
-      </div
+        <table>
+          <thead>
+            <tr>
+              <th>Title</th>
+              <th>Amount</th>
+              <th>Category</th>
+              <th>Way</th>
+              <th>Date</th>
+              <th>Effective</th>
+              <th>Effective Date</th>
+            </tr>
+          </thead>
+          <tbody>
+
+          </tbody>
+          <tfoot>
+            <tr>
+              <td><input type="text" placeholder="Title" /></td>
+              <td>
+                <div class="sign">
+                  <div>+</div>
+                  <div class="selected">-</div>
+                </div>
+                <div id="input-amount">
+                  <input type="number" placeholder="Amount" />
+                </div>
+              </td>
+              <td>
+                <select>
+                  <option ng-repeat="category in categories | orderBy:'name'" value="{{category.id}}">{{category.name}}</option>
+                </select>
+              </td>
+              <td>
+                <select>
+                  <option ng-repeat="way in ways | orderBy:'name'" value="{{way.id}}">{{way.name}}</option>
+                </select>
+              </td>
+              <td><input type="date" placeholder="Date" /></td>
+              <td><input type="checkbox" /></td>
+              <td><input type="date" placeholder="Date" /></td>
+            </tr>
+          </tfoot>
+        </table>
+      </div>
     </div>
   </div>
 </div>

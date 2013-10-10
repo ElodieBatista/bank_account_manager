@@ -26,7 +26,14 @@ angular.module('bamApp').factory('accountDataService', function ($q) {
               null,
               null
             ]
-          }
+          },
+          transactions: [
+            {
+              title: 'Space Needle Tour',
+              amount: '-19',
+
+            }
+          ]
         },
         {
           name: 'Chase',

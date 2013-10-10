@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('bamApp').controller('CheckingAccountCtrl', function ($scope, accountService, settingsService) {
+angular.module('bamApp').controller('CheckingAccountCtrl', function ($scope, accountService, settingsService, categoryService) {
   var result = accountService.getCheckingAccounts();
 
   if (result.then !== undefined) {
@@ -18,6 +18,10 @@ angular.module('bamApp').controller('CheckingAccountCtrl', function ($scope, acc
 
   $scope.getCheckingAccountsForMonth = function (monthNb) {
     $scope.month = settingsService.getMonths()[parseInt(monthNb) - 1];
-    $scope.$apply();
+    //$scope.$apply();
   };
+
+  $scope.categories = categoryService.getCategories();
+
+  $scope.ways = settingsService.getWays();
 });

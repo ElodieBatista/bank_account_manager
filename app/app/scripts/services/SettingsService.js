@@ -40,6 +40,31 @@ angular.module('bamApp').factory('settingsService', function ($q, settingsDataSe
           'November',
           'December'
         ];
+      },
+
+      getWays: function() {
+        return [
+          {
+            id: 0,
+            name: 'Withdrawal'
+          },
+          {
+            id: 1,
+            name: 'Check'
+          },
+          {
+            id: 2,
+            name: 'Cash'
+          },
+          {
+            id: 3,
+            name: 'Levy'
+          },
+          {
+            id: 4,
+            name: 'Credit Card'
+          }
+        ];
       }
     };
 });

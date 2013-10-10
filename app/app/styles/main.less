@@ -269,3 +269,88 @@ li.future div.currency div.selected {
   border: 1px solid @color-orange;
   color: @color-orange;
 }
+
+div.account-content {
+  margin-top: 2%;
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+thead tr {
+  background-color: @color-black-light;
+  color: @color-white;
+  text-transform: uppercase;
+}
+
+th {
+  font-weight: normal;
+}
+
+tfoot {
+  background-color: @color-white-dark;
+  border: 1px solid @color-grey;
+}
+
+::-webkit-input-placeholder { /* WebKit browsers */
+  color:    @color-grey;
+}
+:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+  color:    @color-grey;
+}
+::-moz-placeholder { /* Mozilla Firefox 19+ */
+  color:    @color-grey;
+}
+:-ms-input-placeholder { /* Internet Explorer 10+ */
+  color:    @color-grey;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  /* display: none; <- Crashes Chrome on hover */
+  -webkit-appearance: none;
+  margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
+}
+
+tfoot td {
+  text-align: center;
+}
+
+tfoot input[type="text"],
+tfoot input[type="number"],
+tfoot select,
+tfoot input[type="date"] {
+  color: @color-grey-dark;
+  border: 1px solid @color-grey;
+  height: 25px;
+  padding-left: 10px;
+  font-family: MainFont;
+}
+
+div.sign {
+  width: 20%;
+  float: left;
+  height: 30px;
+}
+
+div.sign div {
+  background-color: @color-grey-light;
+  box-sizing: border-box;
+  text-align: center;
+  line-height: 15px;
+  font-size: 12px;
+  height: 15px;
+  color: rgb(171, 171, 171);
+  cursor: pointer;
+}
+
+tfoot div#input-amount {
+  overflow: hidden;
+}
+
+tfoot div#input-amount input {
+  width: 100%;
+  box-sizing: border-box;
+}
