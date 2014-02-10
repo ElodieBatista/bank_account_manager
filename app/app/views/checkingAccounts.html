@@ -1,83 +1,86 @@
 <div>
-  <nav class="tabs">
-    <ul>
-      <li class="selected">Checking Accounts</li>
-      <li>Saving Accounts</li>
-      <li>Monthly Report</li>
-    </ul>
-  </nav>
+    <nav class="tabs">
+        <ul>
+            <li class="selected">Checking Accounts</li>
+            <li>Saving Accounts</li>
+            <li>Monthly Report</li>
+        </ul>
+    </nav>
 
-  <div class="content">
-    <div class="account-container" ng-repeat="account in checkingAccounts">
-      <h1>{{account.name}}</h1>
+    <div class="content">
+        <div class="account-container" ng-repeat="account in checkingAccounts">
+            <h1>{{account.name}}</h1>
 
-      <ul class="amounts">
-        <li class="current">
-          <p>{{account.amount}}</p>
-          <div class="currency">
-            <div>$</div>
-            <div class="selected">€</div>
-          </div>
-          <p>Current</p>
-        </li>
+            <ul class="amounts">
+                <li class="current">
+                    <p>{{account.amount}}</p>
+                    <div class="currency">
+                        <div>$</div>
+                        <div class="selected">€</div>
+                    </div>
+                    <p>Current</p>
+                </li>
 
-        <li class="future">
-          <p>{{account.futureAmount}}</p>
-          <div class="currency">
-            <div>$</div>
-            <div class="selected">€</div>
-          </div>
-          <p>Future</p>
-        </li>
-      </ul>
+                <li class="future">
+                    <p>{{account.futureAmount}}</p>
+                    <div class="currency">
+                        <div>$</div>
+                        <div class="selected">€</div>
+                    </div>
+                    <p>Future</p>
+                </li>
+            </ul>
 
-      <div class="clear"></div>
+            <div class="clear"></div>
 
-      <div class="account-content">
-        <table>
-          <thead>
-            <tr>
-              <th>Title</th>
-              <th>Amount</th>
-              <th>Category</th>
-              <th>Way</th>
-              <th>Date</th>
-              <th>Effective</th>
-              <th>Effective Date</th>
-            </tr>
-          </thead>
-          <tbody>
-
-          </tbody>
-          <tfoot>
-            <tr>
-              <td><input type="text" placeholder="Title" /></td>
-              <td>
-                <div class="sign">
-                  <div>+</div>
-                  <div class="selected">-</div>
-                </div>
-                <div id="input-amount">
-                  <input type="number" placeholder="Amount" />
-                </div>
-              </td>
-              <td>
-                <select>
-                  <option ng-repeat="category in categories | orderBy:'name'" value="{{category.id}}">{{category.name}}</option>
-                </select>
-              </td>
-              <td>
-                <select>
-                  <option ng-repeat="way in ways | orderBy:'name'" value="{{way.id}}">{{way.name}}</option>
-                </select>
-              </td>
-              <td><input type="date" placeholder="Date" /></td>
-              <td><input type="checkbox" /></td>
-              <td><input type="date" placeholder="Date" /></td>
-            </tr>
-          </tfoot>
-        </table>
-      </div>
+            <div class="account-content">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Title</th>
+                            <th>Amount</th>
+                            <th>Category</th>
+                            <th>Way</th>
+                            <th>Date</th>
+                            <th>Effective</th>
+                            <th>Effective Date</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!--tr ng-repeat="transaction in account.transactions">
+                            <td>{{transaction.title}}</td>
+                            <td>{{transaction.amount}}</td>
+                        </tr-->
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <td><input type="text" placeholder="Title" /></td>
+                            <td>
+                                <div class="sign">
+                                    <div>+</div>
+                                    <div class="selected">-</div>
+                                </div>
+                                <div id="input-amount">
+                                    <input type="number" placeholder="Amount" />
+                                </div>
+                            </td>
+                            <td>
+                                <select>
+                                    <option ng-repeat="category in categories | orderBy:'name'" value="{{category.id}}">{{category.name}}</option>
+                                </select>
+                            </td>
+                            <td>
+                                <select>
+                                    <option ng-repeat="way in ways | orderBy:'name'" value="{{way.id}}">{{way.name}}</option>
+                                </select>
+                            </td>
+                            <td><input type="date" placeholder="Date" /></td>
+                            <td><input type="checkbox" /></td>
+                            <td><input type="date" placeholder="Date" /></td>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+        </div>
     </div>
-  </div>
 </div>
