@@ -19,7 +19,6 @@ angular.module('bamApp').factory('accountDataService', function ($q) {
                         deferred.reject();
                     }
 
-
                     response = response.getDataTable();
 
                     for (var i = 0, l = response.getNumberOfRows(); i < l; i++) {
