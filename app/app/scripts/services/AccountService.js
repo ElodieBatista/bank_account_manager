@@ -13,19 +13,15 @@ angular.module('bamApp').factory('accountService', function($q, accountDataServi
             });
 
             return deferred.promise;
-        },
+        },*/
 
         getCurrentAmount: function(account) {
             var totalTransactions = 0;
-            for (var i = 0, l = account.transactions.getNumberOfRows(); i < l; i++) {
-                totalTransactions += account.transactions.getValue(i, 2);
+            for (var i = 0, l = account.transactionsArray.length; i < l; i++) {
+                totalTransactions += account.transactionsArray[i].amount;
             }
 
             return account.startAmount + totalTransactions;
-        }*/
-
-        getCheckingAccounts: function() {
-
         }
     }
 });

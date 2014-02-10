@@ -1,35 +1,49 @@
 'use strict';
 
-angular.module('bamApp').controller('CheckingAccountCtrl', function ($scope, accountService, settingsService, categoryService, accountDataService) {
+var module = angular.module('bamApp');
 
+module.config(function config($routeProvider) {
+    $routeProvider
+        .when('/',
+        {
+            templateUrl: 'views/checkingAccounts.html',
+            controller: 'CheckingAccountCtrl'
+        })
+});
 
-    accountDataService.getCheckingAccounts().then(function(dataCheckingAccounts) {
-        $scope.checkingAccounts = [];
-        for (var account in dataCheckingAccounts) {
-            $scope.checkingAccounts.push(account);
+module.controller('CheckingAccountCtrl', function CheckingAccountCtrl($scope, accountService, settingsService, categoryService, accountDataService) {
 
-            $scope.checkingAccounts.transactionsArray = [];
+    var result = accountDataService.getCheckingAccounts();
 
-            for (var transaction in account.transactions) {
-                for (var t_year in transaction) {
-                    for (var t_month in t_year) {
-                        for (var i = 0, l = t_month.length; i < l; i++) {
-                            $scope.checkingAccounts.transactionArray.push(t_month[i]);
+    if (result !== undefined) {
+        result.then(function(dataCheckingAccounts) {
+            $scope.checkingAccounts = [];
+            var i = 0;
+            for (var account in dataCheckingAccounts) {
+                $scope.checkingAccounts.push(dataCheckingAccounts[account]);
+
+                $scope.checkingAccounts[i].name = account;
+                $scope.checkingAccounts[i].transactionsArray = [];
+
+                for (var transaction in $scope.checkingAccounts[i].transactions) {
+                    for (var t_month in $scope.checkingAccounts[i].transactions[transaction]) {
+                        for (var j = 0, l = $scope.checkingAccounts[i].transactions[transaction][t_month].length; j < l; j++) {
+                            $scope.checkingAccounts[i].transactionsArray.push($scope.checkingAccounts[i].transactions[transaction][t_month][j]);
                         }
+
                     }
-
                 }
+                i++;
             }
-        }
 
-        /*for (var i = 0, l = $scope.checkingAccounts.length; i < l; i++) {
-            $scope.checkingAccounts[i].amount = accountService.getCurrentAmount($scope.checkingAccounts[i]);
-            $scope.checkingAccounts[i].futureAmount = accountService.getCurrentAmount($scope.checkingAccounts[i]);
-        }
-        $scope.$apply();*/
-    }, function() {
-        console.log('tutute');
-    });
+            for (var k = 0, le = $scope.checkingAccounts.length; k < le; k++) {
+                $scope.checkingAccounts[k].amount = accountService.getCurrentAmount($scope.checkingAccounts[k]);
+                $scope.checkingAccounts[k].futureAmount = accountService.getCurrentAmount($scope.checkingAccounts[k]);
+            }
+        }, function() {
+            console.log('Error');
+        });
+    }
 
     $scope.getCheckingAccountsForMonth = function (monthNb) {
         $scope.month = settingsService.getMonths()[parseInt(monthNb) - 1];

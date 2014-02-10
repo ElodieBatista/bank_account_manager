@@ -1,13 +1,8 @@
 'use strict';
 
-angular.module('bamApp', [])
-  .config(['$routeProvider', function ($routeProvider) {
-    $routeProvider
-      .when('/', {
-        templateUrl: 'views/checkingAccounts.html',
-        controller: 'CheckingAccountCtrl'
-      })
-      .otherwise({
-        redirectTo: '/'
-      });
-  }]);
+var app = angular.module('bamApp', ['ngResource', 'ngRoute', 'ngSanitize']);
+
+app.config(function ($routeProvider) {
+    // Set a default route
+    $routeProvider.otherwise({redirectTo: '/'});
+});
