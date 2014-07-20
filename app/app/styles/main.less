@@ -1,3 +1,6 @@
+/* ========================== */
+/* ========== BASE ========== */
+/* ========================== */
 @font-face
 {
   font-family: MainFont;
@@ -7,10 +10,12 @@
 @color-white: white;
 @color-white-dark: rgb(249, 249, 249);
 @color-grey-light: rgb(244, 244, 244);
+@color-grey-medium: rgb(233, 233, 233);
 @color-grey: rgb(221, 221, 221);
 @color-grey-dark: rgb(171, 171, 171);
 @color-black-light: rgb(60, 60, 60);
 @color-black: black;
+
 @color-red: rgb(243, 69, 65);
 @color-orange: rgb(248, 163, 38);
 
@@ -38,9 +43,10 @@ body {
   background-color: @color-white;
   margin: 0;
   font-family: MainFont;
-  overflow-x: hidden;
 }
 
+
+/*
 nav {
   background-color: @color-red;
   color: @color-white;
@@ -295,24 +301,24 @@ tfoot {
 }
 
 ::-webkit-input-placeholder { /* WebKit browsers */
-  color:    @color-grey;
+  /*color:    @color-grey;
 }
 :-moz-placeholder { /* Mozilla Firefox 4 to 18 */
-  color:    @color-grey;
+  /*color:    @color-grey;
 }
 ::-moz-placeholder { /* Mozilla Firefox 19+ */
-  color:    @color-grey;
+  /*color:    @color-grey;
 }
 :-ms-input-placeholder { /* Internet Explorer 10+ */
-  color:    @color-grey;
+  /*color:    @color-grey;
 }
 
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
   /* display: none; <- Crashes Chrome on hover */
-  -webkit-appearance: none;
+  /*-webkit-appearance: none;
   margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
-}
+/*}
 
 tfoot td {
   text-align: center;
@@ -353,4 +359,97 @@ tfoot div#input-amount {
 tfoot div#input-amount input {
   width: 100%;
   box-sizing: border-box;
+}*/
+
+
+/* ========================== */
+/* ========= NAVBAR ========= */
+/* ========================== */
+nav {
+  margin-bottom: 0 !important;
+  background-color: @color-red !important;
+  color: @color-white;
+  height: 40px;
+  min-height: 40px !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  position: fixed !important;
+  width: 100%;
+}
+
+nav .container {
+  margin: 0;
+}
+
+.navbar-brand {
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+  color: @color-white !important;
+  line-height: 40px;
+}
+
+
+/* ========================== */
+/* ========== MENU ========== */
+/* ========================== */
+.menu {
+  width: 225px;
+  height: 100%;
+  position: fixed;
+  bottom: 0;
+  top: 40px;
+  z-index: 100;
+  background-color: @color-grey-light;
+  border-right: 1px solid @color-grey;
+}
+
+.menu-list {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+  border-bottom: 1px solid @color-white;
+}
+
+.menu-list-item {
+  border-bottom: 1px solid @color-grey;
+  border-top: 1px solid @color-white;
+  cursor: pointer;
+  padding-left: 15px;
+  height: 40px;
+  line-height: 40px;
+  font-size: 16px;
+}
+
+.menu-list-item i {
+  padding-right: 10px;
+}
+
+.menu-list-subitem {
+  background-color: @color-white-dark;
+  font-size: 14px;
+  padding-left: 40px;
+  height: 30px;
+  line-height: 30px;
+  border-bottom: 1px solid @color-grey-medium;
+  cursor: pointer;
+}
+
+.menu-list-item:hover,
+.menu-list-subitem:hover {
+  .mixin-highlight;
+}
+
+.menu-list-item.active,
+.menu-list-subitem.active {
+  background-color: @color-red;
+  color: @color-white;
+  border-bottom: 1px solid @color-red;
+}
+
+
+/* ========================== */
+/* ========== MAIN ========== */
+/* ========================== */
+.main-content {
+  margin-left: 225px;
 }
