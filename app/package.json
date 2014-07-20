@@ -1,6 +1,6 @@
 {
   "name": "bamapp",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "dependencies": {
     "karma-firefox-launcher": "~0.1.0",
     "karma-chrome-launcher": "~0.1.0",
@@ -38,6 +38,6 @@
     "grunt-ngmin": "~0.0.2"
   },
   "engines": {
-    "node": ">=0.8.0"
+    "node": ">=0.10.0"
   }
 }
