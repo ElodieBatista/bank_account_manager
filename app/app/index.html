@@ -57,7 +57,7 @@
 <div class="main-container">
     <aside class="menu">
         <ul class="menu-list" ol-months>
-            <li class="menu-list-item"><i class="fa fa-tasks"></i>Accounts 2</li>
+            <li class="menu-list-item"><i class="fa fa-tasks"></i>Accounts</li>
             <li class="menu-list-item"><i class="fa fa-bar-chart-o"></i>Reports</li>
             <li class="menu-list-item"><i class="fa fa-cogs"></i>Settings</li>
         </ul>
@@ -88,6 +88,12 @@
 <script src="scripts/services/categoryDataService.js"></script>
 <script src="scripts/services/accountDataService.js"></script>
 <script src="scripts/services/accountService.js"></script>
+<script>
+    $('#monthly-nav-tab a').click(function (e) {
+      e.preventDefault()
+      $(this).tab('show')
+    });
+</script
 <!--script src="scripts/directives/AccessMonth.js"></script-->
 <!-- endbuild -->
 </body>

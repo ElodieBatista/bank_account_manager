@@ -3,24 +3,27 @@
  */
 var express = require('express'),
 	path = require('path'),
-	Datastore = require('nedb');
+	routes = require('./routes'),
+	db = require('./db/db');
 
 var app = express();
 var application_root = process.execPath;
 
+
+
 /**
  * Database configuration
  */
-var databaseUrl = './db/accounts.db';
+/*var databaseUrl = './db/accounts.db';
 var db = {};
-db.accounts = new Datastore({ filename: databaseUrl, autoload: true });
+db.accounts = new Datastore({ filename: databaseUrl, autoload: true });*/
 
 
-/*var doc = { name: 'world' };
+var doc = { name: 'world' };
 
 db.accounts.insert(doc, function (err, newDoc) {   // Callback is optional
   console.log('Yeah');
-});*/
+});
 
 app.use(express.bodyParser());
 app.use(express.methodOverride());
@@ -30,29 +33,31 @@ app.use(express.errorHandler({ dumpExceptions: true, showStack: true }));
 
 
 app.get('/api', function (req, res) {
-  res.header("Access-Control-Allow-Origin", "http://localhost");
-  res.send('Ecomm API is running');
+  res.header('Access-Control-Allow-Origin', 'http://localhost');
+  res.send('Bank Account Manager API is running');
 });
 
-app.get('/accounts', function (req, res) {
-	 res.header("Access-Control-Allow-Origin", "http://localhost");
-	/*res.header("Access-Control-Allow-Origin", "http://localhost");
-	res.header("Access-Control-Allow-Methods", "GET, POST");*/
-	db.accounts.find({}, function(err, accounts) {
-	if ( err || !accounts) {
-		res.send('No accounts found');
-	} else {
-		res.writeHead(200, {'Content-Type': 'application/json'});
-		str='[';
-		accounts.forEach( function(account) {
-			str = str + '{ "name" : "' + account.name + '"},' +'\n';
-		});
-		str = str.trim();
-		str = str.substring(0,str.length-1);
-		str = str + ']';
-		res.end( str);
-	}
-  });
+
+/**
+ * Routes
+ */
+app.get('/', routes.index);
+
+app.options('*', function(req, res) {
+	return res.send(200);
 });
+
+
+/**
+ * JSON API
+ */
+require('./routes/api')(app);
+
+
+/**
+ * DEFAULT
+ * redirect all other routes to the index page
+ */
+app.get('*', routes.index);
 
 app.listen(1212);
