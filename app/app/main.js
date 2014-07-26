@@ -3,39 +3,21 @@
  */
 var express = require('express'),
 	path = require('path'),
+	mw = require('./tools/middlewares'),
 	routes = require('./routes'),
 	db = require('./db/db');
 
 var app = express();
 var application_root = process.execPath;
 
-
-
-/**
- * Database configuration
- */
-/*var databaseUrl = './db/accounts.db';
-var db = {};
-db.accounts = new Datastore({ filename: databaseUrl, autoload: true });*/
-
-
-var doc = { name: 'world' };
-
-db.accounts.insert(doc, function (err, newDoc) {   // Callback is optional
-  console.log('Yeah');
-});
+app.set('port', process.env.PORT || 3000);
 
 app.use(express.bodyParser());
 app.use(express.methodOverride());
 app.use(app.router);
 app.use(express.static(path.join(application_root, 'public')));
 app.use(express.errorHandler({ dumpExceptions: true, showStack: true }));
-
-
-app.get('/api', function (req, res) {
-  res.header('Access-Control-Allow-Origin', 'http://localhost');
-  res.send('Bank Account Manager API is running');
-});
+app.use(mw.setHeaders);
 
 
 /**
@@ -56,8 +38,10 @@ require('./routes/api')(app);
 
 /**
  * DEFAULT
- * redirect all other routes to the index page
+ * Redirect all other routes to the index page
  */
 app.get('*', routes.index);
 
-app.listen(1212);
+app.listen(app.get('port'), function() {
+  console.log('Bank Account Manager API listening on port ' + app.get('port'));
+});

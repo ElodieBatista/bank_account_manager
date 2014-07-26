@@ -2,9 +2,12 @@
  * Database configuration
  */
 var Datastore = require('nedb');
-var databaseUrl = 'accounts.db';
 
 var db = {};
-db.accounts = new Datastore({ filename: databaseUrl, autoload: true });
+db.accounttype = new Datastore({ filename: './db/accounttype.db', autoload: true });
+db.account = new Datastore({ filename: './db/account.db', autoload: true });
+db.category = new Datastore({ filename: './db/category.db', autoload: true });
+db.paymethod = new Datastore({ filename: './db/paymethod.db', autoload: true });
+db.transaction = new Datastore({ filename: './db/transaction.db', autoload: true });
 
 module.exports = db;

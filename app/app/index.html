@@ -57,9 +57,9 @@
 <div class="main-container">
     <aside class="menu">
         <ul class="menu-list" ol-months>
-            <li class="menu-list-item"><i class="fa fa-tasks"></i>Accounts</li>
-            <li class="menu-list-item"><i class="fa fa-bar-chart-o"></i>Reports</li>
-            <li class="menu-list-item"><i class="fa fa-cogs"></i>Settings</li>
+            <li class="menu-list-item"><a href="index.html#/"><i class="fa fa-tasks"></i>Accounts</a></li>
+            <li class="menu-list-item"><a href="index.html#/reports"><i class="fa fa-bar-chart-o"></i>Reports</a></li>
+            <li class="menu-list-item"><a href="index.html#/settings"><i class="fa fa-cogs"></i>Settings</a></li>
         </ul>
     </aside>
 
@@ -82,6 +82,7 @@
 <script src="scripts/app.js"></script>
 <script src="scripts/controllers/HomeCtrl.js"></script>
 <script src="scripts/directives/olMonths.js"></script>
+<script src="scripts/controllers/settingsCtrl.js"></script>
 <script src="scripts/services/settingsDataService.js"></script>
 <script src="scripts/services/settingsService.js"></script>
 <script src="scripts/services/categoryService.js"></script>
@@ -93,7 +94,7 @@
       e.preventDefault()
       $(this).tab('show')
     });
-</script
+</script>
 <!--script src="scripts/directives/AccessMonth.js"></script-->
 <!-- endbuild -->
 </body>
