@@ -1,1 +1,5 @@
-{"name":"Super Duper Burger diner with Amy","category_id":"UiejS8YXUSLsbvS4","account_id":"i0xycE2TbpND6Dkp","paymethod_id":"","value":-39.99,"day":3,"month":7,"year":2014,"_id":"FOvu52bqbDzlv1LG"}
+{"name":"Safeway","category_id":"UiejS8YXUSLsbvS4","account_id":"i0xycE2TbpND6Dkp","paymethod_id":"03ctyIK0mvwPZBX8","value":-80,"day":11,"month":7,"year":2014,"isDone":false,"_id":"27As8DzWbOwHWz0M"}
+{"name":"Mac Book Pro Retina","category_id":"2rebihhxmtl7RBgL","account_id":"i0xycE2TbpND6Dkp","paymethod_id":"03ctyIK0mvwPZBX8","value":-3000,"day":15,"month":5,"year":2014,"isDone":false,"_id":"82sxnqa2zGL2PjKU"}
+{"name":"BART","category_id":"HGIUpGFzxe22Jzdb","account_id":"i0xycE2TbpND6Dkp","paymethod_id":"03ctyIK0mvwPZBX8","value":-90,"day":5,"month":1,"year":2014,"isDone":false,"_id":"p6sv3kyVkkuvHzxi"}
+{"name":"Gas","category_id":"HGIUpGFzxe22Jzdb","account_id":"i0xycE2TbpND6Dkp","paymethod_id":"03ctyIK0mvwPZBX8","value":-50,"day":3,"month":6,"year":2014,"isDone":false,"_id":"umr33fOJJxcli2q5"}
+{"name":"Super Duper Burger diner with Amy","category_id":"UiejS8YXUSLsbvS4","account_id":"i0xycE2TbpND6Dkp","paymethod_id":"03ctyIK0mvwPZBX8","value":-39.99,"day":3,"month":7,"year":2014,"isDone":true,"_id":"v0xxYGDAUR6ghuoQ"}

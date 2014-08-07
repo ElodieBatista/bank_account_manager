@@ -6,7 +6,7 @@ angular.module('bamApp', [
   'ngSanitize'
 ])
   .constant('conf', {
-    'epApi': ''
+    'epApi': 'http://localhost:3000'
   })
   .config(function ($routeProvider) {
     // Set a default route

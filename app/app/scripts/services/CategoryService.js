@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('bamApp').factory('categoryService', function ($q, categoryDataService) {
+angular.module('bamApp').factory('categoryService', function ($q, apiService) {
   return {
     categories: null,
 
@@ -10,7 +10,7 @@ angular.module('bamApp').factory('categoryService', function ($q, categoryDataSe
       if (this.categories === null) {
         var that = this;
 
-        categoryDataService.getCategories().then(function(dataCategories) {
+        apiService..getCategories().then(function(dataCategories) {
           that.categories = dataCategories;
 
           deferred.resolve(that.categories);

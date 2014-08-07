@@ -7,6 +7,7 @@
   src: url(../fonts/segoeuil.ttf);
 }
 
+@color-transparent: rgba(0, 0, 0, 0);
 @color-white: white;
 @color-white-dark: rgb(249, 249, 249);
 @color-grey-light: rgb(244, 244, 244);
@@ -45,6 +46,17 @@ body {
   font-family: MainFont;
 }
 
+a:hover {
+  text-decoration: none;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: MainFont, sans-serif;
+}
+
+h1 {
+  margin-top: 0;
+}
 
 /*
 nav {
@@ -152,36 +164,6 @@ div.container {
   overflow: hidden;
 }
 
-nav.tabs {
-  position: absolute;
-  top: 8px;
-  width: 67%;
-  height: 31px;
-  border-left: 1px solid @color-grey;
-}
-
-nav.tabs ul li {
-  float: left;
-  text-align: center;
-  line-height: 31px;
-  cursor: pointer;
-  width: 25%;
-  padding-left: 0;
-  background-color: @color-grey-light;
-  color: @color-black-light;
-  border-bottom: 1px solid @color-grey;
-  border-right: 1px solid @color-grey;
-}
-
-nav.tabs ul li:hover {
-  .mixin-highlight;
-}
-
-nav.tabs ul li.selected {
-  .mixin-highlight;
-  border-bottom: 1px solid @color-white;
-}
-
 div.content {
   padding: 3%;
 }
@@ -244,7 +226,7 @@ div.account-container {
   border-bottom: 1px solid @color-grey;
   padding-bottom: 20px;
   margin-bottom: 20px;
-}
+}*/
 
 div.currency {
   overflow: hidden;
@@ -280,27 +262,7 @@ div.account-content {
   margin-top: 2%;
 }
 
-table {
-  border-collapse: collapse;
-  width: 100%;
-}
-
-thead tr {
-  background-color: @color-black-light;
-  color: @color-white;
-  text-transform: uppercase;
-}
-
-th {
-  font-weight: normal;
-}
-
-tfoot {
-  background-color: @color-white-dark;
-  border: 1px solid @color-grey;
-}
-
-::-webkit-input-placeholder { /* WebKit browsers */
+/*::-webkit-input-placeholder { /* WebKit browsers */
   /*color:    @color-grey;
 }
 :-moz-placeholder { /* Mozilla Firefox 4 to 18 */
@@ -318,7 +280,7 @@ input::-webkit-inner-spin-button {
   /* display: none; <- Crashes Chrome on hover */
   /*-webkit-appearance: none;
   margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
-/*}
+/*}*/
 
 tfoot td {
   text-align: center;
@@ -359,7 +321,7 @@ tfoot div#input-amount {
 tfoot div#input-amount input {
   width: 100%;
   box-sizing: border-box;
-}*/
+}
 
 
 /* ========================== */
@@ -411,10 +373,11 @@ nav .container {
   border-bottom: 1px solid @color-white;
 }
 
-.menu-list-item {
+.menu-list-item-link {
+  display: block;
+  color: @color-black;
   border-bottom: 1px solid @color-grey;
   border-top: 1px solid @color-white;
-  cursor: pointer;
   padding-left: 15px;
   height: 40px;
   line-height: 40px;
@@ -425,7 +388,8 @@ nav .container {
   padding-right: 10px;
 }
 
-.menu-list-subitem {
+.menu-list-subitem-link {
+  display: block;
   background-color: @color-white-dark;
   font-size: 14px;
   padding-left: 40px;
@@ -433,15 +397,16 @@ nav .container {
   line-height: 30px;
   border-bottom: 1px solid @color-grey-medium;
   cursor: pointer;
+  color: @color-black;
 }
 
-.menu-list-item:hover,
-.menu-list-subitem:hover {
+.menu-list-item-link:hover,
+.menu-list-subitem-link:hover {
   .mixin-highlight;
 }
 
-.menu-list-item.active,
-.menu-list-subitem.active {
+.menu-list-item.active .menu-list-item-link,
+.menu-list-subitem.active .menu-list-subitem-link {
   background-color: @color-red;
   color: @color-white;
   border-bottom: 1px solid @color-red;
@@ -449,8 +414,71 @@ nav .container {
 
 
 /* ========================== */
+/* ======== MAIN NAV ======== */
+/* ========================== */
+.main-nav {
+  position: absolute !important;
+  top: 10px;
+  width: 67%;
+  border-left: 1px solid @color-grey;
+  background-color: @color-transparent !important;
+  height: auto;
+  min-height: inherit !important;
+}
+
+.main-nav-list {
+  padding: 0;
+  margin: 0;
+}
+
+.main-nav-list-item {
+  float: left;
+  text-align: center;
+  height: 30px;
+  line-height: 30px;
+  cursor: pointer;
+  width: 25%;
+  padding-left: 0;
+  background-color: @color-grey-light;
+  color: @color-black-light;
+  border-bottom: 1px solid @color-grey;
+  border-right: 1px solid @color-grey;
+  list-style-type: none;
+}
+
+.main-nav-list-item.active {
+  background-color: @color-white;
+  border-bottom-color: @color-white;
+}
+
+.main-nav-list-item.active .main-nav-list-item-link {
+  color: @color-red;
+}
+
+.main-nav-list-item:hover {
+  background-color: @color-white;
+}
+
+.main-nav-list-item:hover .main-nav-list-item-link {
+  color: @color-red;
+}
+
+.main-nav-list-item-link {
+  display: block;
+  text-transform: uppercase;
+  color: @color-black;
+  font-size: 13px;
+}
+
+
+/* ========================== */
 /* ========== MAIN ========== */
 /* ========================== */
+.tab-content {
+  margin-top: 40px;
+  padding: 10px;
+}
+
 .main-content {
   margin-left: 225px;
 }

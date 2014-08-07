@@ -17,7 +17,8 @@ angular.module('bamApp').directive('olMonths', function ($compile, settingsServi
           }
           elems += '<li class="menu-list-subitem" ng-click="changeViewMonth(' + index + ')"' +
             'ng-class="{true:\'active\',false:\'\'}[currViewMonth === ' + index + ']" data-month="' + index + '">' +
-            months[index - 1] + '</li>';
+            '<a class="menu-list-subitem-link" href="">' +
+            months[index - 1] + '</a></li>';
         }
 
         elems = $compile(elems)(scope);
