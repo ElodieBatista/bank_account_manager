@@ -5,7 +5,7 @@ angular.module('bamApp').factory('settingsService', function ($q, settingsDataSe
     firstMonthOfYear: null,
 
     getFirstMonthOfYear: function() {
-      var deferred = $q.defer();
+      /*var deferred = $q.defer();
 
       if (this.firstMonthOfYear === null) {
         var that = this;
@@ -21,7 +21,9 @@ angular.module('bamApp').factory('settingsService', function ($q, settingsDataSe
         return deferred.promise;
       } else {
         return this.firstMonthOfYear;
-      }
+      }*/
+
+      return 1;
     },
 
     getMonths: function() {

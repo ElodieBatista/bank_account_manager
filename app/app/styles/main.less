@@ -167,16 +167,16 @@ div.container {
 div.content {
   padding: 3%;
 }
-
-div.content h1 {
-  font-size: 20px;
+*/
+.account-name {
+  font-size: 26px;
   font-weight: normal;
   margin: 0;
   width: 25%;
   float: left;
 }
 
-div.content ul.amounts {
+.account-amounts-list {
   margin: 0;
   padding: 0;
   height: 100%;
@@ -185,13 +185,13 @@ div.content ul.amounts {
   width: 75%;
 }
 
-div.content ul.amounts li {
+.account-amounts-item {
   float: left;
   width: 25%;
   margin-right: 5%;
 }
 
-div.content ul.amounts li p {
+.account-amount {
   margin: 0;
   text-align: center;
   float: left;
@@ -199,24 +199,24 @@ div.content ul.amounts li p {
   margin-right: 2%;
 }
 
-div.content ul.amounts li p:first-child {
+.account-amount:first-child {
   background-color: @color-white-dark;
   height: 30px;
   line-height: 28px;
   width: 73%;
 }
 
-div.content ul.amounts li.current p:first-child {
+.current .account-amount:first-child {
   color: @color-red;
   border: 1px solid @color-red;
 }
 
-div.content ul.amounts li.future p:first-child {
+.future .account-amount:first-child {
   color: @color-orange;
   border: 1px solid @color-orange;
 }
 
-div.content ul.amounts li p:not(:first-child) {
+.account-amount-label {
   color: @color-grey;
   font-size: 13px;
   width: 73%;
@@ -226,14 +226,14 @@ div.account-container {
   border-bottom: 1px solid @color-grey;
   padding-bottom: 20px;
   margin-bottom: 20px;
-}*/
+}
 
-div.currency {
+.account-currency {
   overflow: hidden;
   height: 30px;
 }
 
-div.currency div {
+.account-currency div {
   background-color: @color-white-dark;
   box-sizing: border-box;
   text-align: center;
@@ -242,24 +242,25 @@ div.currency div {
   height: 15px;
   color: @color-grey-dark;
   cursor: pointer;
-}
-
-div.currency div {
   border-bottom: 1px solid @color-white;
 }
 
-li.current div.currency div.selected {
+.current .account-currency .selected {
   border: 1px solid @color-red;
   color: @color-red;
 }
 
-li.future div.currency div.selected {
+.future .account-currency .selected {
   border: 1px solid @color-orange;
   color: @color-orange;
 }
 
 div.account-content {
   margin-top: 2%;
+}
+
+.account-table-container {
+  min-height: 200px;
 }
 
 /*::-webkit-input-placeholder { /* WebKit browsers */
@@ -292,9 +293,10 @@ tfoot select,
 tfoot input[type="date"] {
   color: @color-grey-dark;
   border: 1px solid @color-grey;
-  height: 25px;
+  height: 30px;
   padding-left: 10px;
   font-family: MainFont;
+  width: 100%;
 }
 
 div.sign {
@@ -312,6 +314,12 @@ div.sign div {
   height: 15px;
   color: rgb(171, 171, 171);
   cursor: pointer;
+  border: 1px solid @color-grey-light;
+}
+
+.sign .selected {
+  border-color: @color-red;
+  color: @color-red;
 }
 
 tfoot div#input-amount {
@@ -323,6 +331,33 @@ tfoot div#input-amount input {
   box-sizing: border-box;
 }
 
+
+table {
+  border: 1px solid @color-grey;
+}
+
+th, td {
+  padding: 2px 5px;
+}
+
+thead tr {
+  background-color: @color-black;
+}
+
+th {
+  color: @color-white;
+  text-transform: uppercase;
+  font-weight: 300;
+}
+
+.transaction {
+  background-color: @color-grey-light;
+}
+
+tfoot {
+  background-color: @color-white-dark;
+  border-top: 1px solid @color-grey;
+}
 
 /* ========================== */
 /* ========= NAVBAR ========= */

@@ -100,7 +100,7 @@ module.exports = function (app) {
       creation_day: 1,
       creation_month: 1,
       creation_year: 2014,
-      creation_amout: 100
+      creation_amount: 100
     };
 
     var transactions = [

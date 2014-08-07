@@ -13,11 +13,11 @@ angular.module('bamApp').directive('olMonths', function ($compile, settingsServi
           index = firstMonth + i;
           if (index === months.length + 1) {
             index = 1;
-            firstMonth = -1;
+            firstMonth = firstMonth - 12;
           }
           elems += '<li class="menu-list-subitem" ng-click="changeViewMonth(' + index + ')"' +
             'ng-class="{true:\'active\',false:\'\'}[currViewMonth === ' + index + ']" data-month="' + index + '">' +
-            '<a class="menu-list-subitem-link" href="">' +
+            '<a class="menu-list-subitem-link" href="index.html">' +
             months[index - 1] + '</a></li>';
         }
 
@@ -26,13 +26,14 @@ angular.module('bamApp').directive('olMonths', function ($compile, settingsServi
       }
 
       var months = settingsService.getMonths();
-      var firstMonthPromise = settingsService.getFirstMonthOfYear();
+      //var firstMonthPromise = settingsService.getFirstMonthOfYear();
+      var firstMonth = settingsService.getFirstMonthOfYear();
 
-      if (firstMonthPromise.then !== undefined) {
-        firstMonthPromise.then(function(firstMonth) {
+      /*if (firstMonthPromise.then !== undefined) {
+        firstMonthPromise.then(function(firstMonth) {*/
           displayOrderedMonths(firstMonth);
-        });
-      }
+        /*});
+      }*/
     }
   };
 });
