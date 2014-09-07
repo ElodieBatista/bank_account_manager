@@ -10,5 +10,5 @@ angular.module('bamApp', [
   })
   .config(function ($routeProvider) {
     // Set a default route
-    $routeProvider.otherwise({redirectTo: '/'});
+    $routeProvider.otherwise({redirectTo: '/accounts/' + parseInt(new Date().getMonth() + 1)});
   });

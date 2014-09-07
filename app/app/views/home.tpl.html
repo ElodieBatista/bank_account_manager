@@ -1,14 +1,14 @@
 <div>
     <nav class="tabs nav nav-tabs main-nav" role="tablist">
-        <ul id="monthly-nav-list" class="main-nav-list">
+        <ul id="monthly-nav-list" class="main-nav-list" ng-init="selectedTab = 1;">
             <li class="main-nav-list-item" ng-class="{active: selectedTab == 1}">
-                <a class="main-nav-list-item-link" href="#" ng-click="selectedTab = 1;">Checking Accounts</a>
+                <a class="main-nav-list-item-link" href="" ng-click="selectedTab = 1;">Checking Accounts</a>
             </li>
             <li class="main-nav-list-item" ng-class="{active: selectedTab == 2}">
-                <a class="main-nav-list-item-link" href="#" ng-click="selectedTab = 2;">Saving Accounts</a>
+                <a class="main-nav-list-item-link" href="" ng-click="selectedTab = 2;">Saving Accounts</a>
             </li>
             <li class="main-nav-list-item" ng-class="{active: selectedTab == 3}">
-                <a class="main-nav-list-item-link" href="#" ng-click="selectedTab = 3;">Monthly Reports</a>
+                <a class="main-nav-list-item-link" href="" ng-click="selectedTab = 3;">Monthly Reports</a>
             </li>
         </ul>
     </nav>
@@ -16,13 +16,17 @@
     <div class="content tab-content">
         <div ng-show="selectedTab == 1">
             <div class="account-container" ng-repeat="account in accounts">
-                <div ng-include src="'views/accounts.tpl.html'" ng-if="accounttypes[account.accounttype_id].name === 'checking'"></div>
+                <div ng-include src="'views/accounts.tpl.html'"
+                     ng-if="accounttypes[account.accounttype_id].name === 'checking'
+                        && !isMonthOutOfBound(account.creation_month, firstMonth, currViewMonth)"></div>
             </div>
         </div>
 
         <div ng-show="selectedTab == 2">
             <div class="account-container" ng-repeat="account in accounts">
-                <div ng-include src="'views/accounts.tpl.html'" ng-if="accounttypes[account.accounttype_id].name === 'saving'"></div>
+                <div ng-include src="'views/accounts.tpl.html'" 
+                    ng-if="accounttypes[account.accounttype_id].name === 'saving'
+                        && !isMonthOutOfBound(account.creation_month, firstMonth, currViewMonth)"></div>
             </div>
         </div>
 

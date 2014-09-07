@@ -9,5 +9,6 @@ db.account = new Datastore({ filename: './db/account.db', autoload: true });
 db.category = new Datastore({ filename: './db/category.db', autoload: true });
 db.paymethod = new Datastore({ filename: './db/paymethod.db', autoload: true });
 db.transaction = new Datastore({ filename: './db/transaction.db', autoload: true });
+db.currency = new Datastore({ filename: './db/currency.db', autoload: true });
 
 module.exports = db;

@@ -15,10 +15,10 @@ angular.module('bamApp').directive('olMonths', function ($compile, settingsServi
             index = 1;
             firstMonth = firstMonth - 12;
           }
-          elems += '<li class="menu-list-subitem" ng-click="changeViewMonth(' + index + ')"' +
+          elems += '<li class="menu-list-subitem" ng-click="selectedMenu = 1;"' +
             'ng-class="{true:\'active\',false:\'\'}[currViewMonth === ' + index + ']" data-month="' + index + '">' +
-            '<a class="menu-list-subitem-link" href="index.html">' +
-            months[index - 1] + '</a></li>';
+            '<a class="menu-list-subitem-link" href="#/accounts/' + index + '">' +
+            months[index - 1].name + '</a></li>';
         }
 
         elems = $compile(elems)(scope);

@@ -1,3 +1,4 @@
+<div id="account-{{account._id}}">
     <h1 class="account-name">{{account.name}}</h1>
 
     <ul class="account-amounts-list">
@@ -23,59 +24,65 @@
     <div class="clear"></div>
 
     <div class="account-table-container">
-        <table class="account-table">
-            <thead>
-            <tr>
-                <th>Title</th>
-                <th>Amount</th>
-                <th>Category</th>
-                <th>Payment Method</th>
-                <th>Date</th>
-                <th>Is Done</th>
-                <th>Actions</th>
-            </thead>
-            <tbody>
-            <tr class="transaction" ng-repeat="transaction in account.transactions[currViewMonth]">
-                <td>{{transaction.name}}</td>
-                <td>{{transaction.value}}</td>
-                <td>{{categories[transaction.category_id].name}}</td>
-                <td>{{paymethods[transaction.paymethod_id].name}}</td>
-                <td>{{transaction.month}}/{{transaction.day}}/{{transaction.year}}</td>
-                <td ng-switch="transaction.isDone">
-                    <i class="fa fa-check" ng-switch-when="true"></i>
-                    <input ng-switch-when="false" type="checkbox" />
-                </td>
-                <td></td>
-            </tr>
-            </tbody>
-            <tfoot>
-            <tr>
-                <form name="formNewTransaction" ng-submit="newTransaction(formNewTransaction)">
-                    <td><input type="text" placeholder="Title" ng-model="formNewTransaction.title" /></td>
+        <form ng-submit="newTransaction(account.formNewTransaction, account._id)">
+            <table class="account-table">
+                <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Amount</th>
+                    <th>Category</th>
+                    <th>Payment Method</th>
+                    <th>Day</th>
+                    <th>Is Done</th>
+                    <th>Actions</th>
+                </thead>
+                <tbody>
+                <tr class="transaction" ng-repeat="transaction in account.transactions[currViewMonth] | orderBy:['year','month', 'day']">
+                    <td>{{transaction.name}}</td>
+                    <td>{{transaction.amount}}</td>
+                    <td>{{categories[transaction.category_id].name}}</td>
+                    <td>{{paymethods[transaction.paymethod_id].name}}</td>
+                    <td>{{transaction.month}}/{{transaction.day}}/{{transaction.year}}</td>
                     <td>
-                        <div class="sign">
-                            <div>+</div>
-                            <div class="selected">-</div>
-                        </div>
+                        <input type="checkbox" ng-model="transaction.isDone" ng-change="completeTransaction(transaction)">
+                    </td>
+                    <td>
+                        <button type=button ng-click="deleteTransaction(transaction);">x</button>
+                    </td>
+                </tr>
+                </tbody>
+                <tfoot>
+                <tr>
+                    <td><input type="text" placeholder="Name" ng-model="account.formNewTransaction.name"></td>
+                    <td>
+                        +<input type="radio" name="sign" value="+" ng-model="account.formNewTransaction.sign">
+                        -<input type="radio" name="sign" value="-" ng-model="account.formNewTransaction.sign">
                         <div id="input-amount">
-                            <input type="number" placeholder="Amount" ng-model="formNewTransaction.amount" />
+                            <input type="number" placeholder="Amount" ng-model="account.formNewTransaction.amount">
                         </div>
                     </td>
                     <td>
-                        <select>
-                            <option ng-repeat="category in categories | orderBy:'name'" value="{{category.id}}">{{category.name}}</option>
+                        <select ng-model="account.formNewTransaction.category_id">
+                            <option ng-repeat="category in categories | orderBy:'name'" value="{{category._id}}">
+                                {{category.name}}
+                            </option>
                         </select>
                     </td>
                     <td>
-                        <select>
-                            <option ng-repeat="paymethod in paymethods | orderBy:'name'" value="{{paymethod.id}}">{{paymethod.name}}</option>
+                        <select ng-model="account.formNewTransaction.paymethod_id">
+                            <option ng-repeat="paymethod in paymethods | orderBy:'name'" value="{{paymethod._id}}">
+                                {{paymethod.name}}
+                            </option>
                         </select>
                     </td>
-                    <td><input type="date" placeholder="Date" /></td>
-                    <td><input type="checkbox" /></td>
-                    <td><input type="submit" value="+" /></td>
-                </form>
-            </tr>
-            </tfoot>
-        </table>
+                    <td><input type="number" placeholder="Day" ng-model="account.formNewTransaction.day"></td>
+                    <td>
+                        <input type="checkbox" ng-model="account.formNewTransaction.isDone">
+                    </td>
+                    <td><input type="submit" value="+"></td>
+                </tr>
+                </tfoot>
+            </table>
+        </form>
     </div>
+</div>

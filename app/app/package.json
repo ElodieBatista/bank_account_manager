@@ -1,5 +1,8 @@
 {
   "name": "bamapp",
   "version": "0.0.1",
-  "main": "index.html"
+  "main": "index.html",
+  "window": {
+     "icon": "styles/icon.png"
+  }
 }

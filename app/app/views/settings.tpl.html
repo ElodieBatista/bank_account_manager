@@ -1,1 +1,65 @@
-<h1>Settings</h1>
+<div>
+    <nav class="tabs nav nav-tabs main-nav" role="tablist">
+        <ul id="monthly-nav-list" class="main-nav-list" ng-init="selectedSettingsTab = 1;">
+            <li class="main-nav-list-item" ng-class="{active: selectedSettingsTab == 1}">
+                <a class="main-nav-list-item-link" href="#/settings" ng-click="selectedSettingsTab = 1;">Accounts</a>
+            </li>
+            <li class="main-nav-list-item" ng-class="{active: selectedSettingsTab == 2}">
+                <a class="main-nav-list-item-link" href="#/settings" ng-click="selectedSettingsTab = 2;">Customize</a>
+            </li>
+        </ul>
+    </nav>
+
+    <div class="content tab-content">
+        <div ng-show="selectedSettingsTab == 1">
+        	<form name="formFirstMonthOfYear" ng-submit="editFirstMonthOfYear(formFirstMonthOfYear)">
+        		<label>First month of Year:</label>
+        		<select ng-model="formFirstMonthOfYear.number" ng-change="editFirstMonthOfYear(formFirstMonthOfYear)">
+                	<option ng-repeat="month in months | orderBy:'number'" value="{{month.number}}">
+                		{{month.name}}
+                	</option>
+                </select>
+            </form>
+
+            <div>
+            	<form name="formNewAccount" ng-submit="newAccount(formNewAccount)">
+	            	<table>
+	            		<tr ng-repeat="account in accounts">
+	            			<td>{{account.name}}</td>
+	            			<td>{{accounttypes[account.accounttype_id].name}}</td>
+	            			<td>{{account.creation_day}}</td>
+	            			<td>{{account.creation_month}}</td>
+	            			<td>{{account.creation_year}}</td>
+	            			<td>{{account.creation_amount}}</td>
+	            		</tr>
+	            		<tr>
+	            			<td><input type="text" placeholder="Name" ng-model="formNewAccount.name"></td>
+	            			<td>
+	            				<select ng-model="formNewAccount.accounttype_id">
+                            		<option ng-repeat="accounttype in accounttypes | orderBy:'name'" value="{{accounttype._id}}">
+                                		{{accounttype.name}}
+                            		</option>
+                        		</select>
+                        	</td>
+	            			<td><input type="number" placeholder="Day" ng-model="formNewAccount.creation_day"></td>
+	            			<td><input type="number" placeholder="Month" ng-model="formNewAccount.creation_month"></td>
+	            			<td><input type="number" placeholder="Year" ng-model="formNewAccount.creation_year"></td>
+	            			<td><input type="number" placeholder="Amount" ng-model="formNewAccount.creation_amount"></td>
+	            			<td><input type="submit" value="+"></td>
+	            		</tr>
+	            	</table>
+	            </form>
+            </div>
+        </div>
+
+        <div ng-show="selectedSettingsTab == 2">
+        	<h1>Categories</h1>
+        	<table>
+	            <tr ng-repeat="category in categories">
+	                <td>{{category.name}}</td>
+	                <td>{{category.color}}</td>
+	            </tr>
+            </table>
+        </div>
+    </div>
+</div>

@@ -12,6 +12,20 @@ angular.module('bamApp').factory('apiService', function (conf, $resource) {
     Account: $resource(conf.epApi + '/account', {}, {
       'get': {
         method: 'GET'
+      },
+
+      'post': {
+        method: 'POST',
+        params: {
+          account:'@account'
+        }
+      },
+
+      'put': {
+        method: 'PUT',
+        params: {
+          account:'@account'
+        }
       }
     }),
 
@@ -30,9 +44,29 @@ angular.module('bamApp').factory('apiService', function (conf, $resource) {
     }),
 
 
-    Transaction: $resource(conf.epApi + '/transaction', {}, {
+    Transactions: $resource(conf.epApi + '/transaction', {}, {
       'get': {
         method: 'GET'
+      },
+
+      'post': {
+        method: 'POST',
+        params: {
+          transaction:'@transaction'
+        }
+      },
+
+      'put': {
+        method: 'PUT',
+        params: {
+          transaction:'@transaction'
+        }
+      }
+    }),
+
+    Transaction: $resource(conf.epApi + '/transaction/:id', {id:'@id'}, {
+      'delete': {
+          method: 'DELETE'
       }
     })
   }

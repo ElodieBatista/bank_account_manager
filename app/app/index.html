@@ -44,10 +44,16 @@
 
 <div class="main-container">
     <aside class="menu">
-        <ul class="menu-list" ol-months>
-            <li class="menu-list-item"><a class="menu-list-item-link" href="index.html#/"><i class="fa fa-tasks"></i>Accounts</a></li>
-            <li class="menu-list-item"><a class="menu-list-item-link" href="index.html#/reports"><i class="fa fa-bar-chart-o"></i>Reports</a></li>
-            <li class="menu-list-item"><a class="menu-list-item-link" href="index.html#/settings"><i class="fa fa-cogs"></i>Settings</a></li>
+        <ul class="menu-list" ol-months ng-init="selectedMenu = 1;">
+            <li class="menu-list-item" ng-class="{active: selectedMenu == 1}">
+                <a class="menu-list-item-link" href="index.html#/" ng-click="selectedMenu = 1;"><i class="fa fa-tasks"></i>Accounts</a>
+            </li>
+            <li class="menu-list-item" ng-class="{active: selectedMenu == 2}">
+                <a class="menu-list-item-link" href="index.html#/reports" ng-click="selectedMenu = 2; currViewMonth = 0;"><i class="fa fa-bar-chart-o"></i>Reports</a>
+            </li>
+            <li class="menu-list-item" ng-class="{active: selectedMenu == 3}">
+                <a class="menu-list-item-link" href="index.html#/settings" ng-click="selectedMenu = 3; currViewMonth = 0;"><i class="fa fa-cogs"></i>Settings</a>
+            </li>
         </ul>
     </aside>
 
@@ -74,8 +80,6 @@
 <script src="scripts/controllers/settingsCtrl.js"></script>
 <script src="scripts/services/apiService.js"></script>
 <script src="scripts/services/settingsService.js"></script>
-<script src="scripts/services/settingsDataService.js"></script>
-<!--script src="scripts/directives/AccessMonth.js"></script-->
 <!-- endbuild -->
 </body>
 </html>

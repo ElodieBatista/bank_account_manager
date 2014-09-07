@@ -6,6 +6,7 @@ module.exports = function (app) {
   require('../routes/category')(app);
   require('../routes/paymethod')(app);
   require('../routes/transaction')(app);
+  require('../routes/settings')(app);
 
   app.get('/fixtures', function(req, res) {
     var types = [
@@ -14,6 +15,17 @@ module.exports = function (app) {
       },
       {
         name: 'saving'
+      }
+    ];
+
+    var currencies = [
+      {
+        name: 'euro',
+        symbol: '€'
+      },
+      {
+        name: 'dollar',
+        symbol: '$'
       }
     ];
 
@@ -94,22 +106,34 @@ module.exports = function (app) {
       }
     ];
 
-    var account = {
-      name: 'Bank of America',
-      accounttype_id: 'jmiKlztAzPQlhSKq',
-      creation_day: 1,
-      creation_month: 1,
-      creation_year: 2014,
-      creation_amount: 100
-    };
+    var accounts = [
+      {
+        name: 'Bank of America',
+        accounttype_id: 'jmiKlztAzPQlhSKq',
+        currency_id: 'X3ZxksyOo95q5YP4',
+        creation_day: 1,
+        creation_month: 1,
+        creation_year: 2014,
+        creation_amount: 100
+      },
+      {
+        name: 'BNP Paribas',
+        accounttype_id: 'jmiKlztAzPQlhSKq',
+        currency_id: 'rgkOzOzvh8APxtyF',
+        creation_day: 5,
+        creation_month: 3,
+        creation_year: 2014,
+        creation_amount: 500
+      }
+    ];
 
     var transactions = [
       {
         name: 'Super Duper Burger diner with Amy',
         category_id: 'UiejS8YXUSLsbvS4',
-        account_id: 'i0xycE2TbpND6Dkp',
+        account_id: '4pyFYVcHk7rTWC4U',
         paymethod_id: '03ctyIK0mvwPZBX8',
-        value: -39.99,
+        amount: -39.99,
         day: 3,
         month: 7,
         year: 2014,
@@ -118,9 +142,9 @@ module.exports = function (app) {
       {
         name: 'BART',
         category_id: 'HGIUpGFzxe22Jzdb',
-        account_id: 'i0xycE2TbpND6Dkp',
+        account_id: '4pyFYVcHk7rTWC4U',
         paymethod_id: '03ctyIK0mvwPZBX8',
-        value: -90,
+        amount: -90,
         day: 5,
         month: 1,
         year: 2014,
@@ -129,9 +153,9 @@ module.exports = function (app) {
       {
         name: 'Mac Book Pro Retina',
         category_id: '2rebihhxmtl7RBgL',
-        account_id: 'i0xycE2TbpND6Dkp',
+        account_id: '4pyFYVcHk7rTWC4U',
         paymethod_id: '03ctyIK0mvwPZBX8',
-        value: -3000,
+        amount: -3000,
         day: 15,
         month: 5,
         year: 2014,
@@ -140,9 +164,9 @@ module.exports = function (app) {
       {
         name: 'Safeway',
         category_id: 'UiejS8YXUSLsbvS4',
-        account_id: 'i0xycE2TbpND6Dkp',
+        account_id: '4pyFYVcHk7rTWC4U',
         paymethod_id: '03ctyIK0mvwPZBX8',
-        value: -80,
+        amount: -80,
         day: 11,
         month: 7,
         year: 2014,
@@ -151,9 +175,9 @@ module.exports = function (app) {
       {
         name: 'Gas',
         category_id: 'HGIUpGFzxe22Jzdb',
-        account_id: 'i0xycE2TbpND6Dkp',
+        account_id: '4pyFYVcHk7rTWC4U',
         paymethod_id: '03ctyIK0mvwPZBX8',
-        value: -50,
+        amount: -50,
         day: 3,
         month: 6,
         year: 2014,
@@ -173,15 +197,23 @@ module.exports = function (app) {
      });
      }*/
 
+      /*for (var i = 0, l = currencies.length; i < l; i++) {
+          db.currency.insert(currencies[i], function(err, newCurrency) {
+
+          });
+      }*/
+
     /*for (var i = 0, l = paymentMethods.length; i < l; i++) {
      db.paymethod.insert(paymentMethods[i], function(err, newPaymethod) {
 
      });
      }*/
 
-    /*db.account.insert(account, function(err, newAccount) {
+      /*for (var i = 0, l = accounts.length; i < l; i++) {
+          db.account.insert(accounts[i], function(err, newAccount) {
 
-     });*/
+          });
+      }*/
 
     /*for (var i = 0, l = transactions.length; i < l; i++) {
       db.transaction.insert(transactions[i], function(err, newTransaction) {

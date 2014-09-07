@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('bamApp').factory('settingsService', function ($q, settingsDataService) {
+angular.module('bamApp').factory('settingsService', function ($q) {
   return {
     firstMonthOfYear: null,
 
@@ -26,46 +26,62 @@ angular.module('bamApp').factory('settingsService', function ($q, settingsDataSe
       return 1;
     },
 
+    // TODO: be careful with first month of Year
+    getYearOfMonth: function(month) {
+      return '2014';
+    },
+
     getMonths: function() {
       return [
-        'January',
-        'February',
-        'March',
-        'April',
-        'May',
-        'June',
-        'July',
-        'August',
-        'September',
-        'October',
-        'November',
-        'December'
-      ];
-    }/*,
-
-    getWays: function() {
-      return [
         {
-          id: 0,
-          name: 'Withdrawal'
+          number: 1,
+          name: 'January'
         },
         {
-          id: 1,
-          name: 'Check'
+          number: 2,
+          name: 'February'
         },
         {
-          id: 2,
-          name: 'Cash'
+          number: 3,
+          name: 'March'
         },
         {
-          id: 3,
-          name: 'Levy'
+          number: 4,
+          name: 'April'
         },
         {
-          id: 4,
-          name: 'Credit Card'
+          number: 5,
+          name: 'May'
+        },
+        {
+          number: 6,
+          name: 'June'
+        },
+        {
+          number: 7,
+          name: 'July'
+        },
+        {
+          number: 8,
+          name: 'August'
+        },
+        {
+          number: 9,
+          name: 'September'
+        },
+        {
+          number: 10,
+          name: 'October'
+        },
+        {
+          number: 11,
+          name: 'November'
+        },
+        {
+          number: 12,
+          name: 'December'
         }
       ];
-    }*/
+    }
   };
 });
