@@ -15,4 +15,8 @@ angular.module('bamApp').config(function config($routeProvider) {
   apiService.ReportIncomingByCategory.get(function(res) {
     $scope.incomingByCategory = res.data;
   });
+
+  apiService.ReportTransactionsByCategory.get(function(res) {
+    $scope.transactionsByCategory = res.data;
+  });
 });
