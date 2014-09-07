@@ -18,6 +18,7 @@
 @color-black: black;
 
 @color-red: rgb(243, 69, 65);
+@color-red-transparent: rgb(252, 208, 207);
 @color-orange: rgb(248, 163, 38);
 
 @width-layout-nav: 33%;
@@ -56,6 +57,15 @@ h1, h2, h3, h4, h5, h6 {
 
 h1 {
   margin-top: 0;
+}
+
+button,
+input[type="submit"] {
+  border-radius: 50%;
+  border: 1px solid @color-red;
+  line-height: 14px;
+  color: @color-red;
+  background-color: rgba(0, 0, 0, 0);
 }
 
 /*
@@ -199,19 +209,19 @@ div.content {
   margin-right: 2%;
 }
 
-.account-amount:first-child {
+.account-amount {
   background-color: @color-white-dark;
   height: 30px;
   line-height: 28px;
   width: 73%;
 }
 
-.current .account-amount:first-child {
+.current .account-amount {
   color: @color-red;
   border: 1px solid @color-red;
 }
 
-.future .account-amount:first-child {
+.future .account-amount {
   color: @color-orange;
   border: 1px solid @color-orange;
 }
@@ -222,10 +232,8 @@ div.content {
   width: 73%;
 }
 
-div.account-container {
-  border-bottom: 1px solid @color-grey;
-  padding-bottom: 20px;
-  margin-bottom: 20px;
+.account-container {
+  margin: 20px;
 }
 
 .account-currency {
@@ -337,7 +345,7 @@ table {
 }
 
 th, td {
-  padding: 2px 5px;
+  padding: 5px !important;
 }
 
 thead tr {
@@ -350,14 +358,67 @@ th {
   font-weight: 300;
 }
 
-.transaction {
+.transaction:nth-child(odd) {
   background-color: @color-grey-light;
+}
+
+.transaction:nth-child(even) {
+  background-color: @color-white;
+}
+
+.transaction:hover {
+  background-color: @color-red-transparent;
 }
 
 tfoot {
   background-color: @color-white-dark;
   border-top: 1px solid @color-grey;
 }
+
+.transaction-category {
+  text-transform: capitalize;
+}
+
+.transaction-amount {
+  text-align: right;
+}
+
+.transaction-amount-minus {
+  color: @color-red;
+}
+
+.transaction-isdone,
+.transaction-actions {
+  text-align: center;
+}
+
+.table-button {
+  height: 20px;
+  width: 20px;
+  padding: 0;
+  padding-top: 2px;
+}
+
+.table-button span {
+  font-size: 17px;
+}
+
+.table-submit-button {
+  height: 30px;
+  width: 30px;
+  padding: 0;
+  padding-top: 2px;
+}
+
+.table-submit-button span {
+  font-size: 31px;
+}
+
+.table-submit-button:hover {
+  background-color: @color-red;
+  color: @color-white;
+}
+
 
 /* ========================== */
 /* ========= NAVBAR ========= */

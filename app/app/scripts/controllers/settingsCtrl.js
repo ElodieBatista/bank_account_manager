@@ -20,6 +20,15 @@ angular.module('bamApp').config(function config($routeProvider) {
     }
   });
 
+
+  apiService.Currency.get(function(res) {
+      $scope.currencies = {};
+
+      for (var i = 0, l = res.data.length; i < l; i++) {
+          $scope.currencies[res.data[i]._id] = res.data[i];
+      }
+  });
+
   apiService.Category.get(function(res) {
     $scope.categories = res.data;
   });

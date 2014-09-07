@@ -27,6 +27,7 @@
 	            		<tr ng-repeat="account in accounts">
 	            			<td>{{account.name}}</td>
 	            			<td>{{accounttypes[account.accounttype_id].name}}</td>
+	            			<td>{{currencies[account.currency_id].name}}</td>
 	            			<td>{{account.creation_day}}</td>
 	            			<td>{{account.creation_month}}</td>
 	            			<td>{{account.creation_year}}</td>
@@ -41,6 +42,13 @@
                             		</option>
                         		</select>
                         	</td>
+                            <td>
+                                <select ng-model="formNewAccount.currency_id">
+                                    <option ng-repeat="currency in currencies | orderBy:'name'" value="{{currency._id}}">
+                                        {{currency.name}}
+                                    </option>
+                                </select>
+                            </td>
 	            			<td><input type="number" placeholder="Day" ng-model="formNewAccount.creation_day"></td>
 	            			<td><input type="number" placeholder="Month" ng-model="formNewAccount.creation_month"></td>
 	            			<td><input type="number" placeholder="Year" ng-model="formNewAccount.creation_year"></td>

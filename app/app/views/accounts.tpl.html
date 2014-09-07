@@ -3,19 +3,21 @@
 
     <ul class="account-amounts-list">
         <li class="account-amounts-item current">
-            <p class="account-amount" ng-bind="account.amount.curr"></p>
+            <p class="account-amount" ng-show="account.currencySelected === 1" ng-bind="(account.amount.curr * account.currencyFactor[0]).toFixed(2)"></p>
+            <p class="account-amount" ng-show="account.currencySelected === 2" ng-bind="(account.amount.curr * account.currencyFactor[1]).toFixed(2)"></p>
             <div class="account-currency">
-                <div>$</div>
-                <div class="selected">€</div>
+                <div ng-class="{selected: account.currencySelected == 1}" ng-click="account.currencySelected = 1;">$</div>
+                <div ng-class="{selected: account.currencySelected == 2}" ng-click="account.currencySelected = 2;">€</div>
             </div>
             <p class="account-amount-label">Current</p>
         </li>
 
         <li class="account-amounts-item future">
-            <p class="account-amount" ng-bind="account.amount.future"></p>
+            <p class="account-amount" ng-show="account.currencySelected === 1" ng-bind="(account.amount.future * account.currencyFactor[0]).toFixed(2)"></p>
+            <p class="account-amount" ng-show="account.currencySelected === 2" ng-bind="(account.amount.future * account.currencyFactor[1]).toFixed(2)"></p>
             <div class="account-currency">
-                <div>$</div>
-                <div class="selected">€</div>
+                <div ng-class="{selected: account.currencySelected == 1}" ng-click="account.currencySelected = 1;">$</div>
+                <div ng-class="{selected: account.currencySelected == 2}" ng-click="account.currencySelected = 2;">€</div>
             </div>
             <p class="account-amount-label">Future</p>
         </li>
@@ -25,11 +27,11 @@
 
     <div class="account-table-container">
         <form ng-submit="newTransaction(account.formNewTransaction, account._id)">
-            <table class="account-table">
+            <table class="account-table table">
                 <thead>
                 <tr>
                     <th>Name</th>
-                    <th>Amount</th>
+                    <th colspan="2">Amount</th>
                     <th>Category</th>
                     <th>Payment Method</th>
                     <th>Day</th>
@@ -39,15 +41,15 @@
                 <tbody>
                 <tr class="transaction" ng-repeat="transaction in account.transactions[currViewMonth] | orderBy:['year','month', 'day']">
                     <td>{{transaction.name}}</td>
-                    <td>{{transaction.amount}}</td>
-                    <td>{{categories[transaction.category_id].name}}</td>
+                    <td class="transaction-amount" ng-class="{'transaction-amount-minus': transaction.amount < 0}" colspan="2">{{transaction.amount}}</td>
+                    <td class="transaction-category">{{categories[transaction.category_id].name}}</td>
                     <td>{{paymethods[transaction.paymethod_id].name}}</td>
                     <td>{{transaction.month}}/{{transaction.day}}/{{transaction.year}}</td>
-                    <td>
+                    <td class="transaction-isdone">
                         <input type="checkbox" ng-model="transaction.isDone" ng-change="completeTransaction(transaction)">
                     </td>
-                    <td>
-                        <button type=button ng-click="deleteTransaction(transaction);">x</button>
+                    <td class="transaction-actions">
+                        <button class="table-button" type=button ng-click="deleteTransaction(transaction);"><i class="fa fa-trash"></i></button>
                     </td>
                 </tr>
                 </tbody>
@@ -57,8 +59,10 @@
                     <td>
                         +<input type="radio" name="sign" value="+" ng-model="account.formNewTransaction.sign">
                         -<input type="radio" name="sign" value="-" ng-model="account.formNewTransaction.sign">
+                    </td>
+                    <td>
                         <div id="input-amount">
-                            <input type="number" placeholder="Amount" ng-model="account.formNewTransaction.amount">
+                            <input type="number" placeholder="Amount {{currencies[account.currency_id].symbol}}" ng-model="account.formNewTransaction.amount">
                         </div>
                     </td>
                     <td>
@@ -76,10 +80,10 @@
                         </select>
                     </td>
                     <td><input type="number" placeholder="Day" ng-model="account.formNewTransaction.day"></td>
-                    <td>
+                    <td class="transaction-isdone">
                         <input type="checkbox" ng-model="account.formNewTransaction.isDone">
                     </td>
-                    <td><input type="submit" value="+"></td>
+                    <td class="transaction-actions"><button class="table-submit-button" type="submit"><span>+</span></button></td>
                 </tr>
                 </tfoot>
             </table>

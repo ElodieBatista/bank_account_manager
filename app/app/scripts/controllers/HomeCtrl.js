@@ -31,22 +31,35 @@ angular.module('bamApp').config(function config($routeProvider) {
       (inboundMonth > month && (outboundMonth <month || outboundMonth >= inboundMonth)));
   };
 
-
-  apiService.Account.get(function(res) {
-    $scope.accounts = res.data;
-
-    for (var i = 0, l = $scope.accounts.length; i < l; i++) {
-      $scope.accounts[i].amount = $scope.getAmounts($scope.accounts[i], $rootScope.currViewMonth);
-      $scope.accounts[i].formNewTransaction = $scope.initTransactionForm($scope.accounts[i].formNewTransaction);
-    }
-  });
-
   apiService.AccountType.get(function(res) {
     $scope.accounttypes = {};
 
     for (var i = 0, l = res.data.length; i < l; i++) {
       $scope.accounttypes[res.data[i]._id] = res.data[i];
     }
+  });
+
+  apiService.Currency.get(function(res) {
+    $scope.currencies = {};
+
+    for (var i = 0, l = res.data.length; i < l; i++) {
+      $scope.currencies[res.data[i]._id] = res.data[i];
+    }
+
+    apiService.Account.get(function(res) {
+      $scope.accounts = res.data;
+
+      for (var i = 0, l = $scope.accounts.length; i < l; i++) {
+        $scope.accounts[i].amount = $scope.getAmounts($scope.accounts[i], $rootScope.currViewMonth);
+        $scope.accounts[i].formNewTransaction = $scope.initTransactionForm($scope.accounts[i].formNewTransaction);
+        $scope.accounts[i].currencySelected = ($scope.currencies[$scope.accounts[i].currency_id].name === 'dollar') ? 1 : 2;
+        if ($scope.accounts[i].currencySelected === 1) {
+          $scope.accounts[i].currencyFactor = [1, 0.77];
+        } else {
+          $scope.accounts[i].currencyFactor = [1.33, 1];
+        }
+      }
+    });
   });
 
   apiService.Category.get(function(res) {

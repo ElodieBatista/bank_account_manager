@@ -2,6 +2,7 @@ var db = require('../db/db');
 
 module.exports = function (app) {
   require('../routes/accounttype')(app);
+  require('../routes/currency')(app);
   require('../routes/account')(app);
   require('../routes/category')(app);
   require('../routes/paymethod')(app);

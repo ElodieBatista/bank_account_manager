@@ -17,7 +17,7 @@ module.exports = function (app) {
         for (i = 0, l = accounts.length; i < l; i++) {
           // Instantiate arrays
           accounts[i].transactions = new Array(12);
-          for (j = 0; j < 12; j++) {
+          for (j = 1; j <= 12; j++) {
             accounts[i].transactions[j] = [];
           }
         }

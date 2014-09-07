@@ -15,16 +15,16 @@
 
     <div class="content tab-content">
         <div ng-show="selectedTab == 1">
-            <div class="account-container" ng-repeat="account in accounts">
-                <div ng-include src="'views/accounts.tpl.html'"
+            <div ng-repeat="account in accounts">
+                <div class="account-container" ng-include src="'views/accounts.tpl.html'"
                      ng-if="accounttypes[account.accounttype_id].name === 'checking'
                         && !isMonthOutOfBound(account.creation_month, firstMonth, currViewMonth)"></div>
             </div>
         </div>
 
         <div ng-show="selectedTab == 2">
-            <div class="account-container" ng-repeat="account in accounts">
-                <div ng-include src="'views/accounts.tpl.html'" 
+            <div ng-repeat="account in accounts">
+                <div class="account-container" ng-include src="'views/accounts.tpl.html'"
                     ng-if="accounttypes[account.accounttype_id].name === 'saving'
                         && !isMonthOutOfBound(account.creation_month, firstMonth, currViewMonth)"></div>
             </div>

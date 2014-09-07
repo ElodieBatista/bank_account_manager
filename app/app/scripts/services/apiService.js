@@ -37,6 +37,13 @@ angular.module('bamApp').factory('apiService', function (conf, $resource) {
     }),
 
 
+    Currency: $resource(conf.epApi + '/currency', {}, {
+      'get': {
+        method: 'GET'
+      }
+    }),
+
+
     Paymethod: $resource(conf.epApi + '/paymethod', {}, {
       'get': {
         method: 'GET'
