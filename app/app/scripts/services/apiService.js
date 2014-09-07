@@ -73,7 +73,19 @@ angular.module('bamApp').factory('apiService', function (conf, $resource) {
 
     Transaction: $resource(conf.epApi + '/transaction/:id', {id:'@id'}, {
       'delete': {
-          method: 'DELETE'
+        method: 'DELETE'
+      }
+    }),
+
+    ReportSpendingByCategory: $resource(conf.epApi + '/report/spending/category', {}, {
+      'get': {
+        method: 'GET'
+      }
+    }),
+
+    ReportIncomingByCategory: $resource(conf.epApi + '/report/incoming/category', {}, {
+      'get': {
+        method: 'GET'
       }
     })
   }

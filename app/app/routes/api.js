@@ -8,6 +8,7 @@ module.exports = function (app) {
   require('../routes/paymethod')(app);
   require('../routes/transaction')(app);
   require('../routes/settings')(app);
+  require('../routes/report')(app);
 
   app.get('/fixtures', function(req, res) {
     var types = [

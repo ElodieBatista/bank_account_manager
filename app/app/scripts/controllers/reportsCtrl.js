@@ -7,6 +7,12 @@ angular.module('bamApp').config(function config($routeProvider) {
       templateUrl: 'views/reports.tpl.html',
       controller: 'ReportsCtrl'
     })
-}).controller('ReportsCtrl', function ($scope, $rootScope) {
+}).controller('ReportsCtrl', function ($scope, apiService) {
+  apiService.ReportSpendingByCategory.get(function(res) {
+    $scope.spendingByCategory = res.data;
+  });
 
+  apiService.ReportIncomingByCategory.get(function(res) {
+    $scope.incomingByCategory = res.data;
+  });
 });
