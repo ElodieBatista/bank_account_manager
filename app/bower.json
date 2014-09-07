@@ -9,7 +9,7 @@
         "angular-sanitize": "~1.2.7",
         "less": "~1.4.2",
         "jquery": "~2.0.3",
-        "font-awesome": "~4.1.0",
+        "font-awesome": "~4.2.0",
         "json3": "~3.2.4",
         "es5-shim": "~2.0.8",
         "highcharts-release": "https://github.com/highslide-software/highcharts-release.git#4.0.3",

@@ -49,16 +49,18 @@
                         <input type="checkbox" ng-model="transaction.isDone" ng-change="completeTransaction(transaction)">
                     </td>
                     <td class="transaction-actions">
-                        <button class="table-button" type=button ng-click="deleteTransaction(transaction);"><i class="fa fa-trash"></i></button>
+                        <button class="table-button" type=button ng-click="deleteTransaction(transaction);"><i class="fa fa-times"></i></button>
                     </td>
                 </tr>
                 </tbody>
                 <tfoot>
                 <tr>
                     <td><input type="text" placeholder="Name" ng-model="account.formNewTransaction.name"></td>
-                    <td>
-                        +<input type="radio" name="sign" value="+" ng-model="account.formNewTransaction.sign">
-                        -<input type="radio" name="sign" value="-" ng-model="account.formNewTransaction.sign">
+                    <td class="transaction-form-sign">
+                        <label class="transaction-form-sign-label">+</label>
+                        <input type="radio" name="sign" value="+" ng-model="account.formNewTransaction.sign">
+                        <label class="transaction-form-sign-label">-</label>
+                        <input type="radio" name="sign" value="-" ng-model="account.formNewTransaction.sign">
                     </td>
                     <td>
                         <div id="input-amount">
@@ -80,7 +82,7 @@
                         </select>
                     </td>
                     <td><input type="number" placeholder="Day" ng-model="account.formNewTransaction.day"></td>
-                    <td class="transaction-isdone">
+                    <td class="transaction-isdone transaction-form-isdone">
                         <input type="checkbox" ng-model="account.formNewTransaction.isDone">
                     </td>
                     <td class="transaction-actions"><button class="table-submit-button" type="submit"><span>+</span></button></td>

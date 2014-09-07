@@ -1,8 +1,7 @@
 /* ========================== */
 /* ========== BASE ========== */
 /* ========================== */
-@font-face
-{
+@font-face {
   font-family: MainFont;
   src: url(../fonts/segoeuil.ttf);
 }
@@ -230,6 +229,7 @@ div.content {
   color: @color-grey;
   font-size: 13px;
   width: 73%;
+  text-align: center;
 }
 
 .account-container {
@@ -268,7 +268,7 @@ div.account-content {
 }
 
 .account-table-container {
-  min-height: 200px;
+  margin-bottom: 60px;
 }
 
 /*::-webkit-input-placeholder { /* WebKit browsers */
@@ -337,6 +337,8 @@ tfoot div#input-amount {
 tfoot div#input-amount input {
   width: 100%;
   box-sizing: border-box;
+  text-align: right;
+  padding-right: 10px;
 }
 
 
@@ -392,15 +394,16 @@ tfoot {
   text-align: center;
 }
 
+.transaction-form-isdone,
+.transaction-form-sign {
+  line-height: 30px !important;
+}
+
 .table-button {
   height: 20px;
   width: 20px;
   padding: 0;
-  padding-top: 2px;
-}
-
-.table-button span {
-  font-size: 17px;
+  font-size: 13px;
 }
 
 .table-submit-button {
@@ -414,9 +417,16 @@ tfoot {
   font-size: 31px;
 }
 
-.table-submit-button:hover {
+.table-submit-button:hover,
+.table-button:hover {
   background-color: @color-red;
   color: @color-white;
+}
+
+.transaction-form-sign-label {
+  font-weight: normal;
+  margin: 0;
+  margin-left: 10px;
 }
 
 
