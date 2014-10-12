@@ -40,7 +40,7 @@
                 </thead>
                 <tbody>
                 <tr class="transaction" ng-repeat="transaction in account.transactions[currViewMonth] | orderBy:['year','month', 'day']">
-                    <td>{{transaction.name}}</td>
+                    <td><i class="fa fa-circle" ng-style="{'color': categories[transaction.category_id].color}"></i> {{transaction.name}}</td>
                     <td class="transaction-amount" ng-class="{'transaction-amount-minus': transaction.amount < 0}" colspan="2">{{transaction.amount}}</td>
                     <td class="transaction-category">{{categories[transaction.category_id].name}}</td>
                     <td>{{paymethods[transaction.paymethod_id].name}}</td>
