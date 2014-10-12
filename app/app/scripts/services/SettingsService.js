@@ -2,30 +2,6 @@
 
 angular.module('bamApp').factory('settingsService', function ($q) {
   return {
-    firstMonthOfYear: null,
-
-    getFirstMonthOfYear: function() {
-      /*var deferred = $q.defer();
-
-      if (this.firstMonthOfYear === null) {
-        var that = this;
-
-        settingsDataService.getFirstMonthOfYear().then(function(dataFirstMonthOfYear) {
-          that.firstMonthOfYear = dataFirstMonthOfYear;
-
-          deferred.resolve(that.firstMonthOfYear);
-        }, function() {
-          console.log('Error');
-        });
-
-        return deferred.promise;
-      } else {
-        return this.firstMonthOfYear;
-      }*/
-
-      return 1;
-    },
-
     // TODO: be careful with first month of Year
     getYearOfMonth: function(month) {
       return '2014';

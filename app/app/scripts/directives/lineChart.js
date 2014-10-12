@@ -38,7 +38,6 @@ angular.module('bamApp').directive('lineChart', function() {
                         categories: series.categories
                     },
                     yAxis: {
-                        min: 0,
                         title: {
                             text: ''
                         }
