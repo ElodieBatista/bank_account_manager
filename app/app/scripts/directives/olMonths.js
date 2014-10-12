@@ -17,8 +17,8 @@ angular.module('bamApp').directive('olMonths', function ($compile, settingsServi
           }
           elems += '<li class="menu-list-subitem" ng-click="selectedMenu = 1;"' +
             'ng-class="{true:\'active\',false:\'\'}[currViewMonth === ' + index + ']" data-month="' + index + '">' +
-            '<a class="menu-list-subitem-link" href="#/accounts/' + index + '">' +
-            months[index - 1].name + '</a></li>';
+            '<a class="menu-list-subitem-link" href="#/accounts/' + index + '"><span class="menu-list-subitem-text">' +
+            months[index - 1].name + '</span><span class="menu-list-subitem-text-sm">' + months[index - 1].name.substring(0, 3) + '</span></a></li>';
         }
 
         elems = $compile(elems)(scope);
@@ -27,7 +27,7 @@ angular.module('bamApp').directive('olMonths', function ($compile, settingsServi
 
       var months = settingsService.getMonths();
       //var firstMonthPromise = settingsService.getFirstMonthOfYear();
-      var firstMonth = settingsService.getFirstMonthOfYear();
+      var firstMonth = 1;
 
       /*if (firstMonthPromise.then !== undefined) {
         firstMonthPromise.then(function(firstMonth) {*/
