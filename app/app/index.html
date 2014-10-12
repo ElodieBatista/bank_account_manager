@@ -37,7 +37,10 @@
 <nav class="navbar navbar-default" id="navbar" role="navigation">
     <div class="container">
         <div class="navbar-header">
-            <a class="navbar-brand" href="#">Bank Account Manager</a>
+            <a class="navbar-brand" href="#">
+                <span class="navbar-brand-text">Bank Account Manager</span>
+                <span class="navbar-brand-text-sm">BAM</span>
+            </a>
         </div>
     </div>
 </nav>
@@ -46,13 +49,22 @@
     <aside class="menu">
         <ul class="menu-list" ol-months ng-init="selectedMenu = 1;">
             <li class="menu-list-item" ng-class="{active: selectedMenu == 1}">
-                <a class="menu-list-item-link" href="index.html#/" ng-click="selectedMenu = 1;"><i class="fa fa-tasks"></i>Accounts</a>
+                <a class="menu-list-item-link" href="index.html#/" ng-click="selectedMenu = 1;">
+                    <i class="fa fa-tasks"></i>
+                    <span class="menu-list-item-text">Accounts</span>
+                </a>
             </li>
             <li class="menu-list-item" ng-class="{active: selectedMenu == 2}">
-                <a class="menu-list-item-link" href="index.html#/reports" ng-click="selectedMenu = 2; currViewMonth = 0;"><i class="fa fa-bar-chart-o"></i>Reports</a>
+                <a class="menu-list-item-link" href="index.html#/reports" ng-click="selectedMenu = 2; currViewMonth = 0;">
+                    <i class="fa fa-bar-chart-o"></i>
+                    <span class="menu-list-item-text">Reports</span>
+                </a>
             </li>
             <li class="menu-list-item" ng-class="{active: selectedMenu == 3}">
-                <a class="menu-list-item-link" href="index.html#/settings" ng-click="selectedMenu = 3; currViewMonth = 0;"><i class="fa fa-cogs"></i>Settings</a>
+                <a class="menu-list-item-link" href="index.html#/settings" ng-click="selectedMenu = 3; currViewMonth = 0;">
+                    <i class="fa fa-cogs"></i>
+                    <span class="menu-list-item-text">Settings</span>
+                </a>
             </li>
         </ul>
     </aside>
