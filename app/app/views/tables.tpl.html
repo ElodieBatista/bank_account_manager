@@ -1,0 +1,85 @@
+<div class="row">
+    <div class="col-md-12">
+        <h3>Economies by month</h3>
+        <table class="table">
+            <thead>
+            <tr class="tr-centered">
+                <th ng-repeat="month in differenceByMonth.categories" ng-bind="month"></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr class="transaction total-difference tr-centered">
+                <td ng-repeat="diff in differenceByMonth.series[2].data track by $index" ng-bind="diff" ng-class="{'positive': diff >= 0}"></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <h3>Total by month</h3>
+        <table class="table">
+            <thead>
+            <tr class="tr-centered">
+                <th ng-repeat="month in totalByMonth.categories" ng-bind="month"></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr class="transaction tr-centered">
+                <td ng-repeat="total in totalByMonth.series[0].data track by $index" ng-bind="total"></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <h3>Spending by month</h3>
+        <table class="table">
+            <thead>
+            <tr class="tr-centered">
+                <th></th>
+                <th ng-repeat="month in spendingByCategoryAndMonth.categories" ng-bind="month"></th>
+                <th>Total</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr class="transaction tr-centered" ng-repeat="category in spendingByCategoryAndMonth.series | orderBy:'name'" ng-if="category.id">
+                <td class="td-head"><i class="fa fa-circle" ng-style="{ 'color': category.color}"></i> {{category.name}}</td>
+                <td ng-repeat="total in category.data track by $index" ng-bind="total" ng-class="{'td-total': $index === category.data.length - 1}"></td>
+            </tr>
+            <tr class="transaction tr-total tr-centered">
+                <td class="td-head">{{spendingByCategoryAndMonth.series[spendingByCategoryAndMonth.series.length - 1].name}}</td>
+                <td ng-repeat="total in spendingByCategoryAndMonth.series[spendingByCategoryAndMonth.series.length - 1].data track by $index" ng-bind="total"></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <h3>Incoming by month</h3>
+        <table class="table">
+            <thead>
+            <tr class="tr-centered">
+                <th></th>
+                <th ng-repeat="month in incomingByCategoryAndMonth.categories" ng-bind="month"></th>
+                <th>Total</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr class="transaction tr-centered" ng-repeat="category in incomingByCategoryAndMonth.series | orderBy:'name'" ng-if="category.id">
+                <td class="td-head"><i class="fa fa-circle" ng-style="{ 'color': category.color}"></i> {{category.name}}</td>
+                <td ng-repeat="total in category.data track by $index" ng-bind="total" ng-class="{'td-total': $index === category.data.length - 1}"></td>
+            </tr>
+            <tr class="transaction tr-total tr-centered">
+                <td class="td-head">{{incomingByCategoryAndMonth.series[incomingByCategoryAndMonth.series.length - 1].name}}</td>
+                <td ng-repeat="total in incomingByCategoryAndMonth.series[incomingByCategoryAndMonth.series.length - 1].data track by $index" ng-bind="total"></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
