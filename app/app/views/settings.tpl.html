@@ -2,16 +2,18 @@
     <nav class="tabs nav nav-tabs main-nav" role="tablist">
         <ul id="monthly-nav-list" class="main-nav-list" ng-init="selectedSettingsTab = 1;">
             <li class="main-nav-list-item" ng-class="{active: selectedSettingsTab == 1}">
-                <a class="main-nav-list-item-link" href="#/settings" ng-click="selectedSettingsTab = 1;">Accounts</a>
+                <a class="main-nav-list-item-link" href="#/settings" ng-click="selectedSettingsTab = 1;"><i class="fa fa-tasks"></i> Accounts</a>
             </li>
             <li class="main-nav-list-item" ng-class="{active: selectedSettingsTab == 2}">
-                <a class="main-nav-list-item-link" href="#/settings" ng-click="selectedSettingsTab = 2;">Customize</a>
+                <a class="main-nav-list-item-link" href="#/settings" ng-click="selectedSettingsTab = 2;"><i class="fa fa-sliders"></i> Customize</a>
             </li>
         </ul>
     </nav>
 
     <div class="content tab-content">
         <div ng-show="selectedSettingsTab == 1">
+            <h1>Accounts</h1>
+
         	<form name="formFirstMonthOfYear" ng-submit="editFirstMonthOfYear(formFirstMonthOfYear)">
         		<label>First month of Year:</label>
         		<select ng-model="formFirstMonthOfYear.number" ng-change="editFirstMonthOfYear(formFirstMonthOfYear)">
@@ -23,8 +25,17 @@
 
             <div>
             	<form name="formNewAccount" ng-submit="newAccount(formNewAccount)">
-	            	<table>
-	            		<tr ng-repeat="account in accounts">
+	            	<table class="table">
+                        <thead>
+                        <th>Name</th>
+                        <th>Type</th>
+                        <th>Currency</th>
+                        <th>Creation day</th>
+                        <th>Creation month</th>
+                        <th>Creation year</th>
+                        </thead>
+                        <tbody>
+	            		<tr class="transaction" ng-repeat="account in accounts">
 	            			<td>{{account.name}}</td>
 	            			<td>{{accounttypes[account.accounttype_id].name}}</td>
 	            			<td>{{currencies[account.currency_id].name}}</td>
@@ -33,6 +44,8 @@
 	            			<td>{{account.creation_year}}</td>
 	            			<td>{{account.creation_amount}}</td>
 	            		</tr>
+                        </tbody>
+                        <tfoot>
 	            		<tr>
 	            			<td><input type="text" placeholder="Name" ng-model="formNewAccount.name"></td>
 	            			<td>
@@ -55,6 +68,7 @@
 	            			<td><input type="number" placeholder="Amount" ng-model="formNewAccount.creation_amount"></td>
 	            			<td><input type="submit" value="+"></td>
 	            		</tr>
+                        </tfoot>
 	            	</table>
 	            </form>
             </div>
@@ -63,10 +77,16 @@
         <div ng-show="selectedSettingsTab == 2">
         	<h1>Categories</h1>
         	<table>
-	            <tr ng-repeat="category in categories">
-	                <td>{{category.name}}</td>
+                <thead>
+                <th>Name</th>
+                <th>Color</th>
+                </thead>
+                <tbody>
+	            <tr class="transaction" ng-repeat="category in categories | orderBy:'name'">
+	                <td class="td-capitalize">{{category.name}}</td>
 	                <td>{{category.color}}</td>
 	            </tr>
+                </tbody>
             </table>
         </div>
     </div>
