@@ -2,13 +2,22 @@
     <nav class="tabs nav nav-tabs main-nav" role="tablist">
         <ul id="monthly-nav-list" class="main-nav-list" ng-init="selectedTab = 1;">
             <li class="main-nav-list-item" ng-class="{active: selectedTab == 1}">
-                <a class="main-nav-list-item-link" href="" ng-click="selectedTab = 1;">Checking Accounts</a>
+                <a class="main-nav-list-item-link" href="" ng-click="selectedTab = 1;">
+                    <i class="fa fa-credit-card"></i>
+                    <span class="main-nav-list-item-text">Checking Accounts</span>
+                </a>
             </li>
             <li class="main-nav-list-item" ng-class="{active: selectedTab == 2}">
-                <a class="main-nav-list-item-link" href="" ng-click="selectedTab = 2;">Saving Accounts</a>
+                <a class="main-nav-list-item-link" href="" ng-click="selectedTab = 2;">
+                    <i class="fa fa-key"></i>
+                    <span class="main-nav-list-item-text">Saving Accounts</span>
+                </a>
             </li>
             <li class="main-nav-list-item" ng-class="{active: selectedTab == 3}">
-                <a class="main-nav-list-item-link" href="" ng-click="selectedTab = 3;">Monthly Reports</a>
+                <a class="main-nav-list-item-link" href="" ng-click="selectedTab = 3;">
+                    <i class="fa fa-pie-chart"></i>
+                    <span class="main-nav-list-item-text">Monthly Reports</span>
+                </a>
             </li>
         </ul>
     </nav>
@@ -31,7 +40,7 @@
         </div>
 
         <div ng-show="selectedTab == 3">
-            <br /><br /><br /><br /><br />Monthly Report
+            <div ng-include src="'views/monthlyReports.tpl.html'"></div>
         </div>
     </div>
 </div>
