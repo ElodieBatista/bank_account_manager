@@ -1,3 +1,4 @@
+{"name":"Transaction in the past","category_id":"UiejS8YXUSLsbvS4","account_id":"4pyFYVcHk7rTWC4U","paymethod_id":"03ctyIK0mvwPZBX8","amount":-39.99,"day":1,"month":1,"year":2013,"isDone":true,"_id":"0n3z2fJ4O90ol1R1"}
 {"name":"test","category_id":"6pBOepdWZ2oJNThs","account_id":"4pyFYVcHk7rTWC4U","paymethod_id":"03ctyIK0mvwPZBX8","amount":-15,"day":4,"month":6,"year":"2014","isDone":false,"_id":"3OIBASGiokcdjS8E"}
 {"name":"BART","category_id":"HGIUpGFzxe22Jzdb","account_id":"4pyFYVcHk7rTWC4U","paymethod_id":"03ctyIK0mvwPZBX8","amount":-90,"day":5,"month":1,"year":2014,"isDone":false,"_id":"3ZmDH76X56su9d6h"}
 {"name":"ezrgt","category_id":"MfILgCJGqtXxMIF1","account_id":"4pyFYVcHk7rTWC4U","paymethod_id":"j5FB96H9cy4bN3i3","amount":-300,"day":4,"month":7,"year":"2014","isDone":false,"_id":"60ObGRQgVDgxm0Q1"}

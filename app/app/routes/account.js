@@ -4,6 +4,7 @@ module.exports = function (app) {
     /**
      *  GET
      *  Return all accounts
+     *  TODO: add month param
      */
     app.get('/account', function (req, res) {
         db.account.find({}, function(err, accounts) {

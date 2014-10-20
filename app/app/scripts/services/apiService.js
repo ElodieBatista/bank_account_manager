@@ -51,6 +51,13 @@ angular.module('bamApp').factory('apiService', function (conf, $resource) {
         }),
 
 
+        Years: $resource(conf.epApi + '/years', {}, {
+            'get': {
+                method: 'GET'
+            }
+        }),
+
+
         Transactions: $resource(conf.epApi + '/transaction', {}, {
             'get': {
                 method: 'GET'

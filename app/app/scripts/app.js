@@ -1,14 +1,38 @@
 'use strict';
 
 angular.module('bamApp', [
-  'ngResource',
-  'ngRoute',
-  'ngSanitize'
+    'ngResource',
+    'ngRoute',
+    'ngSanitize'
 ])
-  .constant('conf', {
-    'epApi': 'http://localhost:3000'
-  })
-  .config(function ($routeProvider) {
-    // Set a default route
-    $routeProvider.otherwise({redirectTo: '/accounts/' + parseInt(new Date().getMonth() + 1)});
-  });
+    .constant('conf', {
+        'epApi': 'http://localhost:3000'
+    })
+    .config(function (conf, $routeProvider, $httpProvider, $provide) {
+        // Set a default route
+        $routeProvider.otherwise({redirectTo: '/accounts/' + parseInt(new Date().getMonth() + 1)});
+
+        function comesFromBAM(url) {
+            return (url.indexOf(conf.epApi) !== -1);
+        }
+
+        $provide.factory('httpInterceptor', function($q, $rootScope) {
+            return {
+                'request': function(config) {
+                    if (comesFromBAM(config.url)) {
+                        $rootScope.displaySpinner = true;
+                    }
+                    return config || $q.when(config);
+                },
+
+                'response': function(response) {
+                    if (comesFromBAM(response.config.url)) {
+                        $rootScope.displaySpinner = false;
+                    }
+                    return response || $q.when(response);
+                }
+            };
+        });
+
+        $httpProvider.interceptors.push('httpInterceptor');
+    });

@@ -131,14 +131,14 @@ module.exports = function (app) {
 
     var transactions = [
       {
-        name: 'Super Duper Burger diner with Amy',
+        name: 'Transaction in the past',
         category_id: 'UiejS8YXUSLsbvS4',
         account_id: '4pyFYVcHk7rTWC4U',
         paymethod_id: '03ctyIK0mvwPZBX8',
         amount: -39.99,
-        day: 3,
-        month: 7,
-        year: 2014,
+        day: 1,
+        month: 1,
+        year: 2013,
         isDone: true
       },
       {

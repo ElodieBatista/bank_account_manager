@@ -14,6 +14,15 @@
         <div ng-show="selectedSettingsTab == 1">
             <h1>Accounts</h1>
 
+            <form name="formCurrentYear" ng-submit="editCurrentYear(formCurrentYear)">
+                <label>Current Year:</label>
+                <select ng-model="formCurrentYear.year" ng-change="editCurrentYear(formCurrentYear)">
+                    <option ng-repeat="year in years | orderBy:'number'" value="{{month.number}}">
+                        {{month.name}}
+                    </option>
+                </select>
+            </form>
+
         	<form name="formFirstMonthOfYear" ng-submit="editFirstMonthOfYear(formFirstMonthOfYear)">
         		<label>First month of Year:</label>
         		<select ng-model="formFirstMonthOfYear.number" ng-change="editFirstMonthOfYear(formFirstMonthOfYear)">
