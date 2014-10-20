@@ -5,7 +5,8 @@ module.exports = function (app) {
      *	GET
      *  Return total spending by category (and optionally by month)
      */
-    app.get('/report/spending/category/:month?', function (req, res) {
+    app.get('/report/spending/category/:year/:month?', function (req, res) {
+        var year = req.params.year;
         var month = req.params.month;
 
         db.category.find({}, function(err, categories) {
@@ -15,7 +16,7 @@ module.exports = function (app) {
                 categories[i].y = 0;
             }
 
-            db.transaction.find({}, function(err, transactions) {
+            db.transaction.find({year: year}, function(err, transactions) {
                 for (var i = 0, l = transactions.length; i < l; i++) {
                     for (var j = 0, le = categories.length; j < le; j++) {
                         if (transactions[i].category_id === categories[j]._id && transactions[i].amount < 0 && (!month || month == transactions[i].month)) {
@@ -38,7 +39,8 @@ module.exports = function (app) {
      *	GET
      *  Return total incoming by category (and optionally by month)
      */
-    app.get('/report/incoming/category/:month?', function (req, res) {
+    app.get('/report/incoming/category/:year/:month?', function (req, res) {
+        var year = req.params.year;
         var month = req.params.month;
 
         db.category.find({}, function(err, categories) {
@@ -48,7 +50,7 @@ module.exports = function (app) {
                 categories[i].y = 0;
             }
 
-            db.transaction.find({}, function(err, transactions) {
+            db.transaction.find({year: year}, function(err, transactions) {
                 for (var i = 0, l = transactions.length; i < l; i++) {
                     for (var j = 0, le = categories.length; j < le; j++) {
                         if (transactions[i].category_id === categories[j]._id && transactions[i].amount >= 0 && (!month || month == transactions[i].month)) {
@@ -71,7 +73,9 @@ module.exports = function (app) {
      *	GET
      *  Return total spending by category and by month
      */
-    app.get('/report/spending/month/category', function (req, res) {
+    app.get('/report/spending/:year/month/category', function (req, res) {
+        var year = req.params.year;
+
         function fillArrayWith0(n) {
             var newArray = new Array(n);
             for (var i = 0; i < n; i++) {
@@ -103,7 +107,7 @@ module.exports = function (app) {
                 data: fillArrayWith0(result.categories.length + 1)
             });
 
-            db.transaction.find({}, function(err, transactions) {
+            db.transaction.find({year: year}, function(err, transactions) {
                 for (var i = 0, l = transactions.length; i < l; i++) {
                     for (var j = 0, le = result.series.length - 1; j < le; j++) {
                         if (transactions[i].category_id === result.series[j].id && transactions[i].amount < 0) {
@@ -136,7 +140,9 @@ module.exports = function (app) {
      *	GET
      *  Return total incoming by category and by month
      */
-    app.get('/report/incoming/month/category', function (req, res) {
+    app.get('/report/incoming/:year/month/category', function (req, res) {
+        var year = req.params.year;
+
         function fillArrayWith0(n) {
             var newArray = new Array(n);
             for (var i = 0; i < n; i++) {
@@ -168,7 +174,7 @@ module.exports = function (app) {
                 data: fillArrayWith0(result.categories.length + 1)
             });
 
-            db.transaction.find({}, function(err, transactions) {
+            db.transaction.find({year: year}, function(err, transactions) {
                 for (var i = 0, l = transactions.length; i < l; i++) {
                     for (var j = 0, le = result.series.length - 1; j < le; j++) {
                         if (transactions[i].category_id === result.series[j].id && transactions[i].amount >= 0) {
@@ -201,7 +207,8 @@ module.exports = function (app) {
      *	GET
      *  Return total transactions by category
      */
-    app.get('/report/transactions/category/:month?', function (req, res) {
+    app.get('/report/transactions/category/:year/:month?', function (req, res) {
+        var year = req.params.year;
         var month = req.params.month;
 
         var result = {
@@ -245,7 +252,7 @@ module.exports = function (app) {
                 }
             }
 
-            db.transaction.find({}, function(err, transactions) {
+            db.transaction.find({year: year}, function(err, transactions) {
                 var index, transactionSens;
 
                 for (var i = 0, l = transactions.length; i < l; i++) {
@@ -274,7 +281,9 @@ module.exports = function (app) {
      *	GET
      *  Return total transactions by evolution
      */
-    app.get('/report/transactions/evolution', function (req, res) {
+    app.get('/report/transactions/evolution/:year', function (req, res) {
+        var year = req.params.year;
+
         var result = {
             categories: [],
             series: []
@@ -308,7 +317,7 @@ module.exports = function (app) {
             }
         ];
 
-        db.transaction.find({}, function(err, transactions) {
+        db.transaction.find({year: year}, function(err, transactions) {
             var index, transactionSens;
 
             for (var i = 0, l = transactions.length; i < l; i++) {
@@ -335,7 +344,9 @@ module.exports = function (app) {
      *	GET
      *  Return total accounts by month
      */
-    app.get('/report/accounts/month', function (req, res) {
+    app.get('/report/accounts/:year/month', function (req, res) {
+        var year = req.params.year;
+
         var result = {
             categories: [],
             series: []
@@ -370,7 +381,7 @@ module.exports = function (app) {
                     });
                 }
 
-                db.transaction.find({}, function(err, transactions) {
+                db.transaction.find({year: year}, function(err, transactions) {
                     for (var i = 0, l = transactions.length; i < l; i++) {
                         for (var j = 0, le = result.series.length; j < le; j++) {
                             if (result.series[j].id === transactions[i].account_id) {
@@ -393,7 +404,9 @@ module.exports = function (app) {
      *	GET
      *  Return total by month
      */
-    app.get('/report/total/month', function (req, res) {
+    app.get('/report/total/:year/month', function (req, res) {
+        var year = req.params.year;
+
         var result = {
             categories: [],
             series: []
@@ -417,7 +430,7 @@ module.exports = function (app) {
             }
         ];
 
-        db.transaction.find({}, function(err, transactions) {
+        db.transaction.find({year: year}, function(err, transactions) {
             for (var i = 0, l = transactions.length; i < l; i++) {
                 result.series[0].data[transactions[i].month - 1] += transactions[i].amount;
             }
@@ -437,7 +450,9 @@ module.exports = function (app) {
      *	GET
      *  Return total accounts by account types
      */
-    app.get('/report/total/accounttype', function (req, res) {
+    app.get('/report/total/accounttype/:year', function (req, res) {
+        var year = req.params.year;
+
         var result = {
             categories: [],
             series: []
@@ -461,9 +476,8 @@ module.exports = function (app) {
                 }
                 allaccounts[accounts[i]._id].accounttype_id = accounts[i].accounttype_id;
             }
-            console.log(allaccounts);
 
-            db.accounttype.find({}, function(err, accounttypes) {
+            db.accounttype.find({year: year}, function(err, accounttypes) {
                 for (i = 0, l = accounttypes.length; i < l; i++) {
                     result.series.push({
                         id: accounttypes[i]._id,

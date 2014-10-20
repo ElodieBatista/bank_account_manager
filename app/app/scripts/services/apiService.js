@@ -9,6 +9,13 @@ angular.module('bamApp').factory('apiService', function (conf, $resource) {
         }),
 
 
+        Accounts: $resource(conf.epApi + '/accounts/:year', {year:'@year'}, {
+            'get': {
+                method: 'GET'
+            }
+        }),
+
+
         Account: $resource(conf.epApi + '/account', {}, {
             'get': {
                 method: 'GET'
@@ -84,55 +91,55 @@ angular.module('bamApp').factory('apiService', function (conf, $resource) {
             }
         }),
 
-        ReportSpendingByCategory: $resource(conf.epApi + '/report/spending/category/:month?', {month: '@month'}, {
+        ReportSpendingByCategory: $resource(conf.epApi + '/report/spending/category/:year/:month?', {year: '@year', month: '@month'}, {
             'get': {
                 method: 'GET'
             }
         }),
 
-        ReportSpendingByCategoryAndMonth: $resource(conf.epApi + '/report/spending/month/category', {}, {
+        ReportSpendingByCategoryAndMonth: $resource(conf.epApi + '/report/spending/:year/month/category', {year: '@year'}, {
             'get': {
                 method: 'GET'
             }
         }),
 
-        ReportIncomingByCategory: $resource(conf.epApi + '/report/incoming/category/:month?', {month: '@month'}, {
+        ReportIncomingByCategory: $resource(conf.epApi + '/report/incoming/category/:year/:month?', {year: '@year', month: '@month'}, {
             'get': {
                 method: 'GET'
             }
         }),
 
-        ReportIncomingByCategoryAndMonth: $resource(conf.epApi + '/report/incoming/month/category', {}, {
+        ReportIncomingByCategoryAndMonth: $resource(conf.epApi + '/report/incoming/:year/month/category', {year: '@year'}, {
             'get': {
                 method: 'GET'
             }
         }),
 
-        ReportTransactionsByCategory: $resource(conf.epApi + '/report/transactions/category/:month?', {month: '@month'}, {
+        ReportTransactionsByCategory: $resource(conf.epApi + '/report/transactions/category/:year/:month?', {year: '@year', month: '@month'}, {
             'get': {
                 method: 'GET'
             }
         }),
 
-        ReportTransactionsEvolution: $resource(conf.epApi + '/report/transactions/evolution', {}, {
+        ReportTransactionsEvolution: $resource(conf.epApi + '/report/transactions/evolution/:year', {year: '@year'}, {
             'get': {
                 method: 'GET'
             }
         }),
 
-        ReportAccountsByMonth: $resource(conf.epApi + '/report/accounts/month', {}, {
+        ReportAccountsByMonth: $resource(conf.epApi + '/report/accounts/:year/month', {year: '@year'}, {
             'get': {
                 method: 'GET'
             }
         }),
 
-        ReportTotalByMonth: $resource(conf.epApi + '/report/total/month', {}, {
+        ReportTotalByMonth: $resource(conf.epApi + '/report/total/:year/month', {year: '@year'}, {
             'get': {
                 method: 'GET'
             }
         }),
 
-        ReportTotalByAccounttype: $resource(conf.epApi + '/report/total/accounttype', {}, {
+        ReportTotalByAccounttype: $resource(conf.epApi + '/report/total/accounttype/:year', {year: '@year'}, {
             'get': {
                 method: 'GET'
             }

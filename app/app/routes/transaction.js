@@ -60,7 +60,6 @@ module.exports = function (app) {
    */
   app.delete('/transaction/:id', function (req, res) {
     var transactionId = req.params.id;
-    console.log(req.params.id);
 
     db.transaction.remove({_id: transactionId}, function(err) {
       if (err) res.send(500);

@@ -10,6 +10,7 @@ angular.module('bamApp').config(function config($routeProvider) {
 }).controller('HomeCtrl', function ($scope, $rootScope, $routeParams, apiService, settingsService) {
     $scope.firstMonth = 1;
     $rootScope.currViewMonth = parseInt($routeParams.month);
+    var currYear = settingsService.getCurrentYear();
 
     $scope.initTransactionForm = function(form) {
         form = {
@@ -46,7 +47,7 @@ angular.module('bamApp').config(function config($routeProvider) {
             $scope.currencies[res.data[i]._id] = res.data[i];
         }
 
-        apiService.Account.get(function(res) {
+        apiService.Accounts.get({'year':settingsService.getCurrentYear()}, function(res) {
             $scope.accounts = res.data;
 
             for (var i = 0, l = $scope.accounts.length; i < l; i++) {
@@ -78,24 +79,24 @@ angular.module('bamApp').config(function config($routeProvider) {
         }
     });
 
-    apiService.ReportSpendingByCategory.get({'month':$rootScope.currViewMonth}, function(res) {
+    apiService.ReportSpendingByCategory.get({'year': currYear, 'month':$rootScope.currViewMonth}, function(res) {
         $scope.spendingByCategory = res.data;
     });
 
-    apiService.ReportIncomingByCategory.get({'month':$rootScope.currViewMonth}, function(res) {
+    apiService.ReportIncomingByCategory.get({'year': currYear, 'month':$rootScope.currViewMonth}, function(res) {
         $scope.incomingByCategory = res.data;
     });
 
-    apiService.ReportTransactionsByCategory.get({'month':$rootScope.currViewMonth}, function(res) {
+    apiService.ReportTransactionsByCategory.get({'year': currYear, 'month':$rootScope.currViewMonth}, function(res) {
         $scope.transactionsByCategory = res.data;
     });
 
-    apiService.ReportTotalByMonth.get(function(res) {
+    apiService.ReportTotalByMonth.get({'year': currYear}, function(res) {
         $scope.total = res.data.series[0].data[$rootScope.currViewMonth - 1];
         $scope.savings = res.data.series[0].data[$rootScope.currViewMonth - 1] - res.data.series[0].data[0];
     });
 
-    apiService.ReportTotalByAccounttype.get(function(res) {
+    apiService.ReportTotalByAccounttype.get({'year': currYear}, function(res) {
         if (res.data.series[0].name === 'checking') {
             $scope.totalCheckingAccounts = res.data.series[0].data[$rootScope.currViewMonth - 1];
             $scope.totalSavingAccounts = res.data.series[1].data[$rootScope.currViewMonth - 1];
@@ -205,7 +206,7 @@ angular.module('bamApp').config(function config($routeProvider) {
             amount: parseFloat(form.sign + form.amount),
             day: form.day,
             month: $rootScope.currViewMonth,
-            year: settingsService.getYearOfMonth($rootScope.currViewMonth),
+            year: settingsService.getCurrentYear(),
             isDone: (form.isDone !== undefined ? form.isDone : false)
         };
 
