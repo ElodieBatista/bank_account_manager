@@ -1,0 +1,22 @@
+<div>
+    <nav class="tabs nav nav-tabs main-nav" role="tablist">
+        <ul id="monthly-nav-list" class="main-nav-list" ng-init="selectedTab = 1;">
+            <li class="main-nav-list-item" ng-class="{active: selectedTab == 1}">
+                <a class="main-nav-list-item-link" href="" ng-click="selectedTab = 1;"><i class="fa fa-pie-chart"></i> Charts</a>
+            </li>
+            <li class="main-nav-list-item" ng-class="{active: selectedTab == 2}">
+                <a class="main-nav-list-item-link" href="" ng-click="selectedTab = 2;"><i class="fa fa-table"></i> Tables</a>
+            </li>
+        </ul>
+    </nav>
+
+    <div class="content tab-content">
+        <div ng-show="selectedTab == 1">
+            <div class="account-container" ng-include src="'scripts/report/charts.tpl.html'"></div>
+        </div>
+
+        <div ng-show="selectedTab == 2">
+            <div class="account-container" ng-include src="'scripts/report/tables.tpl.html'"></div>
+        </div>
+    </div>
+</div>

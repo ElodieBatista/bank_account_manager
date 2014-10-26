@@ -35,4 +35,7 @@ angular.module('bamApp', [
         });
 
         $httpProvider.interceptors.push('httpInterceptor');
+    })
+    .run(function($location) {
+        $location.path('/load');
     });
