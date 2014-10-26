@@ -1,0 +1,59 @@
+{
+    "tabbar.account.checking": "Comptes Courants",
+    "tabbar.account.saving": "Comptes Epargnes",
+    "tabbar.reports.monthly": "Rapports Mensuels",
+    "tabbar.reports.charts": "Graphiques",
+    "tabbar.reports.tables": "Tableaux",
+    "tabbar.accounts": "Comptes",
+    "tabbar.customize": "Personnaliser",
+
+    "menu.accounts": "Comptes",
+    "menu.reports": "Rapports",
+    "menu.settings": "Paramètres",
+
+    "account.amount.current": "Actuel",
+    "account.amount.future": "Futur",
+
+    "transaction.name": "Nom",
+    "transaction.amount": "Montant",
+    "transaction.category": "Catégorie",
+    "transaction.paymethod": "Méthode de Paiement",
+    "transaction.method": "Méthode",
+    "transaction.day": "Jour",
+    "transaction.done": "Sorti",
+
+    "account.name": "Nom",
+    "account.type": "Type",
+    "account.currency": "Devise",
+    "account.creation.day": "Jour d'ouverture",
+    "account.creation.month": "Mois d'ouverture",
+    "account.creation.year": "Année d'ouverture",
+    "account.day": "Jour",
+    "account.month": "Mois",
+    "account.year": "Année",
+
+    "table.actions": "Actions",
+
+    "report.total": "Total",
+    "report.savings": "Economies",
+    "report.accounts.checking": "Comptes Courants",
+    "report.accounts.saving": "Comptes Epargnes",
+    "report.total.spending.category": "Total Dépenses par Catégorie",
+    "report.total.incoming.category": "Total Entrées par Catégorie",
+    "report.total.transactions.category": "Total Transactions par Catégorie",
+    "report.total.evolution": "Bilan Evolution",
+    "report.accounts.evolution.month": "Evolution des Comptes par Mois",
+    "report.total.month": "Total par Mois",
+    "report.savings.month": "Economies par Mois",
+    "report.spending.month": "Dépenses par Mois",
+    "report.incoming.month": "Entrées par Mois",
+
+    "settings.accounts": "Comptes",
+    "settings.current.year": "Année Séléctionnée",
+    "settings.languages": "Langues",
+    "settings.language": "Langues",
+    "settings.categories": "Catégories",
+
+    "category.name": "Nom",
+    "category.color": "Couleur"
+}

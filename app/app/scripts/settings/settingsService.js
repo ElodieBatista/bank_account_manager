@@ -1,14 +1,27 @@
 'use strict';
 
-angular.module('bamApp').factory('settingsService', function ($q) {
+angular.module('bamApp').factory('settingsService', function ($rootScope) {
     return {
-        // TODO: be careful with first month of Year
-        getYearOfMonth: function(month) {
-            return '2014';
+        change: {
+            EuroDollar: 1.33,
+            DollarEuro: 0.77
         },
 
+        languages: [
+            {
+                name: 'English'
+            },
+            {
+                name: 'Français'
+            }
+        ],
+
         getCurrentYear: function() {
-            return '2013';
+            return $rootScope.currentYear;
+        },
+
+        setCurrentYear: function(year) {
+            $rootScope.currentYear = year;
         },
 
         getMonths: function() {

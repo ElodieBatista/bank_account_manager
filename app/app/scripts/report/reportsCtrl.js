@@ -8,7 +8,7 @@ angular.module('bamApp').config(function config($routeProvider) {
             controller: 'ReportsCtrl'
         })
 }).controller('ReportsCtrl', function ($scope, apiService, settingsService) {
-    var currYear = settingsService.getCurrentYear();
+    var currYear = settingsService.getCurrentYear().name;
 
     apiService.ReportSpendingByCategory.get({'year': currYear}, function(res) {
         $scope.spendingByCategory = res.data;

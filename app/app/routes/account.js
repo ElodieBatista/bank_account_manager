@@ -12,7 +12,6 @@ module.exports = function (app) {
             if (err) res.send(500);
 
             db.transaction.find({year: year}, function(err, transactions) {
-                console.log(transactions);
                 if (err) res.send(500);
 
                 var i, j, l = 0;
@@ -46,7 +45,7 @@ module.exports = function (app) {
      *  GET
      *  Return all accounts
      */
-    app.get('/account', function (req, res) {
+    app.get('/accounts', function (req, res) {
         db.account.find({}, function(err, accounts) {
             if (err) res.send(500);
 
@@ -84,11 +83,19 @@ module.exports = function (app) {
      *  POST
      *  Create a new account
      */
-    app.post('/account', function (req, res) {
+    app.post('/accounts', function (req, res) {
         var account = req.body.account;
 
         db.account.insert(account, function(err, newAccount) {
             if (err) res.send(500);
+
+            db.year.find({name: account.creation_year}, function(err, years) {
+                if (years.length === 0) {
+                    db.year.insert({name: account.creation_year}, function(err, year) {
+                        if (err) res.send(500);
+                    });
+                }
+            });
 
             res.send(201, {
                 data: newAccount
@@ -96,4 +103,22 @@ module.exports = function (app) {
         });
     });
 
+
+    /**
+     *  DELETE
+     *  Delete an account and its transactions
+     */
+    app.delete('/account/:id', function (req, res) {
+        var accountId = req.params.id;
+
+        db.account.remove({_id: accountId}, function(err) {
+            if (err) res.send(500);
+
+            db.transaction.remove({account_id: accountId}, function(err) {
+                if (err) res.send(500);
+
+                res.send(200);
+            });
+        });
+    });
 };

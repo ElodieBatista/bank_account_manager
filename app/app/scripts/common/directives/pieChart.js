@@ -4,7 +4,7 @@ angular.module('bamApp').directive('pieChart', function() {
     return {
         restrict: 'E',
         scope: {
-            titleChart: '=',
+            titleChart: '@',
             subtitle: '=',
             data: '='
         },

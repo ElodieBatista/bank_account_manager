@@ -2,92 +2,25 @@
     <nav class="tabs nav nav-tabs main-nav" role="tablist">
         <ul id="monthly-nav-list" class="main-nav-list" ng-init="selectedSettingsTab = 1;">
             <li class="main-nav-list-item" ng-class="{active: selectedSettingsTab == 1}">
-                <a class="main-nav-list-item-link" href="#/settings" ng-click="selectedSettingsTab = 1;"><i class="fa fa-tasks"></i> Accounts</a>
+                <a class="main-nav-list-item-link" href="#/settings" ng-click="selectedSettingsTab = 1;">
+                    <i class="fa fa-tasks"></i> {{'tabbar.accounts' | translate}}
+                </a>
             </li>
             <li class="main-nav-list-item" ng-class="{active: selectedSettingsTab == 2}">
-                <a class="main-nav-list-item-link" href="#/settings" ng-click="selectedSettingsTab = 2;"><i class="fa fa-sliders"></i> Customize</a>
+                <a class="main-nav-list-item-link" href="#/settings" ng-click="selectedSettingsTab = 2;">
+                    <i class="fa fa-sliders"></i> {{'tabbar.customize' | translate}}
+                </a>
             </li>
         </ul>
     </nav>
 
     <div class="content tab-content">
         <div ng-show="selectedSettingsTab == 1">
-            <h1>Accounts</h1>
-
-            <form name="formCurrentYear" ng-submit="editCurrentYear(formCurrentYear)">
-                <label>Current Year:</label>
-                <select ng-model="formCurrentYear.year" ng-change="editCurrentYear(formCurrentYear)">
-                    <option ng-repeat="year in years | orderBy:'number'" value="{{month.number}}">
-                        {{month.name}}
-                    </option>
-                </select>
-            </form>
-
-            <div>
-            	<form name="formNewAccount" ng-submit="newAccount(formNewAccount)">
-	            	<table class="table">
-                        <thead>
-                        <th>Name</th>
-                        <th>Type</th>
-                        <th>Currency</th>
-                        <th>Creation day</th>
-                        <th>Creation month</th>
-                        <th>Creation year</th>
-                        </thead>
-                        <tbody>
-	            		<tr class="transaction" ng-repeat="account in accounts">
-	            			<td>{{account.name}}</td>
-	            			<td>{{accounttypes[account.accounttype_id].name}}</td>
-	            			<td>{{currencies[account.currency_id].name}}</td>
-	            			<td>{{account.creation_day}}</td>
-	            			<td>{{account.creation_month}}</td>
-	            			<td>{{account.creation_year}}</td>
-	            		</tr>
-                        </tbody>
-                        <tfoot>
-	            		<tr>
-	            			<td><input type="text" placeholder="Name" ng-model="formNewAccount.name" required></td>
-	            			<td>
-	            				<select ng-model="formNewAccount.accounttype_id" required>
-                                    <option value="">Type</option>
-                            		<option ng-repeat="accounttype in accounttypes | orderBy:'name'" value="{{accounttype._id}}">
-                                		{{accounttype.name}}
-                            		</option>
-                        		</select>
-                        	</td>
-                            <td>
-                                <select ng-model="formNewAccount.currency_id" required>
-                                    <option value="">Currency</option>
-                                    <option ng-repeat="currency in currencies | orderBy:'name'" value="{{currency._id}}">
-                                        {{currency.name}}
-                                    </option>
-                                </select>
-                            </td>
-	            			<td><input type="number" placeholder="Day" ng-model="formNewAccount.creation_day" required></td>
-	            			<td><input type="number" placeholder="Month" ng-model="formNewAccount.creation_month" required></td>
-	            			<td><input type="number" placeholder="Year" ng-model="formNewAccount.creation_year" required></td>
-	            			<td><input type="submit" value="+"></td>
-	            		</tr>
-                        </tfoot>
-	            	</table>
-	            </form>
-            </div>
+            <div ng-include src="'scripts/settings/accounts/accounts.tpl.html'"></div>
         </div>
 
         <div ng-show="selectedSettingsTab == 2">
-        	<h1>Categories</h1>
-        	<table>
-                <thead>
-                <th>Name</th>
-                <th>Color</th>
-                </thead>
-                <tbody>
-	            <tr class="transaction" ng-repeat="category in categories | orderBy:'name'">
-	                <td class="td-capitalize">{{category.name}}</td>
-	                <td>{{category.color}}</td>
-	            </tr>
-                </tbody>
-            </table>
+            <div ng-include src="'scripts/settings/custom/custom.tpl.html'"></div>
         </div>
     </div>
 </div>

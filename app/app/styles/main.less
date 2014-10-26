@@ -68,6 +68,10 @@ h1 {
   margin-top: 0;
 }
 
+h5 {
+  display: inline-block;
+}
+
 .applet {
   background-color: rgba(0, 0, 0, 0.2);
   height: 100%;
@@ -80,10 +84,10 @@ h1 {
 button,
 input[type="submit"] {
   border-radius: 50%;
-  border: 1px solid @color-red;
   line-height: 14px;
-  color: @color-red;
-  background-color: rgba(0, 0, 0, 0);
+  color: @color-white;
+  background-color: @color-red;
+  border: 0;
 }
 
 .account-name {
@@ -311,6 +315,7 @@ tfoot {
 }
 
 .transaction-isdone,
+.account-actions,
 .transaction-actions {
   text-align: center;
 }
@@ -324,7 +329,7 @@ tfoot {
   height: 20px;
   width: 20px;
   padding: 0;
-  font-size: 13px;
+  font-size: 12px;
 }
 
 .table-submit-button {
@@ -340,7 +345,7 @@ tfoot {
 
 .table-submit-button:hover,
 .table-button:hover {
-  background-color: @color-red;
+  background-color: @color-red-dark;
   color: @color-white;
 }
 
@@ -434,6 +439,11 @@ nav .container {
   font-size: 16px;
 }
 
+.menu-list-item-subtext {
+  color: @color-grey-dark;
+  font-size: 11px;
+}
+
 .menu-list-item i {
   padding-right: 10px;
 }
@@ -464,6 +474,10 @@ nav .container {
   background-color: @color-red;
   color: @color-white;
   border-bottom: 1px solid @color-red;
+}
+
+.menu-list-item.active .menu-list-item-subtext {
+  color: @color-white;
 }
 
 

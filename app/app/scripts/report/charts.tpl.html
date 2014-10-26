@@ -1,7 +1,7 @@
 <div class="row">
     <div class="col-md-3 col-sm-6">
         <div class="stats-container stats-container-red">
-            <p class="stats-title">Total</p>
+            <p class="stats-title">{{'report.total' | translate}}</p>
             <p class="stats-nb" ng-bind="total"></p>
             <i class="stats-picto fa fa-star"></i>
         </div>
@@ -9,7 +9,7 @@
 
     <div class="col-md-3 col-sm-6">
         <div class="stats-container stats-container-grey">
-            <p class="stats-title">Savings</p>
+            <p class="stats-title">{{'report.savings' | translate}}</p>
             <p class="stats-nb" ng-bind="savings"></p>
             <i class="stats-picto fa fa-certificate"></i>
         </div>
@@ -17,7 +17,7 @@
 
     <div class="col-md-3 col-sm-6">
         <div class="stats-container stats-container-green">
-            <p class="stats-title">Checking Accounts</p>
+            <p class="stats-title">{{'report.accounts.checking' | translate}}</p>
             <p class="stats-nb" ng-bind="totalCheckingAccounts"></p>
             <i class="stats-picto fa fa-credit-card"></i>
         </div>
@@ -25,7 +25,7 @@
 
     <div class="col-md-3 col-sm-6">
         <div class="stats-container stats-container-black">
-            <p class="stats-title">Saving Accounts</p>
+            <p class="stats-title">{{'report.accounts.saving' | translate}}</p>
             <p class="stats-nb" ng-bind="totalSavingAccounts"></p>
             <i class="stats-picto fa fa-key"></i>
         </div>
@@ -34,30 +34,30 @@
 
 <div class="row row-horizontal-space">
     <div class="col-md-6">
-        <pie-chart class="chart-directive chart chart-border-grey" title-chart="'Total Spending by Category'" subtitle="'Spending'" data="spendingByCategory" legend="true"></pie-chart>
+        <pie-chart class="chart-directive chart chart-border-grey" title-chart="{{'report.total.spending.category' | translate}}" subtitle="'Spending'" data="spendingByCategory" legend="true"></pie-chart>
     </div>
 
     <div class="col-md-6">
-        <pie-chart class="chart-directive chart chart-border-grey" title-chart="'Total Incoming by Category'" subtitle="'Incoming'" data="incomingByCategory" legend="true"></pie-chart>
-    </div>
-</div>
-
-<div class="row row-horizontal-space">
-    <div class="col-md-6">
-        <column-chart class="chart-directive chart chart-border-grey" title-chart="'Total Transactions by Category'" data="transactionsByCategory" legend="true"></column-chart>
-    </div>
-
-    <div class="col-md-6">
-        <line-chart class="chart-directive chart chart-border-grey" title-chart="'Total Evolution'" data="transactionsEvolution" legend="true"></line-chart>
+        <pie-chart class="chart-directive chart chart-border-grey" title-chart="{{'report.total.incoming.category' | translate}}" subtitle="'Incoming'" data="incomingByCategory" legend="true"></pie-chart>
     </div>
 </div>
 
 <div class="row row-horizontal-space">
     <div class="col-md-6">
-        <line-chart class="chart-directive chart chart-border-grey" title-chart="'Accounts Evolution by Month'" data="accountsByMonth" legend="true"></line-chart>
+        <column-chart class="chart-directive chart chart-border-grey" title-chart="{{'report.total.transactions.category' | translate}}" data="transactionsByCategory" legend="true"></column-chart>
     </div>
 
     <div class="col-md-6">
-        <line-chart class="chart-directive chart chart-border-grey" title-chart="'Total by Month'" data="totalByMonth" legend="true"></line-chart>
+        <line-chart class="chart-directive chart chart-border-grey" title-chart="{{'report.total.evolution' | translate}}" data="transactionsEvolution" legend="true"></line-chart>
+    </div>
+</div>
+
+<div class="row row-horizontal-space">
+    <div class="col-md-6">
+        <line-chart class="chart-directive chart chart-border-grey" title-chart="{{'report.accounts.evolution.month' | translate}}" data="accountsByMonth" legend="true"></line-chart>
+    </div>
+
+    <div class="col-md-6">
+        <line-chart class="chart-directive chart chart-border-grey" title-chart="{{'report.total.month' | translate}}" data="totalByMonth" legend="true"></line-chart>
     </div>
 </div>

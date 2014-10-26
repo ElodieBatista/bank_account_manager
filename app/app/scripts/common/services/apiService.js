@@ -9,14 +9,14 @@ angular.module('bamApp').factory('apiService', function (conf, $resource) {
         }),
 
 
-        Accounts: $resource(conf.epApi + '/accounts/:year', {year:'@year'}, {
+        AccountsByYear: $resource(conf.epApi + '/accounts/:year', {year:'@year'}, {
             'get': {
                 method: 'GET'
             }
         }),
 
 
-        Account: $resource(conf.epApi + '/account', {}, {
+        Accounts: $resource(conf.epApi + '/accounts', {}, {
             'get': {
                 method: 'GET'
             },
@@ -26,13 +26,12 @@ angular.module('bamApp').factory('apiService', function (conf, $resource) {
                 params: {
                     account:'@account'
                 }
-            },
+            }
+        }),
 
-            'put': {
-                method: 'PUT',
-                params: {
-                    account:'@account'
-                }
+        Account: $resource(conf.epApi + '/account/:id', {id:'@id'}, {
+            'delete': {
+                method: 'DELETE'
             }
         }),
 
@@ -58,7 +57,7 @@ angular.module('bamApp').factory('apiService', function (conf, $resource) {
         }),
 
 
-        Years: $resource(conf.epApi + '/years', {}, {
+        Year: $resource(conf.epApi + '/year', {}, {
             'get': {
                 method: 'GET'
             }

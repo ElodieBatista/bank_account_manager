@@ -1,0 +1,64 @@
+<h1>{{'settings.accounts' | translate}}</h1>
+
+<form name="formCurrentYear">
+    <h5>{{'settings.current.year' | translate}}:</h5>
+    <select ng-model="formCurrentYear.year" ng-change="editCurrentYear(formCurrentYear.year)">
+        <option ng-repeat="year in years | orderBy:'name'" value="{{year}}">
+            {{year.name}}
+        </option>
+    </select>
+</form>
+
+<div>
+    <form name="formNewAccount" ng-submit="newAccount(formNewAccount)">
+        <table class="table">
+            <thead>
+            <th>{{'account.name' | translate}}</th>
+            <th>{{'account.type' | translate}}</th>
+            <th>{{'account.currency' | translate}}</th>
+            <th>{{'account.creation.day' | translate}}</th>
+            <th>{{'account.creation.month' | translate}}</th>
+            <th>{{'account.creation.year' | translate}}</th>
+            <th>{{'table.actions' | translate}}</th>
+            </thead>
+            <tbody>
+            <tr class="transaction" ng-repeat="account in accounts">
+                <td>{{account.name}}</td>
+                <td>{{accounttypes[account.accounttype_id].name}}</td>
+                <td>{{currencies[account.currency_id].name}}</td>
+                <td>{{account.creation_day}}</td>
+                <td>{{account.creation_month}}</td>
+                <td>{{account.creation_year}}</td>
+                <td class="account-actions">
+                    <button class="table-button" type=button ng-click="deleteAccount(account._id);"><i class="fa fa-times"></i></button>
+                </td>
+            </tr>
+            </tbody>
+            <tfoot>
+            <tr>
+                <td><input type="text" placeholder="{{'account.name' | translate}}" ng-model="formNewAccount.name" required></td>
+                <td>
+                    <select ng-model="formNewAccount.accounttype_id" required>
+                        <option value="">{{'account.type' | translate}}</option>
+                        <option ng-repeat="accounttype in accounttypes | orderBy:'name'" value="{{accounttype._id}}">
+                            {{accounttype.name}}
+                        </option>
+                    </select>
+                </td>
+                <td>
+                    <select ng-model="formNewAccount.currency_id" required>
+                        <option value="">{{'account.currency' | translate}}</option>
+                        <option ng-repeat="currency in currencies | orderBy:'name'" value="{{currency._id}}">
+                            {{currency.name}}
+                        </option>
+                    </select>
+                </td>
+                <td><input type="number" placeholder="{{'account.day' | translate}}" ng-model="formNewAccount.creation_day" required></td>
+                <td><input type="number" placeholder="{{'account.month' | translate}}" ng-model="formNewAccount.creation_month" required></td>
+                <td><input type="number" placeholder="{{'account.year' | translate}}" ng-model="formNewAccount.creation_year" required></td>
+                <td><button class="table-submit-button" type="submit"><span>+</span></button></td>
+            </tr>
+            </tfoot>
+        </table>
+    </form>
+</div>

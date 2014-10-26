@@ -4,7 +4,7 @@ angular.module('bamApp').directive('columnChart', function() {
     return {
         restrict: 'E',
         scope: {
-            titleChart: '=',
+            titleChart: '@',
             data: '='
         },
 

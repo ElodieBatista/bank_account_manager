@@ -4,7 +4,7 @@ angular.module('bamApp').directive('lineChart', function() {
     return {
         restrict: 'E',
         scope: {
-            titleChart: '=',
+            titleChart: '@',
             data: '='
         },
 

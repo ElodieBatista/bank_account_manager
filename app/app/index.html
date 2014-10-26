@@ -17,7 +17,7 @@
     <link rel="stylesheet/less" type="text/css" href="styles/main.less" />
     <!-- endbuild -->
 </head>
-<body id="ng-app" ng-app="bamApp">
+<body id="ng-app" ng-app="bamApp" ng-cloak>
 <!--[if lt IE 7]>
 <p class="chromeframe">You are using an outdated browser. <a href="http://browsehappy.com/">Upgrade your browser today</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to better experience this site.</p>
 <![endif]-->
@@ -51,19 +51,20 @@
             <li class="menu-list-item" ng-class="{active: selectedMenu == 1}">
                 <a class="menu-list-item-link" href="index.html#/" ng-click="selectedMenu = 1;">
                     <i class="fa fa-tasks"></i>
-                    <span class="menu-list-item-text">Accounts</span>
+                    <span class="menu-list-item-text">{{'menu.accounts' | translate}}</span>
+                    <span class="menu-list-item-subtext" ng-bind="currentYear.name"></span>
                 </a>
             </li>
             <li class="menu-list-item" ng-class="{active: selectedMenu == 2}">
                 <a class="menu-list-item-link" href="index.html#/reports" ng-click="selectedMenu = 2; currViewMonth = 0;">
                     <i class="fa fa-bar-chart-o"></i>
-                    <span class="menu-list-item-text">Reports</span>
+                    <span class="menu-list-item-text">{{'menu.reports' | translate}}</span>
                 </a>
             </li>
             <li class="menu-list-item" ng-class="{active: selectedMenu == 3}">
                 <a class="menu-list-item-link" href="index.html#/settings" ng-click="selectedMenu = 3; currViewMonth = 0;">
                     <i class="fa fa-cogs"></i>
-                    <span class="menu-list-item-text">Settings</span>
+                    <span class="menu-list-item-text">{{'menu.settings' | translate}}</span>
                 </a>
             </li>
         </ul>
@@ -100,6 +101,8 @@
 <script src="bower_components/angular-resource/angular-resource.js"></script>
 <script src="bower_components/angular-route/angular-route.js"></script>
 <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
+<script src="bower_components/angular-translate/angular-translate.min.js"></script>
+<script src="bower_components/angular-translate-loader-static-files/angular-translate-loader-static-files.min.js"></script>
 <script src="bower_components/less/dist/less-1.4.2.min.js"></script>
 <script src="bower_components/jquery/jquery.min.js"></script>
 <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
@@ -111,6 +114,7 @@
 <script src="scripts/app.js"></script>
 <script src="scripts/load/loadCtrl.js"></script>
 <script src="scripts/account/homeCtrl.js"></script>
+<script src="scripts/account/monthlyReport/monthlyReport.js"></script>
 <script src="scripts/report/reportsCtrl.js"></script>
 <script src="scripts/common/directives/olMonths.js"></script>
 <script src="scripts/common/directives/pieChart.js"></script>

@@ -3,12 +3,13 @@
 angular.module('bamApp', [
     'ngResource',
     'ngRoute',
-    'ngSanitize'
+    'ngSanitize',
+    'pascalprecht.translate'
 ])
     .constant('conf', {
         'epApi': 'http://localhost:3000'
     })
-    .config(function (conf, $routeProvider, $httpProvider, $provide) {
+    .config(function (conf, $routeProvider, $httpProvider, $provide, $translateProvider) {
         // Set a default route
         $routeProvider.otherwise({redirectTo: '/accounts/' + parseInt(new Date().getMonth() + 1)});
 
@@ -35,6 +36,13 @@ angular.module('bamApp', [
         });
 
         $httpProvider.interceptors.push('httpInterceptor');
+
+        // Translations
+        $translateProvider.useStaticFilesLoader({
+            prefix: 'translations/locale-',
+            suffix: '.json'
+        });
+        $translateProvider.preferredLanguage('fr');
     })
     .run(function($location) {
         $location.path('/load');

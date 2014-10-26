@@ -1,6 +1,6 @@
 <div class="row">
     <div class="col-md-12">
-        <h3>Economies by month</h3>
+        <h3>{{'report.savings.month' | translate}}</h3>
         <table class="table">
             <thead>
             <tr class="tr-centered">
@@ -18,7 +18,7 @@
 
 <div class="row">
     <div class="col-md-12">
-        <h3>Total by month</h3>
+        <h3>{{'report.total.month' | translate}}</h3>
         <table class="table">
             <thead>
             <tr class="tr-centered">
@@ -36,13 +36,13 @@
 
 <div class="row">
     <div class="col-md-12">
-        <h3>Spending by month</h3>
+        <h3>{{'report.spending.month' | translate}}</h3>
         <table class="table">
             <thead>
             <tr class="tr-centered">
                 <th></th>
                 <th ng-repeat="month in spendingByCategoryAndMonth.categories" ng-bind="month"></th>
-                <th>Total</th>
+                <th>{{'report.total' | translate}}</th>
             </tr>
             </thead>
             <tbody>
@@ -61,13 +61,13 @@
 
 <div class="row">
     <div class="col-md-12">
-        <h3>Incoming by month</h3>
+        <h3>{{'report.incoming.month' | translate}}</h3>
         <table class="table">
             <thead>
             <tr class="tr-centered">
                 <th></th>
                 <th ng-repeat="month in incomingByCategoryAndMonth.categories" ng-bind="month"></th>
-                <th>Total</th>
+                <th>{{'report.total' | translate}}</th>
             </tr>
             </thead>
             <tbody>

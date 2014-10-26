@@ -4,19 +4,19 @@
             <li class="main-nav-list-item" ng-class="{active: selectedTab == 1}">
                 <a class="main-nav-list-item-link" href="" ng-click="selectedTab = 1;">
                     <i class="fa fa-credit-card"></i>
-                    <span class="main-nav-list-item-text">Checking Accounts</span>
+                    <span class="main-nav-list-item-text">{{'tabbar.account.checking' | translate}}</span>
                 </a>
             </li>
             <li class="main-nav-list-item" ng-class="{active: selectedTab == 2}">
                 <a class="main-nav-list-item-link" href="" ng-click="selectedTab = 2;">
                     <i class="fa fa-key"></i>
-                    <span class="main-nav-list-item-text">Saving Accounts</span>
+                    <span class="main-nav-list-item-text">{{'tabbar.account.saving' | translate}}</span>
                 </a>
             </li>
             <li class="main-nav-list-item" ng-class="{active: selectedTab == 3}">
                 <a class="main-nav-list-item-link" href="" ng-click="selectedTab = 3;">
                     <i class="fa fa-pie-chart"></i>
-                    <span class="main-nav-list-item-text">Monthly Reports</span>
+                    <span class="main-nav-list-item-text">{{'tabbar.reports.monthly' | translate}}</span>
                 </a>
             </li>
         </ul>
@@ -39,8 +39,8 @@
             </div>
         </div>
 
-        <div ng-show="selectedTab == 3">
-            <div ng-include src="'scripts/account/monthlyReports.tpl.html'"></div>
+        <div ng-show="selectedTab == 3" ng-controller="MonthlyReportCtrl">
+            <div ng-include src="'scripts/account/monthlyReport/monthlyReports.tpl.html'"></div>
         </div>
     </div>
 </div>

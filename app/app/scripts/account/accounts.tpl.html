@@ -9,7 +9,7 @@
                 <div ng-class="{selected: account.currencySelected == 1}" ng-click="account.currencySelected = 1;">$</div>
                 <div ng-class="{selected: account.currencySelected == 2}" ng-click="account.currencySelected = 2;">€</div>
             </div>
-            <p class="account-amount-label">Current</p>
+            <p class="account-amount-label">{{'account.amount.current' | translate}}</p>
         </li>
 
         <li class="account-amounts-item future">
@@ -19,7 +19,7 @@
                 <div ng-class="{selected: account.currencySelected == 1}" ng-click="account.currencySelected = 1;">$</div>
                 <div ng-class="{selected: account.currencySelected == 2}" ng-click="account.currencySelected = 2;">€</div>
             </div>
-            <p class="account-amount-label">Future</p>
+            <p class="account-amount-label">{{'account.amount.future' | translate}}</p>
         </li>
     </ul>
 
@@ -30,13 +30,13 @@
             <table class="account-table table">
                 <thead>
                 <tr>
-                    <th>Name</th>
-                    <th colspan="2">Amount ({{currencies[account.currency_id].symbol}})</th>
-                    <th>Category</th>
-                    <th>Payment Method</th>
-                    <th>Day</th>
-                    <th>Is Done</th>
-                    <th>Actions</th>
+                    <th>{{'transaction.name' | translate}}</th>
+                    <th colspan="2">{{'transaction.amount' | translate}} ({{currencies[account.currency_id].symbol}})</th>
+                    <th>{{'transaction.category' | translate}}</th>
+                    <th>{{'transaction.paymethod' | translate}}</th>
+                    <th>{{'transaction.day' | translate}}</th>
+                    <th>{{'transaction.done' | translate}}</th>
+                    <th>{{'table.actions' | translate}}</th>
                 </thead>
                 <tbody>
                 <tr class="transaction" ng-repeat="transaction in account.transactions[currViewMonth] | orderBy:['year','month', 'day']">
@@ -55,7 +55,7 @@
                 </tbody>
                 <tfoot>
                 <tr>
-                    <td><input type="text" placeholder="Name" ng-model="account.formNewTransaction.name" required></td>
+                    <td><input type="text" placeholder="{{'transaction.name' | translate}}" ng-model="account.formNewTransaction.name" required></td>
                     <td class="transaction-form-sign">
                         <div class="amount-checkbox">
                             <input type="checkbox" value="sign" id="{{account._id}}" name="sign" checked ng-model="account.formNewTransaction.sign">
@@ -64,12 +64,12 @@
                     </td>
                     <td>
                         <div id="input-amount">
-                            <input type="number" placeholder="Amount {{currencies[account.currency_id].symbol}}" ng-model="account.formNewTransaction.amount" required>
+                            <input type="number" placeholder="{{'transaction.amount' | translate}} {{currencies[account.currency_id].symbol}}" ng-model="account.formNewTransaction.amount" required>
                         </div>
                     </td>
                     <td>
                         <select ng-model="account.formNewTransaction.category_id" required>
-                            <option value="">Category</option>
+                            <option value="">{{'transaction.category' | translate}}</option>
                             <option ng-repeat="category in categories | orderBy:'name'" value="{{category._id}}">
                                 {{category.name}}
                             </option>
@@ -77,13 +77,13 @@
                     </td>
                     <td>
                         <select ng-model="account.formNewTransaction.paymethod_id" required>
-                            <option value="">Method</option>
+                            <option value="">{{'transaction.method' | translate}}</option>
                             <option ng-repeat="paymethod in paymethods | orderBy:'name'" value="{{paymethod._id}}">
                                 {{paymethod.name}}
                             </option>
                         </select>
                     </td>
-                    <td><input type="number" placeholder="Day" ng-model="account.formNewTransaction.day" required></td>
+                    <td><input type="number" placeholder="{{'transaction.day' | translate}}" ng-model="account.formNewTransaction.day" required></td>
                     <td class="transaction-isdone transaction-form-isdone">
                         <input type="checkbox" ng-model="account.formNewTransaction.isDone">
                     </td>

@@ -1,0 +1,59 @@
+{
+    "tabbar.account.checking": "Checking Accounts",
+    "tabbar.account.saving": "Saving Accounts",
+    "tabbar.reports.monthly": "Monthly Reports",
+    "tabbar.reports.charts": "Charts",
+    "tabbar.reports.tables": "Tables",
+    "tabbar.accounts": "Accounts",
+    "tabbar.customize": "Customize",
+
+    "menu.accounts": "Accounts",
+    "menu.reports": "Reports",
+    "menu.settings": "Settings",
+
+    "account.amount.current": "Current",
+    "account.amount.future": "Future",
+
+    "transaction.name": "Name",
+    "transaction.amount": "Amount",
+    "transaction.category": "Category",
+    "transaction.paymethod": "Payment Method",
+    "transaction.method": "Method",
+    "transaction.day": "Day",
+    "transaction.done": "Is Done",
+
+    "account.name": "Name",
+    "account.type": "Type",
+    "account.currency": "Currency",
+    "account.creation.day": "Creation Day",
+    "account.creation.month": "Creation Month",
+    "account.creation.year": "Creation Year",
+    "account.day": "Day",
+    "account.month": "Month",
+    "account.year": "Year",
+
+    "table.actions": "Actions",
+
+    "report.total": "Total",
+    "report.savings": "Savings",
+    "report.accounts.checking": "Checking Accounts",
+    "report.accounts.saving": "Saving Accounts",
+    "report.total.spending.category": "Total Spending by Category",
+    "report.total.incoming.category": "Total Incoming by Category",
+    "report.total.transactions.category": "Total Transactions by Category",
+    "report.total.evolution": "Total Evolution",
+    "report.accounts.evolution.month": "Accounts Evolution by Month",
+    "report.total.month": "Total by Month",
+    "report.savings.month": "Saving by Month",
+    "report.spending.month": "Spending by Month",
+    "report.incoming.month": "Incoming by Month",
+
+    "settings.accounts": "Accounts",
+    "settings.current.year": "Current Year",
+    "settings.languages": "Languages",
+    "settings.language": "Language",
+    "settings.categories": "Categories",
+
+    "category.name": "Name",
+    "category.color": "Color"
+}

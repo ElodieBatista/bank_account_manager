@@ -10,11 +10,21 @@ angular.module('bamApp').config(function config($routeProvider) {
         })
 }).controller('LoadCtrl', LoadCtrl);
 
-function LoadCtrl($rootScope, $location, currencies, accounttypes, categories, paymethods) {
+function LoadCtrl($rootScope, $location, settingsService, currencies, accounttypes, categories, paymethods, years) {
     $rootScope.currencies = currencies;
     $rootScope.accounttypes = accounttypes;
     $rootScope.categories = categories;
     $rootScope.paymethods = paymethods;
+    $rootScope.years = years;
+
+    var year = new Date().getFullYear();
+
+    for (var prop in $rootScope.years) {
+        if ($rootScope.years[prop].name === year) {
+            settingsService.setCurrentYear($rootScope.years[prop]);
+        }
+    }
+
     $location.path('/');
 }
 
@@ -69,6 +79,20 @@ LoadCtrl.resolve = {
                 paymethods[res.data[i]._id] = res.data[i];
             }
             deferred.resolve(paymethods);
+        }, function(err) {
+            deferred.reject();
+        });
+        return deferred.promise;
+    },
+
+    years: function($q, apiService) {
+        var deferred = $q.defer();
+        apiService.Year.get(function(res) {
+            var years = {};
+            for (var i = 0, l = res.data.length; i < l; i++) {
+                years[res.data[i]._id] = res.data[i];
+            }
+            deferred.resolve(years);
         }, function(err) {
             deferred.reject();
         });
