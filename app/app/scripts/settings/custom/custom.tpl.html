@@ -1,23 +1,27 @@
-<h1>{{'settings.languages' | translate}}</h1>
-<form name="formLanguage">
-    <h5>{{'settings.language' | translate}}:</h5>
-    <select ng-model="formLanguage.language" ng-change="editLanguage(formLanguage.language)">
-        <option ng-repeat="language in languages | orderBy:'name'" value="{{language}}">
-            {{language.name}}
-        </option>
-    </select>
-</form>
+<div class="settings-container">
+    <h1>{{'settings.languages' | translate}}</h1>
+    <form name="formLanguage">
+        <h5>{{'settings.language' | translate}}:</h5>
+        <select ng-model="formLanguage.language" ng-change="editLanguage(formLanguage.language)">
+            <option ng-repeat="language in languages | orderBy:'name'" value="{{language}}">
+                {{language.name}}
+            </option>
+        </select>
+    </form>
+</div>
 
-<h1>{{'settings.categories' | translate}}</h1>
-<table>
-    <thead>
-    <th>{{'category.name' | translate}}</th>
-    <th>{{'category.color' | translate}}</th>
-    </thead>
-    <tbody>
-    <tr class="transaction" ng-repeat="category in categories | orderBy:'name'">
-        <td class="td-head"><i class="fa fa-circle" ng-style="{ 'color': category.color}"></i> {{category.name}}</td>
-        <td>{{category.color}}</td>
-    </tr>
-    </tbody>
-</table>
+<div class="settings-container">
+    <h1>{{'settings.categories' | translate}}</h1>
+    <table>
+        <thead>
+        <th>{{'category.name' | translate}}</th>
+        <th>{{'category.color' | translate}}</th>
+        </thead>
+        <tbody>
+        <tr class="transaction" ng-repeat="category in categories | orderBy:'name'">
+            <td class="td-head"><i class="fa fa-circle" ng-style="{ 'color': category.color}"></i> {{category.name}}</td>
+            <td>{{category.color}}</td>
+        </tr>
+        </tbody>
+    </table>
+</div>

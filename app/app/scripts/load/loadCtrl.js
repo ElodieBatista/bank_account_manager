@@ -10,7 +10,7 @@ angular.module('bamApp').config(function config($routeProvider) {
         })
 }).controller('LoadCtrl', LoadCtrl);
 
-function LoadCtrl($rootScope, $location, settingsService, currencies, accounttypes, categories, paymethods, years) {
+function LoadCtrl($rootScope, $location, $window, $translate, settingsService, currencies, accounttypes, categories, paymethods, years) {
     $rootScope.currencies = currencies;
     $rootScope.accounttypes = accounttypes;
     $rootScope.categories = categories;
@@ -18,12 +18,16 @@ function LoadCtrl($rootScope, $location, settingsService, currencies, accounttyp
     $rootScope.years = years;
 
     var year = new Date().getFullYear();
-
     for (var prop in $rootScope.years) {
         if ($rootScope.years[prop].name === year) {
             settingsService.setCurrentYear($rootScope.years[prop]);
         }
     }
+
+    var lang = $window.navigator.userLanguage || $window.navigator.language;
+    lang = lang.substring(0, 2);
+    $translate.use(lang);
+    $rootScope.language = lang;
 
     $location.path('/');
 }

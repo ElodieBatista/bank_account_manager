@@ -9,10 +9,12 @@ angular.module('bamApp').factory('settingsService', function ($rootScope) {
 
         languages: [
             {
-                name: 'English'
+                name: 'English',
+                abbr: 'en'
             },
             {
-                name: 'Français'
+                name: 'Français',
+                abbr: 'fr'
             }
         ],
 

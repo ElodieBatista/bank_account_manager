@@ -1,15 +1,19 @@
-<h1>{{'settings.accounts' | translate}}</h1>
+<div class="settings-container">
+    <h1>{{'settings.accounts' | translate}}</h1>
+</div>
 
-<form name="formCurrentYear">
-    <h5>{{'settings.current.year' | translate}}:</h5>
-    <select ng-model="formCurrentYear.year" ng-change="editCurrentYear(formCurrentYear.year)">
-        <option ng-repeat="year in years | orderBy:'name'" value="{{year}}">
-            {{year.name}}
-        </option>
-    </select>
-</form>
+<div class="settings-container">
+    <form name="formCurrentYear">
+        <h5>{{'settings.current.year' | translate}}:</h5>
+        <select ng-model="formCurrentYear.year" ng-change="editCurrentYear(formCurrentYear.year)">
+            <option ng-repeat="year in years | orderBy:'name'" value="{{year}}">
+                {{year.name}}
+            </option>
+        </select>
+    </form>
+</div>
 
-<div>
+<div class="settings-container">
     <form name="formNewAccount" ng-submit="newAccount(formNewAccount)">
         <table class="table">
             <thead>

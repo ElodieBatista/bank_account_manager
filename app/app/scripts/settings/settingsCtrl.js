@@ -7,7 +7,7 @@ angular.module('bamApp').config(function config($routeProvider) {
             templateUrl: 'scripts/settings/settings.tpl.html',
             controller: 'SettingsCtrl'
         })
-}).controller('SettingsCtrl', function ($scope, apiService, settingsService) {
+}).controller('SettingsCtrl', function ($scope, $translate, apiService, settingsService) {
     $scope.formCurrentYear = {
         year: settingsService.getCurrentYear()
     };
@@ -37,4 +37,8 @@ angular.module('bamApp').config(function config($routeProvider) {
     $scope.editCurrentYear = function(year) {
         settingsService.setCurrentYear(JSON.parse(year));
     };
+
+    $scope.editLanguage = function(language) {
+        $translate.use(JSON.parse(language).abbr);
+    }
 });
