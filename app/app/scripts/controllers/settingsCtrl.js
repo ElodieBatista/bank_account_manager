@@ -39,8 +39,6 @@ angular.module('bamApp').config(function config($routeProvider) {
         ];
     });
 
-    $scope.months = settingsService.getMonths();
-
     $scope.newAccount = function(account) {
         apiService.Account.post({'account':account}, function(res) {
             $scope.accounts.push(res.data);

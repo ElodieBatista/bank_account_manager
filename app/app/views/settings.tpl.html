@@ -23,15 +23,6 @@
                 </select>
             </form>
 
-        	<form name="formFirstMonthOfYear" ng-submit="editFirstMonthOfYear(formFirstMonthOfYear)">
-        		<label>First month of Year:</label>
-        		<select ng-model="formFirstMonthOfYear.number" ng-change="editFirstMonthOfYear(formFirstMonthOfYear)">
-                	<option ng-repeat="month in months | orderBy:'number'" value="{{month.number}}">
-                		{{month.name}}
-                	</option>
-                </select>
-            </form>
-
             <div>
             	<form name="formNewAccount" ng-submit="newAccount(formNewAccount)">
 	            	<table class="table">
@@ -51,7 +42,6 @@
 	            			<td>{{account.creation_day}}</td>
 	            			<td>{{account.creation_month}}</td>
 	            			<td>{{account.creation_year}}</td>
-	            			<td>{{account.creation_amount}}</td>
 	            		</tr>
                         </tbody>
                         <tfoot>
@@ -76,7 +66,6 @@
 	            			<td><input type="number" placeholder="Day" ng-model="formNewAccount.creation_day" required></td>
 	            			<td><input type="number" placeholder="Month" ng-model="formNewAccount.creation_month" required></td>
 	            			<td><input type="number" placeholder="Year" ng-model="formNewAccount.creation_year" required></td>
-	            			<td><input type="number" placeholder="Amount" ng-model="formNewAccount.creation_amount"></td>
 	            			<td><input type="submit" value="+"></td>
 	            		</tr>
                         </tfoot>

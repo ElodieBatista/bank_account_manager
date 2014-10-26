@@ -121,8 +121,8 @@ angular.module('bamApp').config(function config($routeProvider) {
             return { curr: 0, future: 0 };
         }
 
-        var currAmount = account.creation_amount;
-        var futureAmount = account.creation_amount;
+        var currAmount = 0;
+        var futureAmount = 0;
         for (var i = account.creation_month; i <= currMonth; i++) {
             for (var j = 0, l = account.transactions[i].length; j < l; j++) {
                 futureAmount += account.transactions[i][j].amount;

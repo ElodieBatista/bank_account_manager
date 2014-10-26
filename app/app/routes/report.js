@@ -477,7 +477,7 @@ module.exports = function (app) {
                 allaccounts[accounts[i]._id].accounttype_id = accounts[i].accounttype_id;
             }
 
-            db.accounttype.find({year: year}, function(err, accounttypes) {
+            db.accounttype.find({}, function(err, accounttypes) {
                 for (i = 0, l = accounttypes.length; i < l; i++) {
                     result.series.push({
                         id: accounttypes[i]._id,
@@ -487,9 +487,7 @@ module.exports = function (app) {
                     });
                 }
 
-                console.log(result.series);
-
-                db.transaction.find({}, function(err, transactions) {
+                db.transaction.find({year: year}, function(err, transactions) {
                     for (var i = 0, l = transactions.length; i < l; i++) {
                         for (var j = 0, le = result.series.length; j < le; j++) {
                             if (result.series[j].id === allaccounts[transactions[i].account_id].accounttype_id) {
