@@ -4,7 +4,7 @@ angular.module('bamApp').config(function config($routeProvider) {
     $routeProvider
         .when('/accounts/:month',
         {
-            templateUrl: 'views/home.tpl.html',
+            templateUrl: 'scripts/account/home.tpl.html',
             controller: 'HomeCtrl'
         })
 }).controller('HomeCtrl', function ($scope, $rootScope, $routeParams, apiService, settingsService) {
@@ -22,7 +22,6 @@ angular.module('bamApp').config(function config($routeProvider) {
             day: '',
             isDone: false
         };
-
         return form;
     };
 
@@ -32,71 +31,41 @@ angular.module('bamApp').config(function config($routeProvider) {
             (inboundMonth > month && (outboundMonth <month || outboundMonth >= inboundMonth)));
     };
 
-    apiService.AccountType.get(function(res) {
-        $scope.accounttypes = {};
 
-        for (var i = 0, l = res.data.length; i < l; i++) {
-            $scope.accounttypes[res.data[i]._id] = res.data[i];
-        }
-    });
 
-    apiService.Currency.get(function(res) {
-        $scope.currencies = {};
+    apiService.Accounts.get({'year':settingsService.getCurrentYear()}, function(res) {
+        $scope.accounts = res.data;
 
-        for (var i = 0, l = res.data.length; i < l; i++) {
-            $scope.currencies[res.data[i]._id] = res.data[i];
-        }
-
-        apiService.Accounts.get({'year':settingsService.getCurrentYear()}, function(res) {
-            $scope.accounts = res.data;
-
-            for (var i = 0, l = $scope.accounts.length; i < l; i++) {
-                $scope.accounts[i].amount = $scope.getAmounts($scope.accounts[i], $rootScope.currViewMonth);
-                $scope.accounts[i].formNewTransaction = $scope.initTransactionForm($scope.accounts[i].formNewTransaction);
-                $scope.accounts[i].currencySelected = ($scope.currencies[$scope.accounts[i].currency_id].name === 'dollar') ? 1 : 2;
-                if ($scope.accounts[i].currencySelected === 1) {
-                    $scope.accounts[i].currencyFactor = [1, 0.77];
-                } else {
-                    $scope.accounts[i].currencyFactor = [1.33, 1];
-                }
+        for (var i = 0, l = $scope.accounts.length; i < l; i++) {
+            $scope.accounts[i].amount = $scope.getAmounts($scope.accounts[i], $rootScope.currViewMonth);
+            $scope.accounts[i].formNewTransaction = $scope.initTransactionForm($scope.accounts[i].formNewTransaction);
+            $scope.accounts[i].currencySelected = ($scope.currencies[$scope.accounts[i].currency_id].name === 'dollar') ? 1 : 2;
+            if ($scope.accounts[i].currencySelected === 1) {
+                $scope.accounts[i].currencyFactor = [1, 0.77];
+            } else {
+                $scope.accounts[i].currencyFactor = [1.33, 1];
             }
-        });
-    });
-
-    apiService.Category.get(function(res) {
-        $scope.categories = {};
-
-        for (var i = 0, l = res.data.length; i < l; i++) {
-            $scope.categories[res.data[i]._id] = res.data[i];
         }
     });
 
-    apiService.Paymethod.get(function(res) {
-        $scope.paymethods = {};
-
-        for (var i = 0, l = res.data.length; i < l; i++) {
-            $scope.paymethods[res.data[i]._id] = res.data[i];
-        }
-    });
-
-    apiService.ReportSpendingByCategory.get({'year': currYear, 'month':$rootScope.currViewMonth}, function(res) {
+    apiService.ReportSpendingByCategory.get({'year':currYear, 'month':$rootScope.currViewMonth}, function(res) {
         $scope.spendingByCategory = res.data;
     });
 
-    apiService.ReportIncomingByCategory.get({'year': currYear, 'month':$rootScope.currViewMonth}, function(res) {
+    apiService.ReportIncomingByCategory.get({'year':currYear, 'month':$rootScope.currViewMonth}, function(res) {
         $scope.incomingByCategory = res.data;
     });
 
-    apiService.ReportTransactionsByCategory.get({'year': currYear, 'month':$rootScope.currViewMonth}, function(res) {
+    apiService.ReportTransactionsByCategory.get({'year':currYear, 'month':$rootScope.currViewMonth}, function(res) {
         $scope.transactionsByCategory = res.data;
     });
 
-    apiService.ReportTotalByMonth.get({'year': currYear}, function(res) {
+    apiService.ReportTotalByMonth.get({'year':currYear}, function(res) {
         $scope.total = res.data.series[0].data[$rootScope.currViewMonth - 1];
         $scope.savings = res.data.series[0].data[$rootScope.currViewMonth - 1] - res.data.series[0].data[0];
     });
 
-    apiService.ReportTotalByAccounttype.get({'year': currYear}, function(res) {
+    apiService.ReportTotalByAccounttype.get({'year':currYear}, function(res) {
         if (res.data.series[0].name === 'checking') {
             $scope.totalCheckingAccounts = res.data.series[0].data[$rootScope.currViewMonth - 1];
             $scope.totalSavingAccounts = res.data.series[1].data[$rootScope.currViewMonth - 1];
@@ -161,7 +130,6 @@ angular.module('bamApp').config(function config($routeProvider) {
                 return $scope.accounts[i];
             }
         }
-
         return null;
     };
 
