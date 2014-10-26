@@ -55,5 +55,18 @@
     "settings.categories": "Categories",
 
     "category.name": "Name",
-    "category.color": "Color"
+    "category.color": "Color",
+
+    "January": "January",
+    "February": "February",
+    "March": "March",
+    "April": "April",
+    "May": "May",
+    "June": "June",
+    "July": "July",
+    "August": "August",
+    "September": "September",
+    "October": "October",
+    "November": "November",
+    "December": "December"
 }
