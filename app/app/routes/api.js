@@ -3,6 +3,7 @@ var db = require('../db/db');
 module.exports = function (app) {
   require('../routes/accounttype')(app);
   require('../routes/currency')(app);
+  require('../routes/year')(app);
   require('../routes/account')(app);
   require('../routes/category')(app);
   require('../routes/paymethod')(app);
@@ -222,6 +223,20 @@ module.exports = function (app) {
 
       });
     }*/
+
+      var years = [
+          {
+              name:2013
+          },
+          {
+              name:2014
+          }
+      ];
+      for (var i = 0, l = years.length; i < l; i++) {
+          db.year.insert(years[i], function (err, newYear) {
+
+          });
+      }
 
 
     res.send(201);
