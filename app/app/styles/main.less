@@ -182,23 +182,23 @@ div.account-content {
 }
 
 /*::-webkit-input-placeholder { /* WebKit browsers */
-  /*color:    @color-grey;
+/*color:    @color-grey;
 }
 :-moz-placeholder { /* Mozilla Firefox 4 to 18 */
-  /*color:    @color-grey;
+/*color:    @color-grey;
 }
 ::-moz-placeholder { /* Mozilla Firefox 19+ */
-  /*color:    @color-grey;
+/*color:    @color-grey;
 }
 :-ms-input-placeholder { /* Internet Explorer 10+ */
-  /*color:    @color-grey;
+/*color:    @color-grey;
 }
 
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
-  /* display: none; <- Crashes Chrome on hover */
-  /*-webkit-appearance: none;
-  margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
+/* display: none; <- Crashes Chrome on hover */
+/*-webkit-appearance: none;
+margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
 /*}*/
 
 tfoot td {
@@ -778,4 +778,68 @@ nav .container {
       transform: scale(1.0);
       -webkit-transform: scale(1.0);
     }
+}
+
+
+
+
+
+.amount-checkbox {
+  width: 42px;
+  height: 30px;
+  background: rgb(255, 255, 255);
+  position: relative;
+  border: 1px solid rgb(221, 221, 221);
+}
+
+.amount-checkbox:after {
+  content: '-';
+  color: @color-white;
+  background-color: @color-red;
+  position: absolute;
+  right: 0px;
+  z-index: 0;
+  display: inline-block;
+  width: 20px;
+  height: 28px;
+  line-height: 26px;
+  text-align: center;
+}
+
+.amount-checkbox:before {
+  content: '+';
+  color: @color-white;
+  background-color: @color-green;
+  position: absolute;
+  left: 0px;
+  z-index: 0;
+  display: inline-block;
+  width: 20px;
+  height: 28px;
+  line-height: 26px;
+  text-align: center;
+}
+
+.amount-checkbox label {
+  display: block;
+  width: 21px;
+  height: 28px;
+  cursor: pointer;
+  position: absolute;
+  top: 0;
+  left: -1px;
+  z-index: 1;
+  transition: all 0.2s ease;
+  background-color: rgb(255, 255, 255);
+  padding: 3px;
+  border-right: 1px solid @color-grey;
+  border-left: 1px solid @color-grey;
+}
+
+.amount-checkbox input[type=checkbox] {
+  visibility: hidden;
+}
+
+.amount-checkbox input[type=checkbox]:checked + label {
+  left: 20px;
 }

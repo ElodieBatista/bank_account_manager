@@ -57,10 +57,10 @@
                 <tr>
                     <td><input type="text" placeholder="Name" ng-model="account.formNewTransaction.name" required></td>
                     <td class="transaction-form-sign">
-                        <label class="transaction-form-sign-label">+</label>
-                        <input type="radio" name="sign" value="+" ng-model="account.formNewTransaction.sign">
-                        <label class="transaction-form-sign-label">-</label>
-                        <input type="radio" name="sign" value="-" ng-model="account.formNewTransaction.sign">
+                        <div class="amount-checkbox">
+                            <input type="checkbox" value="sign" id="{{account._id}}" name="sign" checked ng-model="account.formNewTransaction.sign">
+                            <label for="{{account._id}}"></label>
+                        </div>
                     </td>
                     <td>
                         <div id="input-amount">
