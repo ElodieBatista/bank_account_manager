@@ -7,23 +7,76 @@ angular.module('bamApp').config(function config($routeProvider) {
             templateUrl: 'scripts/report/reports.tpl.html',
             controller: 'ReportsCtrl'
         })
-}).controller('ReportsCtrl', function ($scope, apiService, settingsService) {
+}).controller('ReportsCtrl', function ($scope, $q, $translate, apiService, settingsService) {
     var currYear = settingsService.getCurrentYear().name;
 
+    function translateData(data) {
+        var deferred = $q.defer();
+        $translate(data).then(function (translations) {
+            var result = [];
+            for (var prop in translations) {
+                result.push(translations[prop]);
+            }
+            return deferred.resolve(result);
+        });
+        return deferred.promise;
+    }
+
     apiService.ReportSpendingByCategory.get({'year': currYear}, function(res) {
-        $scope.spendingByCategory = res.data;
+        var categories = [];
+        for (var i = 0, l = res.data.length; i < l; i++) {
+            categories.push(res.data[i].name);
+        }
+        translateData(categories).then(function(data) {
+            for (var i = 0, l = res.data.length; i < l; i++) {
+                res.data[i].name = data[i];
+            }
+            $scope.spendingByCategory = res.data;
+        });
     });
 
     apiService.ReportIncomingByCategory.get({'year': currYear}, function(res) {
-        $scope.incomingByCategory = res.data;
+        var categories = [];
+        for (var i = 0, l = res.data.length; i < l; i++) {
+            categories.push(res.data[i].name);
+        }
+        translateData(categories).then(function(data) {
+            for (var i = 0, l = res.data.length; i < l; i++) {
+                res.data[i].name = data[i];
+            }
+            $scope.incomingByCategory = res.data;
+        });
     });
 
     apiService.ReportTransactionsByCategory.get({'year': currYear}, function(res) {
-        $scope.transactionsByCategory = res.data;
+        translateData(res.data.categories).then(function(categories) {
+            var legend = [];
+            for (var i = 0, l = res.data.series.length; i < l; i++) {
+                legend.push(res.data.series[i].name);
+            }
+            translateData(legend).then(function(data) {
+                for (var i = 0, l = res.data.series.length; i < l; i++) {
+                    res.data.series[i].name = data[i];
+                }
+                $scope.transactionsByCategory = {
+                    categories: categories,
+                    series: res.data.series
+                };
+            });
+        });
     });
 
     apiService.ReportTransactionsEvolution.get({'year': currYear}, function(res) {
-        $scope.transactionsEvolution = res.data;
+        var legend = [];
+        for (var i = 0, l = res.data.series.length; i < l; i++) {
+            legend.push(res.data.series[i].name);
+        }
+        translateData(legend).then(function(data) {
+            for (var i = 0, l = res.data.series.length; i < l; i++) {
+                res.data.series[i].name = data[i];
+            }
+            $scope.transactionsEvolution = res.data;
+        });
         $scope.differenceByMonth = res.data;
     });
 
@@ -32,9 +85,18 @@ angular.module('bamApp').config(function config($routeProvider) {
     });
 
     apiService.ReportTotalByMonth.get({'year': currYear}, function(res) {
-        $scope.totalByMonth = res.data;
-        $scope.total = $scope.totalByMonth.series[0].data[11];
-        $scope.savings = $scope.totalByMonth.series[0].data[11] - $scope.totalByMonth.series[0].data[0];
+        var legend = [];
+        for (var i = 0, l = res.data.series.length; i < l; i++) {
+            legend.push(res.data.series[i].name);
+        }
+        translateData(legend).then(function(data) {
+            for (var i = 0, l = res.data.series.length; i < l; i++) {
+                res.data.series[i].name = data[i];
+            }
+            $scope.totalByMonth = res.data;
+            $scope.total = $scope.totalByMonth.series[0].data[11];
+            $scope.savings = $scope.totalByMonth.series[0].data[11] - $scope.totalByMonth.series[0].data[0];
+        });
     });
 
     apiService.ReportSpendingByCategoryAndMonth.get({'year': currYear}, function(res) {

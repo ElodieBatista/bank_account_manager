@@ -68,5 +68,25 @@
     "September": "September",
     "October": "October",
     "November": "November",
-    "December": "December"
+    "December": "December",
+
+    "Technology": "Technology",
+    "Divers": "Divers",
+    "Gift": "Gift",
+    "Health": "Health",
+    "Grant": "Grant",
+    "Trip": "Trip",
+    "Transportation": "Transportation",
+    "Salary": "Salary",
+    "School": "School",
+    "Food": "Food",
+    "Rent": "Rent",
+    "Insurance": "Insurance",
+    "Tax": "Tax",
+    "Clothes": "Clothes",
+
+    "Incoming": "Incoming",
+    "Spending": "Spending",
+    "Difference": "Difference",
+    "Total": "Total"
 }
