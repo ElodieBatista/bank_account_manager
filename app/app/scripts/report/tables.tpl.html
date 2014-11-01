@@ -4,7 +4,7 @@
         <table class="table">
             <thead>
             <tr class="tr-centered">
-                <th ng-repeat="month in differenceByMonth.categories" ng-bind="month"></th>
+                <th ng-repeat="month in differenceByMonth.categories">{{ month | translate }}</th>
             </tr>
             </thead>
             <tbody>
@@ -22,7 +22,7 @@
         <table class="table">
             <thead>
             <tr class="tr-centered">
-                <th ng-repeat="month in totalByMonth.categories" ng-bind="month"></th>
+                <th ng-repeat="month in totalByMonth.categories">{{ month | translate }}</th>
             </tr>
             </thead>
             <tbody>
@@ -41,13 +41,13 @@
             <thead>
             <tr class="tr-centered">
                 <th></th>
-                <th ng-repeat="month in spendingByCategoryAndMonth.categories" ng-bind="month"></th>
+                <th ng-repeat="month in spendingByCategoryAndMonth.categories">{{ month | translate }}</th>
                 <th>{{'report.total' | translate}}</th>
             </tr>
             </thead>
             <tbody>
             <tr class="transaction tr-centered" ng-repeat="category in spendingByCategoryAndMonth.series | orderBy:'name'" ng-if="category.id">
-                <td class="td-head"><i class="fa fa-circle" ng-style="{ 'color': category.color}"></i> {{category.name}}</td>
+                <td class="td-head"><i class="fa fa-circle" ng-style="{ 'color': category.color}"></i> {{ category.name | translate }}</td>
                 <td ng-repeat="total in category.data track by $index" ng-bind="total" ng-class="{'td-total': $index === category.data.length - 1}"></td>
             </tr>
             <tr class="transaction tr-total tr-centered">
@@ -66,13 +66,13 @@
             <thead>
             <tr class="tr-centered">
                 <th></th>
-                <th ng-repeat="month in incomingByCategoryAndMonth.categories" ng-bind="month"></th>
+                <th ng-repeat="month in incomingByCategoryAndMonth.categories">{{ month | translate }}</th>
                 <th>{{'report.total' | translate}}</th>
             </tr>
             </thead>
             <tbody>
             <tr class="transaction tr-centered" ng-repeat="category in incomingByCategoryAndMonth.series | orderBy:'name'" ng-if="category.id">
-                <td class="td-head"><i class="fa fa-circle" ng-style="{ 'color': category.color}"></i> {{category.name}}</td>
+                <td class="td-head"><i class="fa fa-circle" ng-style="{ 'color': category.color}"></i> {{ category.name | translate }}</td>
                 <td ng-repeat="total in category.data track by $index" ng-bind="total" ng-class="{'td-total': $index === category.data.length - 1}"></td>
             </tr>
             <tr class="transaction tr-total tr-centered">

@@ -28,7 +28,7 @@
             <tbody>
             <tr class="transaction" ng-repeat="account in accounts">
                 <td>{{account.name}}</td>
-                <td>{{accounttypes[account.accounttype_id].name}}</td>
+                <td>{{ accounttypes[account.accounttype_id].name | translate }}</td>
                 <td>{{currencies[account.currency_id].name}}</td>
                 <td>{{account.creation_day}}</td>
                 <td>{{account.creation_month}}</td>
@@ -45,7 +45,7 @@
                     <select ng-model="formNewAccount.accounttype_id" required>
                         <option value="">{{'account.type' | translate}}</option>
                         <option ng-repeat="accounttype in accounttypes | orderBy:'name'" value="{{accounttype._id}}">
-                            {{accounttype.name}}
+                            {{ accounttype.name | translate }}
                         </option>
                     </select>
                 </td>

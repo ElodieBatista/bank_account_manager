@@ -70,6 +70,18 @@
     "November": "November",
     "December": "December",
 
+    "Jan": "Jan",
+    "Feb": "Feb",
+    "Mar": "Mar",
+    "Apr": "Apr",
+    "Jun": "Jun",
+    "Jul": "Jul",
+    "Aug": "Aug",
+    "Sep": "Sep",
+    "Oct": "Oct",
+    "Nov": "Nov",
+    "Dec": "Dec",
+
     "Technology": "Technology",
     "Divers": "Divers",
     "Gift": "Gift",
@@ -84,6 +96,15 @@
     "Insurance": "Insurance",
     "Tax": "Tax",
     "Clothes": "Clothes",
+
+    "Credit Card": "Credit Card",
+    "Cash": "Cash",
+    "Check": "Check",
+    "Levy": "Levy",
+    "Withdrawal": "Withdrawal",
+
+    "saving": "Saving",
+    "checking": "Checking",
 
     "Incoming": "Incoming",
     "Spending": "Spending",

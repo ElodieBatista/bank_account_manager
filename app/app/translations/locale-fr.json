@@ -70,6 +70,18 @@
     "November": "Novembre",
     "December": "Décembre",
 
+    "Jan": "Jan",
+    "Feb": "Fev",
+    "Mar": "Mar",
+    "Apr": "Avr",
+    "Jun": "Jun",
+    "Jul": "Jui",
+    "Aug": "Aou",
+    "Sep": "Sep",
+    "Oct": "Oct",
+    "Nov": "Nov",
+    "Dec": "Dec",
+
     "Technology": "Technologie",
     "Divers": "Divers",
     "Gift": "Cadeaux",
@@ -84,6 +96,15 @@
     "Insurance": "Assurance",
     "Tax": "Taxes",
     "Clothes": "Vêtements",
+
+    "Credit Card": "CB",
+    "Cash": "Espèces",
+    "Check": "Chèque",
+    "Levy": "Virement",
+    "Withdrawal": "Retrait",
+
+    "saving": "Compte Courant",
+    "checking": "Compte Epargne",
 
     "Incoming": "Entrées",
     "Spending": "Dépenses",

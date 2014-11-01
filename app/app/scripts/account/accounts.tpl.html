@@ -43,7 +43,7 @@
                     <td><i class="fa fa-circle" ng-style="{'color': categories[transaction.category_id].color}"></i> {{transaction.name}}</td>
                     <td class="transaction-amount" ng-class="{'transaction-amount-minus': transaction.amount < 0}" colspan="2">{{transaction.amount}}</td>
                     <td class="transaction-category">{{ categories[transaction.category_id].name | translate }}</td>
-                    <td>{{paymethods[transaction.paymethod_id].name}}</td>
+                    <td>{{ paymethods[transaction.paymethod_id].name | translate }}</td>
                     <td>{{transaction.month}}/{{transaction.day}}/{{transaction.year}}</td>
                     <td class="transaction-isdone">
                         <input type="checkbox" ng-model="transaction.isDone" ng-change="completeTransaction(transaction)">
@@ -71,7 +71,7 @@
                         <select ng-model="account.formNewTransaction.category_id" required>
                             <option value="">{{'transaction.category' | translate}}</option>
                             <option ng-repeat="category in categories | orderBy:'name'" value="{{category._id}}">
-                                {{category.name}}
+                                {{ category.name | translate}}
                             </option>
                         </select>
                     </td>
@@ -79,7 +79,7 @@
                         <select ng-model="account.formNewTransaction.paymethod_id" required>
                             <option value="">{{'transaction.method' | translate}}</option>
                             <option ng-repeat="paymethod in paymethods | orderBy:'name'" value="{{paymethod._id}}">
-                                {{paymethod.name}}
+                                {{ paymethod.name | translate }}
                             </option>
                         </select>
                     </td>
