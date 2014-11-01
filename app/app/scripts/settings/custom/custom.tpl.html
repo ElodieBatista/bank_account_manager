@@ -19,7 +19,7 @@
         </thead>
         <tbody>
         <tr class="transaction" ng-repeat="category in categories | orderBy:'name'">
-            <td class="td-head"><i class="fa fa-circle" ng-style="{ 'color': category.color}"></i> {{category.name}}</td>
+            <td class="td-head"><i class="fa fa-circle" ng-style="{ 'color': category.color}"></i> {{ category.name | translate}}</td>
             <td>{{category.color}}</td>
         </tr>
         </tbody>
