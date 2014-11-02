@@ -108,23 +108,29 @@ module.exports = function (app) {
      *  PUT
      *  Edit an account
      */
-    app.post('/account/:id', function (req, res) {
+    app.put('/account/:id', function (req, res) {
         var accountId = req.params.id;
         var account = req.body.account;
 
-        db.account.update({_id: accountId}, account, function(err, editedAccount) {
+        db.account.update({_id: accountId}, account, {}, function(err) {
             if (err) res.send(500);
 
-            db.year.find({name: account.creation_year}, function(err, years) {
-                if (years.length === 0) {
-                    db.year.insert({name: account.creation_year}, function(err, year) {
-                        if (err) res.send(500);
-                    });
-                }
-            });
+            db.account.find({_id: accountId}, function(err, editedAccount) {
+                db.year.find({name: account.creation_year}, function(err, years) {
+                    if (years.length === 0) {
+                        db.year.insert({name: account.creation_year}, function(err, year) {
+                            if (err) res.send(500);
+                        });
+                    }
+                });
 
-            res.send(201, {
-                data: editedAccount
+                db.transaction.remove({account_id: accountId, year: {$lt:account.creation_year}}, function(err) {
+                    if (err) res.send(500);
+
+                    res.send(200, {
+                        data: editedAccount
+                    });
+                });
             });
         });
     });

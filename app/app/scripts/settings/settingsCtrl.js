@@ -42,22 +42,34 @@ angular.module('bamApp').config(function config($routeProvider) {
     $scope.editAccount = function(account) {
         account.editing = true;
         $scope.newaccount = angular.copy(account);
+        delete $scope.newaccount.transactions;
         $scope.editedAccount = account;
     };
 
     $scope.saveEditAccount = function(form) {
         if (form.$valid) {
-            apiService.Account.put({'id':$scope.newaccount._id}, {'account':$scope.newaccount}, function(res) {
+            if (form.$dirty) {
+                delete $scope.newaccount.editing;
                 delete $scope.editedAccount.editing;
-                delete $scope.editedAccount;
-                $scope.initAccountForm();
-            }, function(err) { /*$scope.errorShow(err);*/ console.log(err); });
+                apiService.Account.put({'id':$scope.newaccount._id}, {'account':$scope.newaccount}, function(res) {
+                    $scope.editedAccount.name = res.data[0].name;
+                    $scope.editedAccount.accounttype_id = res.data[0].accounttype_id;
+                    $scope.editedAccount.currency_id = res.data[0].currency_id;
+                    $scope.editedAccount.creation_day = res.data[0].creation_day;
+                    $scope.editedAccount.creation_month = res.data[0].creation_month;
+                    $scope.editedAccount.creation_year = res.data[0].creation_year;
+                    $scope.initAccountForm();
+                }, function(err) { /*$scope.errorShow(err);*/ console.log(err); });
+            } else {
+                $scope.cancelEditAccount();
+            }
         }
     };
 
-    $scope.cancelEditAccount = function(account) {
-        delete account.editing;
-        $scope.formNewAccount = $scope.initAccountForm($scope.formNewAccount);
+    $scope.cancelEditAccount = function() {
+        delete $scope.newaccount.editing;
+        delete $scope.editedAccount.editing;
+        $scope.initAccountForm();
     };
 
     $scope.deleteAccount = function(accountId) {

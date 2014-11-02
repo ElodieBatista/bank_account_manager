@@ -13,6 +13,7 @@
 @color-grey-medium: rgb(233, 233, 233);
 @color-grey: rgb(221, 221, 221);
 @color-grey-dark: rgb(171, 171, 171);
+@color-grey-darker: rgb(121, 121, 121);
 @color-black-light: rgb(60, 60, 60);
 @color-black: black;
 
@@ -336,20 +337,31 @@ tfoot {
   font-size: 12px;
 }
 
-.table-submit-button {
+.table-submit-button,
+.table-cancel-button {
   height: 30px;
   width: 30px;
   padding: 0;
   padding-top: 2px;
 }
 
-.table-submit-button span {
+.table-cancel-button {
+  background-color: @color-grey-dark;
+}
+
+.table-submit-button span,
+.table-cancel-button span {
   font-size: 31px;
 }
 
 .table-submit-button:hover,
 .table-button:hover {
   background-color: @color-red-dark;
+  color: @color-white;
+}
+
+.table-cancel-button:hover {
+  background-color: @color-grey-darker;
   color: @color-white;
 }
 

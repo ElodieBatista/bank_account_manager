@@ -63,7 +63,8 @@
                 <td><input type="number" name="creation_year" placeholder="{{'account.year' | translate}}" ng-model="newaccount.creation_year" required></td>
                 <td>
                     <button class="table-submit-button" type="submit" ng-hide="newaccount.editing"><span>+</span></button>
-                    <button class="table-submit-button" type="button" ng-show="newaccount.editing" ng-click="saveEditAccount(formNewAccount)"><span><i class="fa fa-save"></i></span></button>
+                    <button class="table-submit-button" type="button" ng-show="newaccount.editing" ng-click="saveEditAccount(formNewAccount)"><i class="fa fa-save"></i></button>
+                    <button class="table-cancel-button" type="button" ng-show="newaccount.editing" ng-click="cancelEditAccount()"><i class="fa fa-times"></i></button>
                 </td>
             </tr>
             </tfoot>
