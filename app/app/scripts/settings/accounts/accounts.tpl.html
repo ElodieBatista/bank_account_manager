@@ -34,8 +34,8 @@
                 <td>{{account.creation_month}}</td>
                 <td>{{account.creation_year}}</td>
                 <td class="account-actions">
-                    <button class="table-button" type="button" ng-hide="account.editing" ng-click="deleteAccount(account._id);"><i class="fa fa-times"></i></button>
-                    <button class="table-button" type="button" ng-hide="account.editing" ng-click="editAccount(account);"><i class="fa fa-pencil"></i></button>
+                    <button class="table-button" type="button" ng-hide="account.editing" title="{{'button.edit' | translate}}" ng-click="editAccount(account);"><i class="fa fa-pencil"></i></button>
+                    <button class="table-button" type="button" ng-hide="account.editing" title="{{'button.delete' | translate}}" ng-click="deleteAccount(account._id);"><i class="fa fa-times"></i></button>
                 </td>
             </tr>
             </tbody>
@@ -62,9 +62,9 @@
                 <td><input type="number" name="creation_month" placeholder="{{'account.month' | translate}}" ng-model="newaccount.creation_month" required></td>
                 <td><input type="number" name="creation_year" placeholder="{{'account.year' | translate}}" ng-model="newaccount.creation_year" required></td>
                 <td>
-                    <button class="table-submit-button" type="submit" ng-hide="newaccount.editing"><span>+</span></button>
-                    <button class="table-submit-button" type="button" ng-show="newaccount.editing" ng-click="saveEditAccount(formNewAccount)"><i class="fa fa-save"></i></button>
-                    <button class="table-cancel-button" type="button" ng-show="newaccount.editing" ng-click="cancelEditAccount()"><i class="fa fa-times"></i></button>
+                    <button class="table-submit-button" type="submit" ng-hide="newaccount.editing" title="{{'button.create' | translate}}"><span>+</span></button>
+                    <button class="table-submit-button" type="button" ng-show="newaccount.editing" title="{{'button.edit' | translate}}" ng-click="saveEditAccount(formNewAccount)"><i class="fa fa-save"></i></button>
+                    <button class="table-cancel-button" type="button" ng-show="newaccount.editing" title="{{'button.cancel' | translate}}" ng-click="cancelEditAccount()"><i class="fa fa-times"></i></button>
                 </td>
             </tr>
             </tfoot>

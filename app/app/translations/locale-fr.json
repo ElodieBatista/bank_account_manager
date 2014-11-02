@@ -11,6 +11,11 @@
     "menu.reports": "Rapports",
     "menu.settings": "Paramètres",
 
+    "button.create": "Créer",
+    "button.edit": "Editer",
+    "button.delete": "Supprimer",
+    "button.cancel": "Annuler",
+
     "account.amount.current": "Actuel",
     "account.amount.future": "Futur",
 
@@ -103,8 +108,8 @@
     "Levy": "Virement",
     "Withdrawal": "Retrait",
 
-    "saving": "Compte Courant",
-    "checking": "Compte Epargne",
+    "saving": "Compte Epargne",
+    "checking": "Compte Courant",
 
     "Incoming": "Entrées",
     "Spending": "Dépenses",

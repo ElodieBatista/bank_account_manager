@@ -6,9 +6,9 @@ module.exports = function (app) {
      *  Return all accounts with transactions for a given year
      */
     app.get('/accounts/:year', function (req, res) {
-        var year = req.params.year;
+        var year = parseInt(req.params.year);
 
-        db.account.find({}, function(err, accounts) {
+        db.account.find({creation_year: {$lte:year}}, function(err, accounts) {
             if (err) res.send(500);
 
             db.transaction.find({year: year}, function(err, transactions) {

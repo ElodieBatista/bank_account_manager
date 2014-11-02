@@ -49,7 +49,7 @@
                         <input type="checkbox" ng-model="transaction.isDone" ng-change="completeTransaction(transaction)">
                     </td>
                     <td class="transaction-actions">
-                        <button class="table-button" type=button ng-click="deleteTransaction(transaction);"><i class="fa fa-times"></i></button>
+                        <button class="table-button" type="button" title="{{'button.delete' | translate}}" ng-click="deleteTransaction(transaction);"><i class="fa fa-times"></i></button>
                     </td>
                 </tr>
                 </tbody>
@@ -87,7 +87,7 @@
                     <td class="transaction-isdone transaction-form-isdone">
                         <input type="checkbox" ng-model="account.formNewTransaction.isDone">
                     </td>
-                    <td class="transaction-actions"><button class="table-submit-button" type="submit"><span>+</span></button></td>
+                    <td class="transaction-actions"><button class="table-submit-button" type="submit" title="{{'button.create' | translate}}"><span>+</span></button></td>
                 </tr>
                 </tfoot>
             </table>

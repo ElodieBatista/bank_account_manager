@@ -11,6 +11,11 @@
     "menu.reports": "Reports",
     "menu.settings": "Settings",
 
+    "button.create": "Create",
+    "button.edit": "Edit",
+    "button.delete": "Delete",
+    "button.cancel": "Cancel",
+
     "account.amount.current": "Current",
     "account.amount.future": "Future",
 

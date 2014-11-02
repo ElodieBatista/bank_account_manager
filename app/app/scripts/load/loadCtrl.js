@@ -24,10 +24,10 @@ function LoadCtrl($rootScope, $location, $window, $translate, settingsService, c
         }
     }
 
-    /*var lang = $window.navigator.userLanguage || $window.navigator.language;
+    var lang = $window.navigator.userLanguage || $window.navigator.language;
     lang = lang.substring(0, 2);
     $translate.use(lang);
-    $rootScope.language = lang;*/
+    $rootScope.language = lang;
 
     $location.path('/');
 }
