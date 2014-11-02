@@ -26,8 +26,10 @@ module.exports = function (app) {
         db.transaction.insert(transaction, function(err, newTransaction) {
             if (err) res.send(500);
 
-            db.year.find({name: transaction.year}, function(err, years) {
-                if (years.length === 0) {
+            db.year.findOne({name: transaction.year}, function(err, year) {
+                if (err) res.send(500);
+
+                if (!year) {
                     db.year.insert({name: transaction.year}, function(err, year) {
                         if (err) res.send(500);
                     });
@@ -51,11 +53,11 @@ module.exports = function (app) {
         db.transaction.update({ _id: transaction._id}, transaction, {}, function(err) {
             if (err) res.send(500);
 
-            db.transaction.find({ _id: transaction._id}, function(err, updatedTransaction) {
+            db.transaction.findOne({ _id: transaction._id}, function(err, updatedTransaction) {
                 if (err) res.send(500);
 
                 res.send(200, {
-                    data: updatedTransaction[0]
+                    data: updatedTransaction
                 });
             });
         });

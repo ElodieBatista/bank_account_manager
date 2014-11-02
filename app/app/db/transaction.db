@@ -29,3 +29,4 @@
 {"name":"Safeway","category_id":"UiejS8YXUSLsbvS4","account_id":"4pyFYVcHk7rTWC4U","paymethod_id":"03ctyIK0mvwPZBX8","amount":-80,"day":11,"month":7,"year":2014,"isDone":false,"_id":"y0v5Bfon9OV3alC5"}
 {"name":"Super Duper Burger diner with Amy","category_id":"UiejS8YXUSLsbvS4","account_id":"4pyFYVcHk7rTWC4U","paymethod_id":"03ctyIK0mvwPZBX8","amount":-39.99,"day":3,"month":7,"year":2014,"isDone":true,"_id":"z4NzQWMtG8y6rlZj"}
 {"name":"Test","category_id":"5L7UccCv9PLqE5lY","account_id":"4pyFYVcHk7rTWC4U","paymethod_id":"UfdMfafgKPVKCnVO","amount":35,"day":15,"month":7,"year":"2014","isDone":false,"_id":"zlqPclffql6YtV0W"}
+{"name":"testi","category_id":"2rebihhxmtl7RBgL","account_id":"4pyFYVcHk7rTWC4U","paymethod_id":"03ctyIK0mvwPZBX8","amount":-30,"day":1,"month":3,"year":2014,"isDone":false,"_id":"ooJ5fzi3A1OGMDry"}

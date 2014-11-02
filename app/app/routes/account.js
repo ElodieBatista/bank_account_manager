@@ -87,34 +87,53 @@ module.exports = function (app) {
     app.post('/accounts', function (req, res) {
         var account = req.body.account;
 
-        db.account.insert(account, function(err, newAccount) {
-            if (err) res.send(500);
-
-            db.year.find({name: account.creation_year}, function(err, years) {
-                if (years.length === 0) {
-                    db.year.insert({name: account.creation_year, count: 0}, function(err, year) {
-                        if (err) res.send(500);
-
-                        res.send(201, {
-                            data: {
-                                account: newAccount,
-                                year: year
-                            }
-                        });
+        async.parallel([
+                function(callback) {
+                    // Insert new account
+                    db.account.insert(account, function(err, newAccount) {
+                        if (err) callback(err);
+                        callback(null, newAccount);
                     });
-                } else {
-                    db.year.update({$inc: {count: +1}}, function(err, year) {
-                        if (err) res.send(500);
-
-                        res.send(201, {
-                            data: {
-                                account: newAccount
-                            }
-                        });
+                },
+                function(callback) {
+                    // Find creation year
+                    db.year.findOne({name: account.creation_year}, function(err, year) {
+                        if (err) callback(err);
+                        callback(null, year);
                     });
                 }
-            });
-        });
+            ],
+            function(err, results) {
+                if (err) {
+                    res.send(500);
+                } else {
+                    if (!results[1]) {
+                        // Add year if it doesn't exist
+                        db.year.insert({name: account.creation_year, count: 1}, function(err, year) {
+                            if (err) res.send(500);
+
+                            res.send(201, {
+                                data: {
+                                    account: results[0],
+                                    year: year
+                                }
+                            });
+                        });
+                    } else {
+                        // Update year's count
+                        db.year.update({$inc: {count: +1}}, function(err, year) {
+                            if (err) res.send(500);
+
+                            res.send(201, {
+                                data: {
+                                    account: results[0]
+                                }
+                            });
+                        });
+                    }
+                }
+            }
+        );
     });
 
 
@@ -171,25 +190,6 @@ module.exports = function (app) {
     app.delete('/account/:id', function (req, res) {
         var accountId = req.params.id;
 
-        /*db.account.find({_id: accountId}, function(err, accounts) {
-            if (err) res.send(500);
-
-            db.account.remove({_id: accountId}, function (err) {
-                if (err) res.send(500);
-
-                db.transaction.remove({account_id: accountId}, function (err) {
-                    if (err) res.send(500);
-
-                    db.year.update({name: accounts[0].creation_year}, {$inc: {count: -1}}, {}, function (err) {
-                        if (err) res.send(500);
-
-                        res.send(200);
-                    });
-                });
-            });
-        });*/
-
-
         async.parallel([
                 function(callback) {
                     // Get account creation year
@@ -237,6 +237,7 @@ module.exports = function (app) {
                         }
                     });
                 }
-            });
+            }
+        );
     });
 };
