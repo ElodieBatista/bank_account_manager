@@ -11,7 +11,6 @@ angular.module('bamApp').config(function config($routeProvider) {
     $scope.currYear = settingsService.getCurrentYear();
 
     $scope.languages = settingsService.languages;
-
     for (var prop in $scope.languages) {
         if ($scope.languages[prop].abbr === $rootScope.language) {
             $scope.lang = $scope.languages[prop];
@@ -40,7 +39,7 @@ angular.module('bamApp').config(function config($routeProvider) {
             apiService.Accounts.post({'account':$scope.newaccount}, function(res) {
                 $scope.accounts.push(res.data);
                 $scope.initAccountForm();
-            }, function(err) { /*$scope.errorShow(err);*/ console.log(err); });
+            }, function(err) { console.log(err); });
         }
     };
 
@@ -64,7 +63,7 @@ angular.module('bamApp').config(function config($routeProvider) {
                     $scope.editedAccount.creation_month = res.data[0].creation_month;
                     $scope.editedAccount.creation_year = res.data[0].creation_year;
                     $scope.initAccountForm();
-                }, function(err) { /*$scope.errorShow(err);*/ console.log(err); });
+                }, function(err) { console.log(err); });
             } else {
                 $scope.cancelEditAccount();
             }
@@ -84,7 +83,7 @@ angular.module('bamApp').config(function config($routeProvider) {
                     $scope.accounts.splice(i, 1);
                 }
             }
-        }, function(err) { /*$scope.errorShow(err);*/ console.log(err); });
+        }, function(err) { console.log(err); });
     };
 
     $scope.editCurrentYear = function(form) {

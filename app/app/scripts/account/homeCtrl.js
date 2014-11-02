@@ -45,7 +45,7 @@ angular.module('bamApp').config(function config($routeProvider) {
                 $scope.accounts[i].currencyFactor = [settingsService.change['EuroDollar'], 1];
             }
         }
-    });
+    }, function(err) { console.log(err); });
 
 
     $rootScope.changeViewMonth = function(month) {
@@ -112,8 +112,6 @@ angular.module('bamApp').config(function config($routeProvider) {
         if (account !== null) {
             account.transactions[transaction.month].push(transaction);
             $scope.updateAmountsWithTransaction(account, transaction, true, false);
-        } else {
-            console.log('Can\'t add transaction. Account ' + transaction.account_id + ' doesn\'t exist.');
         }
     };
 
@@ -129,10 +127,7 @@ angular.module('bamApp').config(function config($routeProvider) {
                         return;
                     }
                 }
-                console.log('Can\'t delete transaction. Transaction ' + transaction._id + ' doesn\'t exist.');
-            }, function(err) { /*$scope.errorShow(err);*/ console.log(err); });
-        } else {
-            console.log('Can\'t delete transaction. Account ' + transaction.account_id + ' doesn\'t exist.');
+            }, function(err) { console.log(err); });
         }
     };
 
@@ -155,8 +150,7 @@ angular.module('bamApp').config(function config($routeProvider) {
 
             var account = $scope.getAccountById(transaction.account_id);
             account.formNewTransaction = $scope.initTransactionForm(account.formNewTransaction);
-            // Pk pas mm faire une directive account avec un template au lieu d'un include et mettre des fonctions dedans
-        }, function(err) { /*$scope.errorShow(err);*/ console.log(err); });
+        }, function(err) { console.log(err); });
     };
 
 
@@ -165,6 +159,6 @@ angular.module('bamApp').config(function config($routeProvider) {
             var account = $scope.getAccountById(transaction.account_id);
 
             $scope.updateAmountsWithTransaction(account, transaction, false, false);
-        }, function(err) { /*$scope.errorShow(err);*/ console.log(err); });
+        }, function(err) { console.log(err); });
     };
 });
