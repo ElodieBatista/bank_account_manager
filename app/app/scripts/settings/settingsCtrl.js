@@ -10,6 +10,16 @@ angular.module('bamApp').config(function config($routeProvider) {
 }).controller('SettingsCtrl', function ($rootScope, $scope, $translate, apiService, settingsService) {
     $scope.currYear = settingsService.getCurrentYear();
 
+    apiService.Year.get(function(res) {
+        $rootScope.years = res.data;
+
+        for (var i = 0, l = $rootScope.years.length; i < l; i++) {
+            if ($rootScope.years[i].name === $scope.currYear.name) {
+                $scope.currYear = $rootScope.years[i];
+            }
+        }
+    });
+
     $scope.languages = settingsService.languages;
     for (var prop in $scope.languages) {
         if ($scope.languages[prop].abbr === $rootScope.language) {
@@ -56,12 +66,12 @@ angular.module('bamApp').config(function config($routeProvider) {
                 delete $scope.newaccount.editing;
                 delete $scope.editedAccount.editing;
                 apiService.Account.put({'id':$scope.newaccount._id}, {'account':$scope.newaccount}, function(res) {
-                    $scope.editedAccount.name = res.data[0].name;
-                    $scope.editedAccount.accounttype_id = res.data[0].accounttype_id;
-                    $scope.editedAccount.currency_id = res.data[0].currency_id;
-                    $scope.editedAccount.creation_day = res.data[0].creation_day;
-                    $scope.editedAccount.creation_month = res.data[0].creation_month;
-                    $scope.editedAccount.creation_year = res.data[0].creation_year;
+                    $scope.editedAccount.name = res.data.name;
+                    $scope.editedAccount.accounttype_id = res.data.accounttype_id;
+                    $scope.editedAccount.currency_id = res.data.currency_id;
+                    $scope.editedAccount.creation_day = res.data.creation_day;
+                    $scope.editedAccount.creation_month = res.data.creation_month;
+                    $scope.editedAccount.creation_year = res.data.creation_year;
                     $scope.initAccountForm();
                 }, function(err) { console.log(err); });
             } else {

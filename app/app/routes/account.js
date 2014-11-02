@@ -91,7 +91,11 @@ module.exports = function (app) {
 
             db.year.find({name: account.creation_year}, function(err, years) {
                 if (years.length === 0) {
-                    db.year.insert({name: account.creation_year}, function(err, year) {
+                    db.year.insert({name: account.creation_year, count: 0}, function(err, year) {
+                        if (err) res.send(500);
+                    });
+                } else {
+                    db.year.update({$inc: {count: +1}}, function(err, year) {
                         if (err) res.send(500);
                     });
                 }
@@ -112,23 +116,37 @@ module.exports = function (app) {
         var accountId = req.params.id;
         var account = req.body.account;
 
-        db.account.update({_id: accountId}, account, {}, function(err) {
+        db.account.find({_id: accountId}, function(err, accounts) {
             if (err) res.send(500);
 
-            db.account.find({_id: accountId}, function(err, editedAccount) {
-                db.year.find({name: account.creation_year}, function(err, years) {
-                    if (years.length === 0) {
-                        db.year.insert({name: account.creation_year}, function(err, year) {
-                            if (err) res.send(500);
+            var accountBeforeUpdate = accounts[0];
+
+            db.account.update({_id: accountId}, account, {}, function(err) {
+                if (err) res.send(500);
+
+                db.account.find({_id: accountId}, function(err, editedAccount) {
+                    db.year.find({name: account.creation_year}, function(err, years) {
+                        if (years.length === 0) {
+                            db.year.insert({name: account.creation_year, count: 0}, function(err, year) {
+                                if (err) res.send(500);
+                            });
+                        } else {
+                            db.year.update({name: account.creation_year, $inc: {count: +1}}, function(err, year) {
+                                if (err) res.send(500);
+                            });
+                        }
+                    });
+
+                    db.year.update({name: accountBeforeUpdate.creation_year, $inc: {count: -1}}, function(err, year) {
+                        if (err) res.send(500);
+                    });
+
+                    db.transaction.remove({account_id: accountId, year: {$lt:account.creation_year}}, function(err) {
+                        if (err) res.send(500);
+
+                        res.send(200, {
+                            data: editedAccount[0]
                         });
-                    }
-                });
-
-                db.transaction.remove({account_id: accountId, year: {$lt:account.creation_year}}, function(err) {
-                    if (err) res.send(500);
-
-                    res.send(200, {
-                        data: editedAccount
                     });
                 });
             });
@@ -143,13 +161,21 @@ module.exports = function (app) {
     app.delete('/account/:id', function (req, res) {
         var accountId = req.params.id;
 
-        db.account.remove({_id: accountId}, function(err) {
+        db.account.find({_id: accountId}, function(err, accounts) {
             if (err) res.send(500);
 
-            db.transaction.remove({account_id: accountId}, function(err) {
+            db.account.remove({_id: accountId}, function (err) {
                 if (err) res.send(500);
 
-                res.send(200);
+                db.transaction.remove({account_id: accountId}, function (err) {
+                    if (err) res.send(500);
+
+                    db.year.update({name: accounts[0].creation_day}, {$inc: {count: -1}}, {}, function (err) {
+                        if (err) res.send(500);
+
+                        res.send(200);
+                    });
+                });
             });
         });
     });
