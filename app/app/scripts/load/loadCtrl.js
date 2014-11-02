@@ -18,9 +18,14 @@ function LoadCtrl($rootScope, $location, $window, $translate, settingsService, c
     $rootScope.years = years;
 
     var year = new Date().getFullYear();
-    for (var prop in $rootScope.years) {
+    /*for (var prop in $rootScope.years) {
         if ($rootScope.years[prop].name === year) {
             settingsService.setCurrentYear($rootScope.years[prop]);
+        }
+    }*/
+    for (var i = 0, l = $rootScope.years.length; i < l; i++) {
+        if ($rootScope.years[i].name === year) {
+            settingsService.setCurrentYear($rootScope.years[i]);
         }
     }
 
@@ -92,11 +97,12 @@ LoadCtrl.resolve = {
     years: function($q, apiService) {
         var deferred = $q.defer();
         apiService.Year.get(function(res) {
-            var years = {};
+            /*var years = {};
             for (var i = 0, l = res.data.length; i < l; i++) {
                 years[res.data[i]._id] = res.data[i];
             }
-            deferred.resolve(years);
+            deferred.resolve(years);*/
+            deferred.resolve(res.data);
         }, function(err) {
             deferred.reject();
         });

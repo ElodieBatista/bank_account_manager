@@ -2,10 +2,7 @@
     <h1>{{'settings.languages' | translate}}</h1>
     <form name="formLanguage">
         <h5>{{'settings.language' | translate}}:</h5>
-        <select ng-model="formLanguage.language" ng-change="editLanguage(formLanguage.language)">
-            <option ng-repeat="language in languages | orderBy:'name'" value="{{language}}">
-                {{language.name}}
-            </option>
+        <select name="language" ng-model="lang" ng-change="editLanguage(formLanguage)" ng-options="language.name for language in languages | orderBy:'name'">
         </select>
     </form>
 </div>

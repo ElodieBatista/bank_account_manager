@@ -5,10 +5,7 @@
 <div class="settings-container">
     <form name="formCurrentYear">
         <h5>{{'settings.current.year' | translate}}:</h5>
-        <select ng-model="formCurrentYear.year" ng-change="editCurrentYear(formCurrentYear.year)">
-            <option ng-repeat="year in years | orderBy:'name'" value="{{year}}">
-                {{year.name}}
-            </option>
+        <select name="currentyear" ng-model="currYear" ng-change="editCurrentYear(formCurrentYear)" ng-options="year.name for year in years | orderBy:'name'">
         </select>
     </form>
 </div>

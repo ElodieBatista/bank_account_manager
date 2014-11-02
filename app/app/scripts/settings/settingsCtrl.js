@@ -7,12 +7,17 @@ angular.module('bamApp').config(function config($routeProvider) {
             templateUrl: 'scripts/settings/settings.tpl.html',
             controller: 'SettingsCtrl'
         })
-}).controller('SettingsCtrl', function ($scope, $translate, apiService, settingsService) {
-    $scope.formCurrentYear = {
-        year: settingsService.getCurrentYear()
-    };
+}).controller('SettingsCtrl', function ($rootScope, $scope, $translate, apiService, settingsService) {
+    $scope.currYear = settingsService.getCurrentYear();
 
     $scope.languages = settingsService.languages;
+
+    for (var prop in $scope.languages) {
+        if ($scope.languages[prop].abbr === $rootScope.language) {
+            $scope.lang = $scope.languages[prop];
+            break;
+        }
+    }
 
     $scope.initAccountForm = function() {
         $scope.newaccount = {
@@ -82,11 +87,13 @@ angular.module('bamApp').config(function config($routeProvider) {
         }, function(err) { /*$scope.errorShow(err);*/ console.log(err); });
     };
 
-    $scope.editCurrentYear = function(year) {
-        settingsService.setCurrentYear(JSON.parse(year));
+    $scope.editCurrentYear = function(form) {
+        settingsService.setCurrentYear(form.currentyear.$modelValue);
     };
 
-    $scope.editLanguage = function(language) {
-        $translate.use(JSON.parse(language).abbr);
+    $scope.editLanguage = function(form) {
+        var language = form.language.$modelValue.abbr;
+        $rootScope.language = language;
+        $translate.use(language);
     }
 });
