@@ -47,8 +47,11 @@ angular.module('bamApp').config(function config($routeProvider) {
     $scope.newAccount = function(form) {
         if (form.$valid) {
             apiService.Accounts.post({'account':$scope.newaccount}, function(res) {
-                $scope.accounts.push(res.data);
+                $scope.accounts.push(res.data.account);
                 $scope.initAccountForm();
+                if (res.data.year) {
+                    $rootScope.years.push(res.data.year);
+                }
             }, function(err) { console.log(err); });
         }
     };
@@ -91,6 +94,27 @@ angular.module('bamApp').config(function config($routeProvider) {
             for (var i = 0, l = $scope.accounts.length; i < l; i++) {
                 if ($scope.accounts[i]._id === accountId) {
                     $scope.accounts.splice(i, 1);
+                    break;
+                }
+            }
+
+            if (res.data && res.data.yearToDelete) {
+                for (var j = 0, le = $rootScope.years.length; j < le; j++) {
+                    if ($rootScope.years[j]._id === res.data.yearToDelete) {
+                        $rootScope.years.splice(j, 1);
+
+                        if (res.data.yearToDelete === $scope.currYear._id) {
+                            var currentYear = new Date().getFullYear();
+                            for (var k = 0, len = $rootScope.years.length; k < len; k++) {
+                                if ($rootScope.years[k].name === currentYear) {
+                                    settingsService.setCurrentYear($rootScope.years[k]);
+                                    $scope.currYear = $rootScope.years[k];
+                                    break;
+                                }
+                            }
+                        }
+                        break;
+                    }
                 }
             }
         }, function(err) { console.log(err); });
@@ -98,6 +122,7 @@ angular.module('bamApp').config(function config($routeProvider) {
 
     $scope.editCurrentYear = function(form) {
         settingsService.setCurrentYear(form.currentyear.$modelValue);
+        $scope.currYear = settingsService.getCurrentYear();
     };
 
     $scope.editLanguage = function(form) {

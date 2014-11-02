@@ -1,4 +1,5 @@
 var db = require('../db/db');
+var async = require('async');
 
 module.exports = function (app) {
     /**
@@ -93,16 +94,25 @@ module.exports = function (app) {
                 if (years.length === 0) {
                     db.year.insert({name: account.creation_year, count: 0}, function(err, year) {
                         if (err) res.send(500);
+
+                        res.send(201, {
+                            data: {
+                                account: newAccount,
+                                year: year
+                            }
+                        });
                     });
                 } else {
                     db.year.update({$inc: {count: +1}}, function(err, year) {
                         if (err) res.send(500);
+
+                        res.send(201, {
+                            data: {
+                                account: newAccount
+                            }
+                        });
                     });
                 }
-            });
-
-            res.send(201, {
-                data: newAccount
             });
         });
     });
@@ -161,7 +171,7 @@ module.exports = function (app) {
     app.delete('/account/:id', function (req, res) {
         var accountId = req.params.id;
 
-        db.account.find({_id: accountId}, function(err, accounts) {
+        /*db.account.find({_id: accountId}, function(err, accounts) {
             if (err) res.send(500);
 
             db.account.remove({_id: accountId}, function (err) {
@@ -170,13 +180,63 @@ module.exports = function (app) {
                 db.transaction.remove({account_id: accountId}, function (err) {
                     if (err) res.send(500);
 
-                    db.year.update({name: accounts[0].creation_day}, {$inc: {count: -1}}, {}, function (err) {
+                    db.year.update({name: accounts[0].creation_year}, {$inc: {count: -1}}, {}, function (err) {
                         if (err) res.send(500);
 
                         res.send(200);
                     });
                 });
             });
-        });
+        });*/
+
+
+        async.parallel([
+                function(callback) {
+                    // Get account creation year
+                    db.account.find({_id: accountId}, function(err, accounts) {
+                        if (err) callback(err);
+                        callback(null, accounts[0].creation_year);
+                    });
+                },
+                function(callback) {
+                    // Remove account
+                    db.account.remove({_id: accountId}, function (err) {
+                        if (err) callback(err);
+                        callback(null);
+                    });
+                },
+                function(callback) {
+                    // Remove account's transactions
+                    db.transaction.remove({account_id: accountId}, function (err) {
+                        if (err) callback(err);
+                        callback(null);
+                    });
+                }
+            ],
+            function(err, results) {
+                if (err) {
+                    res.send(500);
+                } else {
+                    db.year.findOne({name: results[0]}, function(err, year) {
+                        if (year.count <= 1) {
+                            // Remove account's transactions
+                            db.year.remove({_id: year._id}, function (err) {
+                                if (err) if (err) res.send(500);
+                                res.send(200, {
+                                    data: {
+                                        yearToDelete: year._id
+                                    }
+                                });
+                            });
+                        } else {
+                            // Update year's count
+                            db.year.update({_id: year._id}, {$inc: {count: -1}}, {}, function (err) {
+                                if (err) res.send(500);
+                                res.send(200);
+                            });
+                        }
+                    });
+                }
+            });
     });
 };
