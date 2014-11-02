@@ -105,6 +105,32 @@ module.exports = function (app) {
 
 
     /**
+     *  PUT
+     *  Edit an account
+     */
+    app.post('/account/:id', function (req, res) {
+        var accountId = req.params.id;
+        var account = req.body.account;
+
+        db.account.update({_id: accountId}, account, function(err, editedAccount) {
+            if (err) res.send(500);
+
+            db.year.find({name: account.creation_year}, function(err, years) {
+                if (years.length === 0) {
+                    db.year.insert({name: account.creation_year}, function(err, year) {
+                        if (err) res.send(500);
+                    });
+                }
+            });
+
+            res.send(201, {
+                data: editedAccount
+            });
+        });
+    });
+
+
+    /**
      *  DELETE
      *  Delete an account and its transactions
      */

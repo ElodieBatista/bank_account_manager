@@ -3,12 +3,14 @@
         <ul id="monthly-nav-list" class="main-nav-list" ng-init="selectedSettingsTab = 1;">
             <li class="main-nav-list-item" ng-class="{active: selectedSettingsTab == 1}">
                 <a class="main-nav-list-item-link" href="#/settings" ng-click="selectedSettingsTab = 1;">
-                    <i class="fa fa-tasks"></i> {{'tabbar.accounts' | translate}}
+                    <i class="fa fa-tasks"></i>
+                    <span class="main-nav-list-item-text">{{'tabbar.accounts' | translate}}</span>
                 </a>
             </li>
             <li class="main-nav-list-item" ng-class="{active: selectedSettingsTab == 2}">
                 <a class="main-nav-list-item-link" href="#/settings" ng-click="selectedSettingsTab = 2;">
-                    <i class="fa fa-sliders"></i> {{'tabbar.customize' | translate}}
+                    <i class="fa fa-sliders"></i>
+                    <span class="main-nav-list-item-text">{{'tabbar.customize' | translate}}</span>
                 </a>
             </li>
         </ul>

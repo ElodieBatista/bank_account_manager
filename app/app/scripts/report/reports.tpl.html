@@ -3,12 +3,14 @@
         <ul id="monthly-nav-list" class="main-nav-list" ng-init="selectedTab = 1;">
             <li class="main-nav-list-item" ng-class="{active: selectedTab == 1}">
                 <a class="main-nav-list-item-link" href="" ng-click="selectedTab = 1;">
-                    <i class="fa fa-pie-chart"></i> {{'tabbar.reports.charts' | translate}}
+                    <i class="fa fa-pie-chart"></i>
+                    <span class="main-nav-list-item-text">{{'tabbar.reports.charts' | translate}}</span>
                 </a>
             </li>
             <li class="main-nav-list-item" ng-class="{active: selectedTab == 2}">
                 <a class="main-nav-list-item-link" href="" ng-click="selectedTab = 2;">
-                    <i class="fa fa-table"></i> {{'tabbar.reports.tables' | translate}}
+                    <i class="fa fa-table"></i>
+                    <span class="main-nav-list-item-text">{{'tabbar.reports.tables' | translate}}</span>
                 </a>
             </li>
         </ul>

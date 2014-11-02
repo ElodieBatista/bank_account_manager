@@ -67,35 +67,46 @@ angular.module('bamApp').config(function config($routeProvider) {
     });
 
     apiService.ReportTransactionsEvolution.get({'year': currYear}, function(res) {
-        var legend = [];
-        for (var i = 0, l = res.data.series.length; i < l; i++) {
-            legend.push(res.data.series[i].name);
-        }
-        translateData(legend).then(function(data) {
+        translateData(res.data.categories).then(function(categories) {
+            var legend = [];
             for (var i = 0, l = res.data.series.length; i < l; i++) {
-                res.data.series[i].name = data[i];
+                legend.push(res.data.series[i].name);
             }
-            $scope.transactionsEvolution = res.data;
+            translateData(legend).then(function (data) {
+                for (var i = 0, l = res.data.series.length; i < l; i++) {
+                    res.data.series[i].name = data[i];
+                }
+                $scope.transactionsEvolution = {
+                    categories: categories,
+                    series: res.data.series
+                };
+            });
         });
         $scope.differenceByMonth = res.data;
     });
 
     apiService.ReportAccountsByMonth.get({'year': currYear}, function(res) {
-        $scope.accountsByMonth = res.data;
+        translateData(res.data.categories).then(function(categories) {
+            res.data.categories = categories;
+            $scope.accountsByMonth = res.data;
+        });
     });
 
     apiService.ReportTotalByMonth.get({'year': currYear}, function(res) {
-        var legend = [];
-        for (var i = 0, l = res.data.series.length; i < l; i++) {
-            legend.push(res.data.series[i].name);
-        }
-        translateData(legend).then(function(data) {
+        translateData(res.data.categories).then(function(categories) {
+            var legend = [];
             for (var i = 0, l = res.data.series.length; i < l; i++) {
-                res.data.series[i].name = data[i];
+                legend.push(res.data.series[i].name);
             }
-            $scope.totalByMonth = res.data;
-            $scope.total = $scope.totalByMonth.series[0].data[11];
-            $scope.savings = $scope.totalByMonth.series[0].data[11] - $scope.totalByMonth.series[0].data[0];
+            translateData(legend).then(function (data) {
+                for (var i = 0, l = res.data.series.length; i < l; i++) {
+                    res.data.series[i].name = data[i];
+                }
+                res.data.categories = categories;
+                $scope.totalByMonth = res.data;
+                $scope.total = $scope.totalByMonth.series[0].data[11];
+                $scope.savings = $scope.totalByMonth.series[0].data[11] - $scope.totalByMonth.series[0].data[0];
+            });
         });
     });
 

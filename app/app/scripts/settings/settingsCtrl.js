@@ -14,14 +14,50 @@ angular.module('bamApp').config(function config($routeProvider) {
 
     $scope.languages = settingsService.languages;
 
+    $scope.initAccountForm = function() {
+        $scope.newaccount = {
+            name: '',
+            accounttype_id: '',
+            currency_id: '',
+            creation_day: '',
+            creation_month: '',
+            creation_year: ''
+        }
+    };
+
     apiService.Accounts.get(function(res) {
         $scope.accounts = res.data;
+        $scope.initAccountForm();
     });
 
-    $scope.newAccount = function(account) {
-        apiService.Accounts.post({'account':account}, function(res) {
-            $scope.accounts.push(res.data);
-        }, function(err) { /*$scope.errorShow(err);*/ console.log(err); });
+    $scope.newAccount = function(form) {
+        if (form.$valid) {
+            apiService.Accounts.post({'account':$scope.newaccount}, function(res) {
+                $scope.accounts.push(res.data);
+                $scope.initAccountForm();
+            }, function(err) { /*$scope.errorShow(err);*/ console.log(err); });
+        }
+    };
+
+    $scope.editAccount = function(account) {
+        account.editing = true;
+        $scope.newaccount = angular.copy(account);
+        $scope.editedAccount = account;
+    };
+
+    $scope.saveEditAccount = function(form) {
+        if (form.$valid) {
+            apiService.Account.put({'id':$scope.newaccount._id}, {'account':$scope.newaccount}, function(res) {
+                delete $scope.editedAccount.editing;
+                delete $scope.editedAccount;
+                $scope.initAccountForm();
+            }, function(err) { /*$scope.errorShow(err);*/ console.log(err); });
+        }
+    };
+
+    $scope.cancelEditAccount = function(account) {
+        delete account.editing;
+        $scope.formNewAccount = $scope.initAccountForm($scope.formNewAccount);
     };
 
     $scope.deleteAccount = function(accountId) {

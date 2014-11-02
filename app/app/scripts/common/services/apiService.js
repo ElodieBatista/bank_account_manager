@@ -30,6 +30,9 @@ angular.module('bamApp').factory('apiService', function (conf, $resource) {
         }),
 
         Account: $resource(conf.epApi + '/account/:id', {id:'@id'}, {
+            'put': {
+                method: 'PUT'
+            },
             'delete': {
                 method: 'DELETE'
             }
