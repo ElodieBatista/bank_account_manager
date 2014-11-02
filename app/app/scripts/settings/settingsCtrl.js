@@ -13,9 +13,17 @@ angular.module('bamApp').config(function config($routeProvider) {
     apiService.Year.get(function(res) {
         $rootScope.years = res.data;
 
+        if (res.data.length === 0) {
+            res.data.push({
+                _id: -1,
+                name: new Date().getFullYear()
+            });
+        }
+
         for (var i = 0, l = $rootScope.years.length; i < l; i++) {
             if ($rootScope.years[i].name === $scope.currYear.name) {
                 $scope.currYear = $rootScope.years[i];
+                break;
             }
         }
     });

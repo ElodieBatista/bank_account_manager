@@ -5,12 +5,22 @@ angular.module('bamApp').config(function config($routeProvider) {
         .when('/accounts/:month',
         {
             templateUrl: 'scripts/account/home.tpl.html',
-            controller: 'HomeCtrl'
+            controller: 'HomeCtrl',
+            reloadOnSearch: false
         })
-}).controller('HomeCtrl', function ($scope, $rootScope, $routeParams, apiService, settingsService) {
+}).controller('HomeCtrl', function ($rootScope, $scope, $location, $routeParams, apiService, settingsService) {
     $scope.firstMonth = 1;
     $rootScope.currViewMonth = parseInt($routeParams.month);
     var currYear = settingsService.getCurrentYear().name;
+
+    if ($location.search()['tab'] === 'saving') {
+        $scope.selectedTab = 2;
+    } else {
+        $scope.selectedTab = 1;
+    }
+
+    $location.search('tab', null);
+
 
     $scope.initTransactionForm = function(form) {
         form = {

@@ -14,6 +14,7 @@ module.exports = function (app) {
 
             db.transaction.find({year: year}, function(err, transactions) {
                 if (err) res.send(500);
+                console.log(transactions);
 
                 var i, j, l = 0;
 
@@ -145,7 +146,7 @@ module.exports = function (app) {
         var accountId = req.params.id;
         var account = req.body.account;
 
-        db.account.find({_id: accountId}, function(err, accounts) {
+        /*db.account.find({_id: accountId}, function(err, accounts) {
             if (err) res.send(500);
 
             var accountBeforeUpdate = accounts[0];
@@ -179,7 +180,69 @@ module.exports = function (app) {
                     });
                 });
             });
-        });
+        });*/
+
+        async.parallel([
+                function(callback) {
+                    // Get account before update
+                    db.account.findOne({_id: accountId}, function(err, account) {
+                        if (err) callback(err);
+                        callback(null, account);
+                    });
+                },
+                function(callback) {
+                    // Update account
+                    db.account.update({_id: accountId}, account, {}, function(err) {
+                        if (err) callback(err);
+                        callback(null);
+                    });
+                },
+                function(callback) {
+                    // Remove past transactions
+                    db.transaction.remove({account_id: accountId, year: {$lt:account.creation_year}}, function(err) {
+                        if (err) callback(err);
+                        callback(null);
+                    });
+                },
+                function(callback) {
+                    // Get account's creation year
+                    db.year.findOne({name: account.creation_year}, function(err, year) {
+                        if (err) callback(err);
+
+                        if (!year) {
+                            // Insert year
+                            db.year.insert({name: account.creation_year, count: 1}, function(err, year) {
+                                if (err) callback(err);
+                                callback(null);
+                            });
+                        } else {
+                            // Update year's count
+                            db.year.update({name: account.creation_year}, {$inc: {count: +1}}, {}, function(err, year) {
+                                if (err) callback(err);
+                                callback(null);
+                            });
+                        }
+                    });
+                }
+            ],
+            function(err, results) {
+                if (err) {
+                    res.send(500);
+                } else {
+                    // Update year of account before being updated
+                    db.year.update({name: results[0].creation_year}, {$inc: {count: -1}}, {}, function(err, year) {
+                        if (err) res.send(500);
+
+                        // Get and return updated account
+                        db.account.findOne({_id: accountId}, function (err, editedAccount) {
+                            res.send(200, {
+                                data: editedAccount
+                            });
+                        });
+                    });
+                }
+            }
+        );
     });
 
 

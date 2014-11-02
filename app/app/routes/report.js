@@ -6,7 +6,7 @@ module.exports = function (app) {
      *  Return total spending by category (and optionally by month)
      */
     app.get('/report/spending/category/:year/:month?', function (req, res) {
-        var year = req.params.year;
+        var year = parseInt(req.params.year);
         var month = req.params.month;
 
         db.category.find({}, function(err, categories) {
@@ -40,7 +40,7 @@ module.exports = function (app) {
      *  Return total incoming by category (and optionally by month)
      */
     app.get('/report/incoming/category/:year/:month?', function (req, res) {
-        var year = req.params.year;
+        var year = parseInt(req.params.year);
         var month = req.params.month;
 
         db.category.find({}, function(err, categories) {
@@ -74,7 +74,7 @@ module.exports = function (app) {
      *  Return total spending by category and by month
      */
     app.get('/report/spending/:year/month/category', function (req, res) {
-        var year = req.params.year;
+        var year = parseInt(req.params.year);
 
         function fillArrayWith0(n) {
             var newArray = new Array(n);
@@ -141,7 +141,7 @@ module.exports = function (app) {
      *  Return total incoming by category and by month
      */
     app.get('/report/incoming/:year/month/category', function (req, res) {
-        var year = req.params.year;
+        var year = parseInt(req.params.year);
 
         function fillArrayWith0(n) {
             var newArray = new Array(n);
@@ -208,7 +208,7 @@ module.exports = function (app) {
      *  Return total transactions by category
      */
     app.get('/report/transactions/category/:year/:month?', function (req, res) {
-        var year = req.params.year;
+        var year = parseInt(req.params.year);
         var month = req.params.month;
 
         var result = {
@@ -282,7 +282,7 @@ module.exports = function (app) {
      *  Return total transactions by evolution
      */
     app.get('/report/transactions/evolution/:year', function (req, res) {
-        var year = req.params.year;
+        var year = parseInt(req.params.year);
 
         var result = {
             categories: [],
@@ -345,7 +345,7 @@ module.exports = function (app) {
      *  Return total accounts by month
      */
     app.get('/report/accounts/:year/month', function (req, res) {
-        var year = req.params.year;
+        var year = parseInt(req.params.year);
 
         var result = {
             categories: [],
@@ -405,7 +405,7 @@ module.exports = function (app) {
      *  Return total by month
      */
     app.get('/report/total/:year/month', function (req, res) {
-        var year = req.params.year;
+        var year = parseInt(req.params.year);
 
         var result = {
             categories: [],
@@ -451,7 +451,7 @@ module.exports = function (app) {
      *  Return total accounts by account types
      */
     app.get('/report/total/accounttype/:year', function (req, res) {
-        var year = req.params.year;
+        var year = parseInt(req.params.year);
 
         var result = {
             categories: [],

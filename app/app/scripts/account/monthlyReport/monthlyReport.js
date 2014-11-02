@@ -1,6 +1,13 @@
 'use strict';
 
-angular.module('bamApp').controller('MonthlyReportCtrl', function ($scope, $rootScope, $routeParams, $q, $translate, apiService, settingsService) {
+angular.module('bamApp').config(function config($routeProvider) {
+    $routeProvider
+        .when('/accounts/:month/reports',
+        {
+            templateUrl: 'scripts/account/monthlyReport/monthlyReport.tpl.html',
+            controller: 'MonthlyReportCtrl'
+        })
+}).controller('MonthlyReportCtrl', function ($scope, $rootScope, $routeParams, $q, $translate, apiService, settingsService) {
     $rootScope.currViewMonth = parseInt($routeParams.month);
     var currYear = settingsService.getCurrentYear().name;
 

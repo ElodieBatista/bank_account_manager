@@ -92,6 +92,12 @@ LoadCtrl.resolve = {
     years: function($q, apiService) {
         var deferred = $q.defer();
         apiService.Year.get(function(res) {
+            if (res.data.length === 0) {
+                res.data.push({
+                    _id: -1,
+                    name: new Date().getFullYear()
+                });
+            }
             deferred.resolve(res.data);
         }, function(err) {
             deferred.reject(err);
